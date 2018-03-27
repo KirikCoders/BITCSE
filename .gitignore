@@ -1,0 +1,17 @@
+*.iml
+.gradle
+/local.properties
+
+.DS_Store
+/build
+/captures
+/app/google-services.json
+*.apk
+/key
+/Sharingan.jks
+/app/build
+/app/src/main/res/values/string2.xml
+/.idea
+/projectFilesBackup
+/proguard-TimeTable.txt
+/gradle.properties
