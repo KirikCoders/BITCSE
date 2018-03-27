@@ -1,0 +1,73 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bit.cse.dayRoom">
+
+    <!-- TODO: Update blank fragment layout -->
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/dayRoom_Roomspinner"
+        android:spinnerMode="dropdown"
+        android:background="@color/spinner_background"
+        android:elevation="4dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:popupBackground="@color/popup_background_color"
+        android:layout_above="@+id/dayRoom_daySpinner"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/dayRoom_daySpinner"
+        android:spinnerMode="dropdown"
+        android:background="@color/spinner_background"
+        android:elevation="4dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:popupBackground="@color/popup_background_color"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/dayRoomSearchButton"
+        android:textStyle="normal"
+        android:textSize="25sp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
+        android:elevation="4dp"
+        android:background="@color/search_button_color"
+        android:layout_below="@+id/dayRoom_daySpinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/dayRoomDisplayEntireWeekButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dayRoomSearchButton"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/schedule_button_color"
+        android:elevation="4dp"
+        android:text="View Entire week schedule"/>
+</RelativeLayout>

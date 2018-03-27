@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?><manifest xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools" package="com.bit.cse"
+android:screenOrientation="portrait">
+
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Recommended so that CleverTap knows when to attempt a network call -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <meta-data
+        tools:replace="android:value"
+        android:name="android.support.VERSION"
+        android:value="24.2.1" />
+<application android:allowBackup="true" android:icon="@drawable/bit1" android:label="@string/app_name"
+    android:screenOrientation="portrait" android:supportsRtl="true" android:theme="@style/AppTheme"
+    tools:replace="android:theme">
+    <activity android:name="com.bit.cse.MainActivity" android:screenOrientation="portrait">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+        </intent-filter>
+    </activity>
+
+    <meta-data
+        android:name="CLEVERTAP_ACCOUNT_ID"
+        android:value="@string/cleverTapAccountId"/>
+    <meta-data
+        android:name="CLEVERTAP_TOKEN"
+        android:value="@string/cleverTapAccountToken"/>
+
+
+    <service android:name="com.bit.cse.MyFirebaseMessagingService">
+        <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+    </service>
+
+    <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+        android:resource="@drawable/ic_cloud_download_white_24dp" />
+    <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+    <meta-data android:name="com.google.firebase.messaging.default_notification_color"
+        android:resource="@color/colorAccent" />
+
+    <activity android:name="com.bit.cse.FirstScreen" android:screenOrientation="portrait">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+    <activity android:name="com.bit.cse.FacultyData" android:screenOrientation="portrait"/>
+    <activity android:name="com.bit.cse.googleSitesWebView" android:screenOrientation="portrait" />
+    <activity android:name="com.bit.cse.WebViewManual" android:screenOrientation="portrait" />
+    <activity android:name="com.bit.cse.AboutCSE" android:screenOrientation="portrait">
+
+    </activity>
+    <activity android:name="com.bit.cse.aboutDevelopers" android:screenOrientation="portrait">
+
+    </activity>
+</application>
+
+
+
+
+
+
+</manifest>

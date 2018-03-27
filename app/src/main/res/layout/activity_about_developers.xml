@@ -1,0 +1,265 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.bit.cse.aboutDevelopers"
+    android:background="@color/fragments_background"
+    >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Students, BIT"
+        android:gravity="center"
+        android:background="#4caf50"
+        android:layout_gravity="center"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:id="@+id/aboutDevTopText"
+        android:layout_marginTop="10dp"/>
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.CardView
+        android:layout_width="250dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:id="@+id/aboutDevCard1"
+        android:paddingBottom="30dp"
+        app:cardBackgroundColor="#E65100"
+        android:layout_marginTop="40dp"
+        app:cardElevation="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Sharath S Bhargav"
+                android:textSize="20dp"
+                android:id="@+id/aboutDevName1"
+android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Android developer"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="25dp"
+
+android:layout_marginBottom="5dp"
+                android:textColor="@color/black"
+                android:id="@+id/aboutDevdes1" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/aboutDevCard2"
+        android:layout_below="@id/aboutDevCard1"
+        android:layout_marginTop="25dp"
+        android:paddingBottom="20dp"
+        app:cardBackgroundColor="#EF6C00"
+        app:cardElevation="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Suhas T S"
+                android:id="@+id/aboutDevName2"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Android developer"
+                android:textAlignment="center"
+                android:textSize="25dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/aboutDevdes2"
+
+                />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/aboutDevCard3"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/aboutDevCard2"
+        app:cardBackgroundColor="#FB8C00"
+        app:cardElevation="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Ullas Diwakar"
+                android:id="@+id/aboutDevName3"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="UI developer"
+                android:textSize="25dp"
+                android:id="@+id/aboutDevdes3"
+
+                android:textColor="@color/black"
+                android:layout_marginBottom="5dp"
+                />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/aboutDevCard3"
+        app:cardBackgroundColor="#FFA726"
+        android:layout_marginBottom="25dp"
+        app:cardElevation="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Suchit Rotti"
+               android:layout_marginTop="5dp"
+                android:textSize="25dp"
+                android:id="@+id/aboutDevName4"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="UI developer"
+                android:textSize="25dp"
+               android:layout_marginBottom="5dp"
+                android:id="@+id/aboutDevdes4"
+
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Mentors"
+        android:textColor="@color/Abit_Black"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:id="@+id/aboutDevText"
+        android:gravity="center"
+        android:background="#4caf50"
+        android:layout_marginBottom="20dp"/>
+    <android.support.v7.widget.CardView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+
+        android:layout_below="@id/aboutDevCard3"
+        app:cardBackgroundColor="#00B0FF"
+        android:layout_marginBottom="25dp"
+        app:cardElevation="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Dr. S. Nandagopalan"
+                android:layout_marginTop="5dp"
+                android:textSize="20dp"
+                android:id="@+id/aboutDevName5"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Professor and HOD"
+                android:textSize="25dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/aboutDevdes5"
+
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+
+        android:layout_below="@id/aboutDevCard3"
+        app:cardBackgroundColor="#40C4FF"
+        android:layout_marginBottom="25dp"
+        app:cardElevation="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text=" Nethravathy V"
+                android:layout_marginTop="5dp"
+                android:textSize="25dp"
+                android:id="@+id/aboutDevName6"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Assistant Professor"
+                android:textSize="25dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/aboutDevdes6"
+
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
+</ScrollView>

@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bit.cse.changeDb">
+
+
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_radio"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:scrollbars="vertical"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recycler_view_radio"
+        android:layout_marginTop="25dp"
+        android:textSize="25dp"
+        android:textColor="@color/Abit_Black"
+        android:id="@+id/changeDbCurrentDbText"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Time Table"
+
+        android:id="@+id/buttonSetTimeTable"
+        android:textStyle="normal"
+        android:textSize="25dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/schedule_button_color"
+        android:layout_below="@id/changeDbCurrentDbText"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update"
+        android:id="@+id/update_button"
+        android:textStyle="normal"
+        android:textSize="25dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:elevation="4dp"
+        android:background="@color/search_button_color"
+        android:layout_below="@id/buttonSetTimeTable"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>

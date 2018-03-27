@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <color name="card1">#5C6BC0</color>
+    <color name="card5">#FFCA28</color>
+    <color name="card3">#EF5350</color>
+    <color name="card2">#42A5F5</color>
+    <color name="card4">#FF7043</color>
+    <color name="card6">#78909C</color>
+
+    <array name="card_colors">
+        <item>@color/card1</item>
+        <item>@color/card2</item>
+        <item>@color/card3</item>
+        <item>@color/card4</item>
+        <item>@color/card5</item>
+        <item>@color/card6</item>
+    </array>
+</resources>
