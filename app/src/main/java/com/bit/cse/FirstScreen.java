@@ -18,7 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import easyFonts.EasyFonts;
 import liquidButton.LiquidButton;
@@ -222,4 +224,5 @@ public class FirstScreen extends AppCompatActivity {
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
 
     }
+
 }

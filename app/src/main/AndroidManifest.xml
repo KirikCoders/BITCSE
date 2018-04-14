@@ -5,8 +5,7 @@ android:screenOrientation="portrait">
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!-- Recommended so that CleverTap knows when to attempt a network call -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <meta-data
         tools:replace="android:value"
         android:name="android.support.VERSION"
@@ -33,6 +32,7 @@ android:screenOrientation="portrait">
     <service android:name="com.bit.cse.MyFirebaseMessagingService">
         <intent-filter>
             <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
         </intent-filter>
     </service>
 

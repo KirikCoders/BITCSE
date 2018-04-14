@@ -17,7 +17,11 @@
 -keep public class * extends android.support.v4.app.Fragment
 -keep public class * extends android.support.v4.app.ListFragment
 
--dontwarn com.clevertap.android.sdk.**
+-keep public class android.graphics.drawable.** { *;}
+-dontwarn com.google.firebase.messaging.**
+-keep public class com.google.android.gms.* { public *; }
+
 -dontwarn com.google.android.gms.**
--keep com.clevertap.android.sdk.**
--ignorewarnings com.clevertap.android.sdk.**
+-keep class com.clevertap.** { *; }
+-dontwarn com.clevertap.**
+

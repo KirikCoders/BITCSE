@@ -1,7 +1,7 @@
 *.iml
 .gradle
 /local.properties
-
+/app/release
 .DS_Store
 /build
 /captures
@@ -15,3 +15,4 @@
 /projectFilesBackup
 /proguard-TimeTable.txt
 /gradle.properties
+/app/release/output.json
