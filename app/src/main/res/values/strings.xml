@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BITCSE</string>
+    <string name="title_events">Events</string>
+    <string name="title_tools">Tools</string>
+    <string name="title_timeTable">Time Table</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_settings">Settings</string>
+</resources>
