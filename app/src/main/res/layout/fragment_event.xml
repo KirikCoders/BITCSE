@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/tabLayout"
         android:background="@color/colorPrimary"
         app:tabTextColor="@color/colorUnselected"
         app:tabSelectedTextColor="@color/colorAccent">
@@ -19,19 +19,26 @@
             android:layout_height="wrap_content"
             android:text="My Events"/>
     </android.support.design.widget.TabLayout>
+
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/event_recycler_view"
+        android:layout_below="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:id="@+id/event_recycler_view"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_event_fab"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="65dp"
+        android:layout_marginEnd="17dp"
         android:backgroundTint="@color/colorPrimary"
+        android:paddingBottom="40dp"
         android:src="@drawable/ic_add_white_24dp"
         app:elevation="10dp"
-        app:fabSize="normal" />
-</LinearLayout>
+        app:fabSize="normal"
+        app:rippleColor="@color/colorUnselected" />
+</RelativeLayout>
