@@ -10,8 +10,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
-    boolean isLoggedIn = false;
+    private FirebaseAuth mAuth;
     private ViewPager pager;
     private HomePagerAdapter adapter;
     private BottomNavigationView navigation;
@@ -77,8 +80,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setElevation(0);
-        if (!isLoggedIn)
-            loginOrSignUp();
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user == null){
+            startActivity(new Intent(this,LoginActivity.class));
+        }
         pager = findViewById(R.id.pager);
         adapter = new HomePagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new EventFragment());
