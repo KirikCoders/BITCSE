@@ -18,6 +18,9 @@
     <string name="error_field_required">This field is required</string>
     <string name="signin_help">Please login or sign up to use the app</string>
     <string name="help_word">help</string>
-    <string name="registration_help">Enter your USN. A code will be sent to the email registered by the college. Please enter that code.</string>
+    <string name="registration_help">Enter your USN. An
+        email will be sent to the email address registered by the college. Please
+        click on the verification link.</string>
     <string name="send_otp">Send OTP</string>
+    <string name="terms">I accept the Terms and Conditions</string>
 </resources>

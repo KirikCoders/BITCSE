@@ -2,12 +2,16 @@ package io.kirikcoders.bitcse.auth;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,74 +31,66 @@ import io.kirikcoders.bitcse.MainActivity;
 import io.kirikcoders.bitcse.R;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText registerOtp,usn,password,confirmPassword;
-    private Button sendOtp,register;
+    // get references to UI elements
+    private EditText usn,password,confirmPassword;
+    private Button register;
+    private RadioGroup radioGroup;
+    private ProgressBar progressBar;
+    // Fire base objects to access db to verify users during registration
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private FirebaseUser mUser;
+    // Firebase auth listener triggers when the register event completes i.e signUpUser....()
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    private DatabaseReference mStudents,mProfessors;
+    private DatabaseReference myRef;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null){
-                    sendVerificationEmail();
-                }
-            }
-        };
         database = FirebaseDatabase.getInstance();
-        mAuth.addAuthStateListener(mAuthStateListener);
-        mStudents = database.getReference("students");
-        mProfessors = database.getReference("professors");
         usn = findViewById(R.id.register_usn);
         password = findViewById(R.id.register_password);
         confirmPassword = findViewById(R.id.register_confirm_password);
         register = findViewById(R.id.register_btn);
+        radioGroup = findViewById(R.id.regRadioGroup);
+        progressBar = findViewById(R.id.progressBar);
+        register.setEnabled(false);
+        // radioGroup event listener to decide which db to use
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (radioGroup.getCheckedRadioButtonId()){
+                    case R.id.regStudent:
+                        myRef = database.getReference("students");
+                        break;
+                    case R.id.regProfessor:
+                        myRef = database.getReference("professors");
+                        break;
+                }
+            }
+        });
     }
-
-    private void sendVerificationEmail() {
-        mUser = FirebaseAuth.getInstance().getCurrentUser();
-        mUser.sendEmailVerification()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            FirebaseAuth.getInstance().signOut();
-                            startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
-                        }
-                        else {
-                            Toast.makeText(RegisterActivity.this, "Could not send " +
-                                    "verification email. Please check your internet" +
-                                    " connection", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-    }
-
-    public void sendOtp(View view) {
-        if(!(password.getText().toString().equals(confirmPassword.getText().toString()))){
-            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+    /*
+    * This method is called when the register button is clicked
+    * It queries fire base to find the user with USN or profID, gets their email and registers
+    * them with fire base
+    */
+    public void register(View view) {
+        if(radioGroup.getCheckedRadioButtonId() == -1){
+            Snackbar.make(getCurrentFocus(),"Please select one of the Options: Student or Professor",Snackbar.LENGTH_LONG).show();
             return;
         }
-        Toast.makeText(this, usn.getText()+":"+password.getText()+":"
-                +confirmPassword.getText(), Toast.LENGTH_SHORT).show();
-        sendOtp.setVisibility(View.GONE);
-        register.setVisibility(View.VISIBLE);
-        registerOtp.setVisibility(View.VISIBLE);
-    }
-
-    public void register(View view) {
         if (usn.getText().toString().trim().equals("")){
             usn.setError("This field cannot be empty");
             return;
         } else if (password.getText().toString().trim().equals("")){
             password.setError("This field cannot be empty");
+            return;
+        } else if(password.getText().toString().trim().length() < 8){
+            password.setError("Password too short.");
             return;
         } else if(confirmPassword.getText().toString().trim().equals("")){
             confirmPassword.setError("This field cannot be empty");
@@ -105,12 +101,13 @@ public class RegisterActivity extends AppCompatActivity {
             confirmPassword.setError("Passwords do not match");
             return;
         }
-        mStudents.child(usn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
+        myRef.child(usn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
                     String username = dataSnapshot.child("emailId").getValue().toString();
                     String password = confirmPassword.getText().toString().trim();
+                    System.out.println(username);
                     mAuth.createUserWithEmailAndPassword(username,password)
                             .addOnCompleteListener(RegisterActivity.this,new OnCompleteListener<AuthResult>() {
                         @Override
@@ -121,6 +118,10 @@ public class RegisterActivity extends AppCompatActivity {
                                         " Could not create user. Please " +
                                         "check your internet connection", Toast.LENGTH_LONG).show();
                                 return;
+                            }
+                            else {
+                                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                                finish();
                             }
                         }
                     });
@@ -136,5 +137,13 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+    }
+//    This method ensures that users accept the terms and conditions
+    public void acceptTerms(View view) {
+        if(((CheckBox)view).isChecked()){
+            register.setEnabled(true);
+        }
+        else
+            register.setEnabled(false);
     }
 }

@@ -1,5 +1,6 @@
 package io.kirikcoders.bitcse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getContext(), "You have been signed out", Toast.LENGTH_SHORT).show();
                 mAuth.signOut();
+                getActivity().startActivity(new Intent(getActivity(),LoginActivity.class));
             }
         });
     }

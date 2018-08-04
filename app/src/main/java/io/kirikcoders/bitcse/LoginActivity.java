@@ -2,6 +2,7 @@ package io.kirikcoders.bitcse;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,11 +29,15 @@ import com.google.firebase.database.ValueEventListener;
 import io.kirikcoders.bitcse.auth.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
+//  Fire base objects
     private FirebaseAuth mAuth;
-    private boolean emailVerified,accountExists;
+    private RadioGroup radioGroup;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference mStudents,mProfessors;
+    private DatabaseReference myRef;
+    // UI objects
     private EditText mUsn,mPassword;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,19 +47,43 @@ public class LoginActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
-        mStudents = database.getReference("students");
-        mProfessors = database.getReference("professors");
         mUsn = findViewById(R.id.usn);
         mPassword = findViewById(R.id.password);
+        radioGroup = findViewById(R.id.logRadioGroup);
+//        Radio group event handler
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (radioGroup.getCheckedRadioButtonId()){
+                    case R.id.logStudent:
+                        myRef = database.getReference("students");
+                        break;
+                    case R.id.logProfessor:
+                        myRef = database.getReference("professors");
+                        break;
+                }
+            }
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        //  Check if the user is already logged in
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null) {
-            goToMainActivity();
-            finish();
+            if(!user.isEmailVerified()){
+                user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful())
+                            Toast.makeText(LoginActivity.this, "Verification email sent", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                goToMainActivity();
+                finish();
+            }
         }
     }
 
@@ -63,7 +93,34 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void resetPassword(View view) {
-        Toast.makeText(this, "Reset Password", Toast.LENGTH_SHORT).show();
+        if(TextUtils.isEmpty(mUsn.getText()) || mUsn.getText().toString().trim().equals("")){
+            mUsn.setError("Please enter your USN or professor code and select " +
+                    "whether you are a student or professor. We will sent the reset" +
+                    " link to your email");
+            return;
+        }
+        if(radioGroup.getCheckedRadioButtonId() == -1){
+            Snackbar.make(getCurrentFocus(),"Please choose an Option: Student or Professor",Snackbar.LENGTH_LONG)
+                    .show();
+            return;
+        }
+        myRef.child(mUsn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                FirebaseAuth.getInstance()
+                        .sendPasswordResetEmail(dataSnapshot.child("emailId").getValue().toString())
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                            }
+                        });
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("ResetPasswordError",databaseError.getMessage());
+            }
+        });
     }
 
     public void goToHelpScreen(View view) {
@@ -71,6 +128,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginUser(View view) {
+        if(radioGroup.getCheckedRadioButtonId() == -1){
+            Snackbar.make(getCurrentFocus(),"Please select one of the Options: Student or Professor",Snackbar.LENGTH_LONG).show();
+            return;
+        }
         if(mUsn.getText().toString().trim().equals("")){
             mUsn.setError("Field cannot be empty");
             return;
@@ -81,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         try {
             String usn = mUsn.getText().toString().trim();
-            mStudents.child(usn).addValueEventListener(new ValueEventListener() {
+            myRef.child(usn).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     try {

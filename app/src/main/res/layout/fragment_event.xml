@@ -9,7 +9,7 @@
         android:id="@+id/tabLayout"
         android:background="@color/colorPrimary"
         app:tabTextColor="@color/colorUnselected"
-        app:tabSelectedTextColor="@color/colorAccent">
+        app:tabSelectedTextColor="@color/colorWhite">
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

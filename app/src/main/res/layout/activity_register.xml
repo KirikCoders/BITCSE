@@ -11,11 +11,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/registration_help"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I am a.."
+            android:textSize="15dp"/>
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/regRadioGroup">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student"
+                android:buttonTint="@color/colorAccent"
+                android:id="@+id/regStudent"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Professor"
+                android:buttonTint="@color/colorAccent"
+                android:id="@+id/regProfessor"/>
+        </RadioGroup>
+    </LinearLayout>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="USN"
+        android:hint="@string/prompt_USN"
+        android:backgroundTint="@color/colorAccent"
         android:inputType="textCapCharacters"
         android:id="@+id/register_usn"/>
     <EditText
@@ -23,20 +54,36 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="@string/prompt_password"
+        android:backgroundTint="@color/colorAccent"
         android:inputType="textPassword"
         android:id="@+id/register_password"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:backgroundTint="@color/colorAccent"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        android:id="@+id/register_confirm_password"/>
 
+        android:id="@+id/register_confirm_password"/>
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/terms"
+        android:buttonTint="@color/colorAccent"
+        android:onClick="acceptTerms"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/register_btn"
         android:text="@string/action_register"
-        android:onClick="register"/>
+        android:onClick="register" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/colorAccent"
+        android:visibility="gone"/>
 </LinearLayout>
