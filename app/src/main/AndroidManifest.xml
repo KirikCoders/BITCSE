@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.RegisterActivity"></activity>
+        <activity android:name=".auth.RegisterActivity" />
+        <activity android:name=".events.CreateEventActivity"></activity>
     </application>
 
 </manifest>
