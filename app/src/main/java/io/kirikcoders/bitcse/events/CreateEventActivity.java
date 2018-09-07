@@ -31,11 +31,27 @@ import io.kirikcoders.bitcse.utils.UserDetails;
 
 public class CreateEventActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 4;
-    private EditText eventName,eventDate,eventTime,eventDescription,eventHeadline,eventVenue,
-    eventContactOne,eventContactTwo,eventCost,eventParticipants;
+    private EditText eventName;
+    private EditText eventDate;
+    private EditText eventTime;
+    private EditText eventDescription;
+    private EditText eventHeadline;
+    private EditText eventVenue;
+    private EditText eventContactOne;
+    private EditText eventContactTwo;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dialog.dismiss();
+    }
+
+    private EditText eventCost;
+    private EditText eventParticipants;
     private ImageView eventBanner;
     private Uri imagePath;
     private Bitmap imageBitmap;
+    private ProgressDialog dialog;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference = database.getReference("events");
     private FirebaseStorage imageStore = FirebaseStorage.getInstance();
@@ -46,7 +62,6 @@ public class CreateEventActivity extends AppCompatActivity {
             switch (item.getItemId()){
                 case R.id.eventSave:
                     saveDataToFirebase(reference);
-                    finish();
                     return true;
             }
         }
@@ -58,7 +73,7 @@ public class CreateEventActivity extends AppCompatActivity {
 
     private void saveDataToFirebase(final DatabaseReference reference) {
         final UserDetails user = new UserDetails(getApplicationContext(),getString(R.string.user_pref_key));
-        final ProgressDialog dialog = new ProgressDialog(this);
+        dialog = new ProgressDialog(this);
         dialog.setTitle("Saving");
         dialog.show();
         final StorageReference storageReference = imageStore.getReference()
@@ -67,7 +82,6 @@ public class CreateEventActivity extends AppCompatActivity {
         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                dialog.dismiss();
                 storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -89,6 +103,7 @@ public class CreateEventActivity extends AppCompatActivity {
                                 .setValue(user.getmUsn());
                         reference.child(eventName.getText().toString()).child("contactTwo")
                                 .setValue(eventContactTwo.getText().toString());
+                        finish();
                     }
                 });
                 }

@@ -30,4 +30,7 @@ public class HomePagerAdapter extends FragmentStatePagerAdapter {
     public void addFragment(Fragment f){
         fragmentArrayList.add(f);
     }
+    public Fragment getFragment(int position){
+        return fragmentArrayList.get(position);
+    }
 }

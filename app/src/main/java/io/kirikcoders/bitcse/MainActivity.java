@@ -12,6 +12,17 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+
+import io.kirikcoders.bitcse.events.CurrentEventAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -19,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private HomePagerAdapter adapter;
     private BottomNavigationView navigation;
     private MenuItem prevMenuItem;
+    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference("events");
+    private ArrayList<URL> imageUrl = new ArrayList<>(20);
+    private ArrayList<String> eventName = new ArrayList<>(20);
+    private CurrentEventAdapter mAdapter;
     private ViewPager.OnPageChangeListener changeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -96,6 +111,33 @@ public class MainActivity extends AppCompatActivity {
         pager.addOnPageChangeListener(changeListener);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                imageUrl.clear();
+                eventName.clear();
+                for (DataSnapshot s:dataSnapshot.getChildren()){
+                    eventName.add(s.getKey());
+                    try {
+                        System.out.println("value exists="+s.child("imageUrl").exists());
+                        imageUrl.add(new URL(s.child("imageUrl").getValue().toString()));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (NullPointerException e){
+                        e.printStackTrace();
+
+                    }
+                }
+                mAdapter = new CurrentEventAdapter(getApplicationContext(),imageUrl,eventName);
+                EventFragment eventFragment = (EventFragment) adapter.getFragment(0);
+                eventFragment.setupRecyclerView(mAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void loginOrSignUp() {
