@@ -1,6 +1,7 @@
 package io.kirikcoders.bitcse;
 
 import android.content.Intent;
+import android.os.Parcel;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import io.kirikcoders.bitcse.auth.RegisterActivity;
+import io.kirikcoders.bitcse.utils.UserDetails;
 
 public class LoginActivity extends AppCompatActivity {
 //  Fire base objects
@@ -36,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     // UI objects
     private EditText mUsn,mPassword;
-
+    private UserDetails user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+        user = new UserDetails(getApplicationContext(),getString(R.string.user_pref_key));
     }
 
     @Override
@@ -144,7 +148,7 @@ public class LoginActivity extends AppCompatActivity {
             String usn = mUsn.getText().toString().trim();
             myRef.child(usn).addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(final DataSnapshot dataSnapshot) {
                     try {
                         String username = dataSnapshot.child("emailId").getValue().toString();
                         String password = mPassword.getText().toString().trim();
@@ -157,8 +161,12 @@ public class LoginActivity extends AppCompatActivity {
                                             FirebaseAuth.getInstance().signOut();
                                             return;
                                         }
-                                       goToMainActivity();
-
+                                        user.setmEmail(dataSnapshot.child("emailId").getValue().toString());
+                                        user.setmUsn(mUsn.getText().toString().trim());
+                                        user.setmName(dataSnapshot.child("name").getValue().toString());
+                                        user.setmPhoneNumber(dataSnapshot.child("phone").getValue().toString());
+                                        user.setmSemester(dataSnapshot.child("semester").getValue().toString());
+                                        goToMainActivity();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {

@@ -32,4 +32,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="event_cost">cost per team</string>
+    <string name="number_of_participants">Number of participants</string>
+    <string name="user_pref_key">user_details</string>
 </resources>

@@ -16,8 +16,7 @@
         android:background="@color/black_overlay"/>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,18 +33,34 @@
                 android:layout_height="wrap_content"
                 android:lines="3"
                 android:hint="@string/event_headline"
+                android:inputType="text"
                 android:id="@+id/eventHeadline"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="5"
                 android:hint="@string/event_description_140_characters"
+                android:inputType="textMultiLine"
                 android:id="@+id/eventDescription"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/venue"
+                android:inputType="text"
                 android:id="@+id/eventVenue"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/event_cost"
+                android:inputType="number"
+                android:id="@+id/eventCost"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/number_of_participants"
+                android:inputType="number"
+                android:id="@+id/eventParticipants"/>
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
