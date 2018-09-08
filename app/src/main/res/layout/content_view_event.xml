@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".events.ViewEventActivity"
+    tools:showIn="@layout/activity_view_event">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/showEventName"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/showEventHeadline"
+            android:layout_margin="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description:"
+            android:textSize="25sp"
+            android:layout_margin="5dp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/showEventDescription"
+            android:textSize="16sp"/>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1"
+            android:padding="5dp">
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="Cost"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:text="No. of paticipants"
+                    android:gravity="right"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:id="@+id/showEventCost"
+                    android:textSize="16sp" />
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/showEventParticipants"
+                    android:textSize="16sp" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="Venue"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:text="Date"
+                    android:gravity="right"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:id="@+id/showEventVenue"
+                    android:textSize="16sp" />
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/showEventDate"
+                    android:textSize="16sp" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="Contact 1"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:text="Contact 2"
+                    android:gravity="right"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:id="@+id/showEventContactOne"
+                    android:textSize="16sp" />
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/showEventContactTwo"
+                    android:textSize="16sp" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:text="Time"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:text="Posted by"
+                    android:gravity="right"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:layout_column="1"
+                    android:id="@+id/showEventTime"
+                    android:textSize="16sp" />
+                <TextView
+                    android:gravity="right"
+                    android:id="@+id/showEventCreator"
+                    android:textSize="16sp" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

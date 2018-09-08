@@ -8,7 +8,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -68,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_events:
                     getSupportActionBar().setElevation(0);
                     pager.setCurrentItem(0);
+                    getCurrentEventsFromFirebase();
                     return true;
                 case R.id.navigation_tools:
                     getSupportActionBar().setElevation(1);
@@ -111,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
         pager.addOnPageChangeListener(changeListener);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        getCurrentEventsFromFirebase();
+    }
+
+    private void getCurrentEventsFromFirebase() {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

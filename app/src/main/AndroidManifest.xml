@@ -22,8 +22,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".auth.RegisterActivity" />
-        <activity android:name=".events.CreateEventActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".events.CreateEventActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".events.ViewEventActivity"
+            android:label="@string/title_activity_view_event"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

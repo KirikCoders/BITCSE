@@ -1,18 +1,19 @@
 package io.kirikcoders.bitcse.events;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import java.net.URL;
 import java.util.ArrayList;
-
 import io.kirikcoders.bitcse.R;
 
 /**
@@ -32,11 +33,15 @@ public class CurrentEventAdapter extends RecyclerView.Adapter<CurrentEventAdapte
             super(itemView);
             eventImage = itemView.findViewById(R.id.currentEventImage);
             eventName = itemView.findViewById(R.id.currentEventName);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-
+            Intent i = new Intent(context,ViewEventActivity.class);
+            i.putExtra("event",eventName.getText().toString());
+            context.startActivity(i);
+            Toast.makeText(view.getContext(), "Clicked "+eventName != null ? eventName.getText().toString():"This", Toast.LENGTH_SHORT).show();
         }
     }
     public CurrentEventAdapter(Context context,ArrayList<URL> images, ArrayList<String> eventNames){

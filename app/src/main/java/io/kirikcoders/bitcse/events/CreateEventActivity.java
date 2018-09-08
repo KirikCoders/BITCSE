@@ -43,7 +43,10 @@ public class CreateEventActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        dialog.dismiss();
+        // make sure dialog exists before dismissing it.
+        if(dialog != null)
+            if (dialog.isShowing())
+                dialog.dismiss();
     }
 
     private EditText eventCost;
@@ -87,6 +90,8 @@ public class CreateEventActivity extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         reference.child(eventName.getText().toString()).child("date")
                                 .setValue(eventDate.getText().toString());
+                        reference.child(eventName.getText().toString()).child("participants")
+                                .setValue(eventParticipants.getText().toString());
                         reference.child(eventName.getText().toString()).child("time")
                                 .setValue(eventTime.getText().toString());
                         reference.child(eventName.getText().toString()).child("description")
@@ -103,6 +108,8 @@ public class CreateEventActivity extends AppCompatActivity {
                                 .setValue(user.getmUsn());
                         reference.child(eventName.getText().toString()).child("contactTwo")
                                 .setValue(eventContactTwo.getText().toString());
+                        reference.child(eventName.getText().toString()).child("cost")
+                                .setValue(eventCost.getText().toString());
                         finish();
                     }
                 });

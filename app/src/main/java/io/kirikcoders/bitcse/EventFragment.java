@@ -42,8 +42,6 @@ public class EventFragment extends Fragment {
         floatingActionButton = rootView.findViewById(R.id.add_event_fab);
         recyclerView = rootView.findViewById(R.id.event_recycler_view);
         tabLayout = rootView.findViewById(R.id.tabLayout);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +51,10 @@ public class EventFragment extends Fragment {
         return rootView;
     }
     public void setupRecyclerView(CurrentEventAdapter adapter){
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        if (recyclerView != null) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
     }
 }
