@@ -1,14 +1,19 @@
 package io.kirikcoders.bitcse.events;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -18,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import io.kirikcoders.bitcse.R;
+import io.kirikcoders.bitcse.utils.Constants;
+import io.kirikcoders.bitcse.utils.UserDetails;
 
 public class ViewEventActivity extends AppCompatActivity {
     private TextView showEventHeadline,showEventDescription,showEventTime,showEventDate,
@@ -25,7 +32,9 @@ public class ViewEventActivity extends AppCompatActivity {
     private ImageView eventBanner;
     private TextView showEventName;
     private String eventName;
-    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference("events");
+    private UserDetails userDetails;
+    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference(Constants.EVENT_DATABASE),
+    registrationReference = FirebaseDatabase.getInstance().getReference(Constants.REGISTERED_DATABASE);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +42,7 @@ public class ViewEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_event);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        userDetails = new UserDetails(ViewEventActivity.this,Constants.USER_PREFERENCE_FILE);
         showEventHeadline = findViewById(R.id.showEventHeadline);
         eventBanner = findViewById(R.id.showEventBanner);
         showEventDescription = findViewById(R.id.showEventDescription);
@@ -53,8 +63,29 @@ public class ViewEventActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ViewEventActivity.this);
+                EditText text = new EditText(builder.getContext());
+                text.setHint("No. of participants?");
+                builder.setView(text)
+                .setPositiveButton("Register", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        registrationReference.child(eventName).child(userDetails.getmUsn()).child("name")
+                                .setValue(userDetails.getmName());
+                        registrationReference.child(eventName).child(userDetails.getmUsn()).child("phone")
+                                .setValue(userDetails.getmPhoneNumber());
+                        registrationReference.child(eventName).child(userDetails.getmUsn()).child("participants")
+                                .setValue(text.getText().toString());
+                        Toast.makeText(ViewEventActivity.this, "You have beem registered!", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).show();
             }
         });
     }

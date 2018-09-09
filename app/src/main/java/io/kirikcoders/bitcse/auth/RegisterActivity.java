@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import io.kirikcoders.bitcse.LoginActivity;
 import io.kirikcoders.bitcse.MainActivity;
 import io.kirikcoders.bitcse.R;
+import io.kirikcoders.bitcse.utils.Constants;
 
 public class RegisterActivity extends AppCompatActivity {
     // get references to UI elements
@@ -64,10 +65,10 @@ public class RegisterActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (radioGroup.getCheckedRadioButtonId()){
                     case R.id.regStudent:
-                        myRef = database.getReference("students");
+                        myRef = database.getReference(Constants.STUDENT_DATABASE);
                         break;
                     case R.id.regProfessor:
-                        myRef = database.getReference("professors");
+                        myRef = database.getReference(Constants.PROF_DATABASE);
                         break;
                 }
             }

@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import io.kirikcoders.bitcse.utils.Constants;
+import io.kirikcoders.bitcse.utils.UserDetails;
+
 /**
  * Created by Kartik on 24-Jul-18.
  */
@@ -30,7 +33,10 @@ public class SettingsFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getContext(), "You have been signed out", Toast.LENGTH_SHORT).show();
                 mAuth.signOut();
+                UserDetails details = new UserDetails(getContext(), Constants.USER_PREFERENCE_FILE);
+                details.deleteAll();
                 getActivity().startActivity(new Intent(getActivity(),LoginActivity.class));
+                getActivity().finish();
             }
         });
     }

@@ -29,12 +29,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import io.kirikcoders.bitcse.auth.RegisterActivity;
+import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
 public class LoginActivity extends AppCompatActivity {
 //  Fire base objects
     private FirebaseAuth mAuth;
     private RadioGroup radioGroup;
+    private boolean isProfessor;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef;
     // UI objects
@@ -59,15 +61,17 @@ public class LoginActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (radioGroup.getCheckedRadioButtonId()){
                     case R.id.logStudent:
-                        myRef = database.getReference("students");
+                        myRef = database.getReference(Constants.STUDENT_DATABASE);
+                        isProfessor = false;
                         break;
                     case R.id.logProfessor:
-                        myRef = database.getReference("professors");
+                        myRef = database.getReference(Constants.PROF_DATABASE);
+                        isProfessor = true;
                         break;
                 }
             }
         });
-        user = new UserDetails(getApplicationContext(),getString(R.string.user_pref_key));
+        user = new UserDetails(getApplicationContext(),Constants.USER_PREFERENCE_FILE);
     }
 
     @Override
@@ -166,6 +170,8 @@ public class LoginActivity extends AppCompatActivity {
                                         user.setmName(dataSnapshot.child("name").getValue().toString());
                                         user.setmPhoneNumber(dataSnapshot.child("phone").getValue().toString());
                                         user.setmSemester(dataSnapshot.child("semester").getValue().toString());
+                                        user.setIsProfessor(isProfessor);
+                                        user.save();
                                         goToMainActivity();
                                     }
                                 })

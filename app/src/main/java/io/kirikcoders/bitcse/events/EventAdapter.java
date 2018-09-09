@@ -19,7 +19,7 @@ import io.kirikcoders.bitcse.R;
 /**
  * Created by Kartik on 05-Aug-18.
  */
-public class CurrentEventAdapter extends RecyclerView.Adapter<CurrentEventAdapter.ImageViewHolder> {
+public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ImageViewHolder> {
     private Context context;
     private ArrayList<URL> images;
     private ArrayList<String> eventNames;
@@ -44,7 +44,7 @@ public class CurrentEventAdapter extends RecyclerView.Adapter<CurrentEventAdapte
             Toast.makeText(view.getContext(), "Clicked "+eventName != null ? eventName.getText().toString():"This", Toast.LENGTH_SHORT).show();
         }
     }
-    public CurrentEventAdapter(Context context,ArrayList<URL> images, ArrayList<String> eventNames){
+    public EventAdapter(Context context, ArrayList<URL> images, ArrayList<String> eventNames){
         this.context = context;
         this.images = images;
         this.eventNames = eventNames;

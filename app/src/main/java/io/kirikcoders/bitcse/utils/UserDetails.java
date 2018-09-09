@@ -21,7 +21,7 @@ public class UserDetails {
 
     public void setmUsn(String mUsn) {
         mPrefsEditor.putString("USN",mUsn);
-        mPrefsEditor.apply();
+
     }
 
     public String getmPhoneNumber() {
@@ -30,7 +30,7 @@ public class UserDetails {
 
     public void setmPhoneNumber(String mPhoneNumber) {
         mPrefsEditor.putString("PhoneNumber",mPhoneNumber);
-        mPrefsEditor.apply();
+
     }
 
     public String getmEmail() {
@@ -39,7 +39,7 @@ public class UserDetails {
 
     public void setmEmail(String mEmail) {
         mPrefsEditor.putString("email",mEmail);
-        mPrefsEditor.apply();
+
     }
 
     public String getmName() {
@@ -48,7 +48,7 @@ public class UserDetails {
 
     public void setmName(String mName) {
         mPrefsEditor.putString("name",mName);
-        mPrefsEditor.apply();
+
     }
 
     public String getmSemester() {
@@ -57,6 +57,19 @@ public class UserDetails {
 
     public void setmSemester(String mSemester) {
         mPrefsEditor.putString("semester",mSemester);
+
+    }
+    public void setIsProfessor(boolean value){
+        mPrefsEditor.putBoolean("professor",value);
+    }
+    public boolean isProfessor(){
+        return mPrefs.getBoolean("professor",false);
+    }
+    public void save(){
+        mPrefsEditor.apply();
+    }
+    public void deleteAll(){
+        mPrefsEditor.clear();
         mPrefsEditor.apply();
     }
 }

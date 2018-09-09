@@ -21,7 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import io.kirikcoders.bitcse.events.CurrentEventAdapter;
+import io.kirikcoders.bitcse.events.EventAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference("events");
     private ArrayList<URL> imageUrl = new ArrayList<>(20);
     private ArrayList<String> eventName = new ArrayList<>(20);
-    private CurrentEventAdapter mAdapter;
+    private EventAdapter mAdapter;
     private ViewPager.OnPageChangeListener changeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 }
-                mAdapter = new CurrentEventAdapter(getApplicationContext(),imageUrl,eventName);
+                mAdapter = new EventAdapter(getApplicationContext(),imageUrl,eventName);
                 EventFragment eventFragment = (EventFragment) adapter.getFragment(0);
                 eventFragment.setupRecyclerView(mAdapter);
             }

@@ -26,6 +26,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import io.kirikcoders.bitcse.R;
+import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.InputCheckUtils;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
@@ -39,16 +40,6 @@ public class CreateEventActivity extends AppCompatActivity {
     private EditText eventVenue;
     private EditText eventContactOne;
     private EditText eventContactTwo;
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // make sure dialog exists before dismissing it.
-        if(dialog != null)
-            if (dialog.isShowing())
-                dialog.dismiss();
-    }
-
     private EditText eventCost;
     private EditText eventParticipants;
     private ImageView eventBanner;
@@ -56,7 +47,7 @@ public class CreateEventActivity extends AppCompatActivity {
     private Bitmap imageBitmap;
     private ProgressDialog dialog;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference reference = database.getReference("events");
+    private DatabaseReference reference = database.getReference(Constants.EVENT_DATABASE);
     private FirebaseStorage imageStore = FirebaseStorage.getInstance();
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -75,7 +66,7 @@ public class CreateEventActivity extends AppCompatActivity {
     }
 
     private void saveDataToFirebase(final DatabaseReference reference) {
-        final UserDetails user = new UserDetails(getApplicationContext(),getString(R.string.user_pref_key));
+        final UserDetails user = new UserDetails(getApplicationContext(),Constants.USER_PREFERENCE_FILE);
         dialog = new ProgressDialog(this);
         dialog.setTitle("Saving");
         dialog.show();
@@ -208,5 +199,13 @@ public class CreateEventActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // make sure dialog exists before dismissing it.
+        if(dialog != null)
+            if (dialog.isShowing())
+                dialog.dismiss();
     }
 }

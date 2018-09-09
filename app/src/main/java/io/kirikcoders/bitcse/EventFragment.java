@@ -1,9 +1,7 @@
 package io.kirikcoders.bitcse;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -14,18 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-
 import io.kirikcoders.bitcse.events.CreateEventActivity;
-import io.kirikcoders.bitcse.events.CurrentEventAdapter;
+import io.kirikcoders.bitcse.events.EventAdapter;
 
 /**
  * Created by Kartik on 24-Jul-18.
@@ -50,7 +38,7 @@ public class EventFragment extends Fragment {
         });
         return rootView;
     }
-    public void setupRecyclerView(CurrentEventAdapter adapter){
+    public void setupRecyclerView(EventAdapter adapter){
         if (recyclerView != null) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerView.setAdapter(adapter);
