@@ -2,12 +2,13 @@ package io.kirikcoders.bitcse.events;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 
 /**
  * Created by Kartik on 05-Aug-18.
