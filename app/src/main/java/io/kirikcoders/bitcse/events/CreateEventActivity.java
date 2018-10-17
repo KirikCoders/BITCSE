@@ -1,20 +1,27 @@
 package io.kirikcoders.bitcse.events;
 
+import android.animation.Animator;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -45,7 +52,7 @@ public class CreateEventActivity extends AppCompatActivity {
     private ImageView eventBanner;
     private Uri imagePath;
     private Bitmap imageBitmap;
-    private ProgressDialog dialog;
+    private Dialog dialog;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference reference = database.getReference(Constants.EVENT_DATABASE);
     private FirebaseStorage imageStore = FirebaseStorage.getInstance();
@@ -67,8 +74,12 @@ public class CreateEventActivity extends AppCompatActivity {
 
     private void saveDataToFirebase(final DatabaseReference reference) {
         final UserDetails user = new UserDetails(getApplicationContext(),Constants.USER_PREFERENCE_FILE);
-        dialog = new ProgressDialog(this);
+        dialog = new Dialog(this);
         dialog.setTitle("Saving");
+        View animationView = LayoutInflater.from(this).inflate(R.layout.loading_check_green,null);
+        ProgressBar progressBar = animationView.findViewById(R.id.progressBar2);
+        LottieAnimationView checked = animationView.findViewById(R.id.eventSavedAnimation);
+        dialog.setContentView(animationView);
         dialog.show();
         final StorageReference storageReference = imageStore.getReference()
                 .child("images/"+eventName.getText().toString());
@@ -101,7 +112,30 @@ public class CreateEventActivity extends AppCompatActivity {
                                 .setValue(eventContactTwo.getText().toString());
                         reference.child(eventName.getText().toString()).child("cost")
                                 .setValue(eventCost.getText().toString());
-                        finish();
+                        progressBar.setVisibility(View.GONE);
+                        checked.setVisibility(View.VISIBLE);
+                        checked.playAnimation();
+                        checked.addAnimatorListener(new Animator.AnimatorListener() {
+                            @Override
+                            public void onAnimationStart(Animator animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                finish();
+                            }
+
+                            @Override
+                            public void onAnimationCancel(Animator animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animator animation) {
+
+                            }
+                        });
                     }
                 });
                 }

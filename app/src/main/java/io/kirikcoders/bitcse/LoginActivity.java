@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
@@ -119,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-
+                                Snackbar.make(getCurrentFocus(),"Reset email sent",Snackbar.LENGTH_LONG).show();
                             }
                         });
             }
@@ -156,9 +157,9 @@ public class LoginActivity extends AppCompatActivity {
                         String username = dataSnapshot.child("emailId").getValue().toString();
                         String password = mPassword.getText().toString().trim();
                         mAuth.signInWithEmailAndPassword(username,password)
-                                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                     @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                    public void onSuccess(AuthResult authResult) {
                                         if(!FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()){
                                             mUsn.setError("Email ID not verified.Check your email");
                                             FirebaseAuth.getInstance().signOut();

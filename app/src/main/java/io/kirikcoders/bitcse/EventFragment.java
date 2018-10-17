@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -23,7 +24,7 @@ public class EventFragment extends Fragment {
     private FloatingActionButton floatingActionButton;
     private RecyclerView recyclerView;
     private TabLayout tabLayout;
-
+    private LottieAnimationView lottieAnimationView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class EventFragment extends Fragment {
         floatingActionButton = rootView.findViewById(R.id.add_event_fab);
         recyclerView = rootView.findViewById(R.id.event_recycler_view);
         tabLayout = rootView.findViewById(R.id.tabLayout);
+        lottieAnimationView = rootView.findViewById(R.id.loadingAnimation);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +45,7 @@ public class EventFragment extends Fragment {
         if (recyclerView != null) {
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             recyclerView.setAdapter(adapter);
+            lottieAnimationView.setVisibility(View.GONE);
             adapter.notifyDataSetChanged();
         }
     }
