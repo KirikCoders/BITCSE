@@ -150,17 +150,53 @@ public class LoginActivity extends AppCompatActivity {
         }
         try {
             String usn = mUsn.getText().toString().trim();
-            myRef.child(usn).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(final DataSnapshot dataSnapshot) {
-                    try {
-                        String username = dataSnapshot.child("emailId").getValue().toString();
-                        String password = mPassword.getText().toString().trim();
-                        mAuth.signInWithEmailAndPassword(username,password)
-                                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                    @Override
-                                    public void onSuccess(AuthResult authResult) {
-                                        if(!FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()){
+            if (mAuth.getCurrentUser() == null) {
+                mAuth.signInAnonymously().addOnSuccessListener(authResult ->
+                        myRef.child(usn).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(final DataSnapshot dataSnapshot) {
+                                try {
+                                    String username = dataSnapshot.child("emailId").getValue().toString();
+                                    String password = mPassword.getText().toString().trim();
+                                    mAuth.signInWithEmailAndPassword(username, password)
+                                            .addOnSuccessListener(authResult -> {
+                                                if (!FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
+                                                    mUsn.setError("Email ID not verified.Check your email");
+                                                    FirebaseAuth.getInstance().signOut();
+                                                    return;
+                                                }
+                                                user.setmEmail(dataSnapshot.child("emailId").getValue().toString());
+                                                user.setmUsn(mUsn.getText().toString().trim());
+                                                user.setmName(dataSnapshot.child("name").getValue().toString());
+                                                user.setmPhoneNumber(dataSnapshot.child("phone").getValue().toString());
+                                                user.setmSemester(dataSnapshot.child("semester").getValue().toString());
+                                                user.setIsProfessor(isProfessor);
+                                                user.save();
+                                                goToMainActivity();
+                                            })
+                                            .addOnFailureListener(e -> mPassword.setError("Password incorrect"));
+                                } catch (NullPointerException e) {
+                                    mUsn.setError("Invalid USN. Please check your input or contact" +
+                                            " your department for help");
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+                                Log.e("FirebaseStudentLoadFail", databaseError.getMessage());
+                            }
+                        }));
+            }
+            else {
+                myRef.child(usn).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(final DataSnapshot dataSnapshot) {
+                        try {
+                            String username = dataSnapshot.child("emailId").getValue().toString();
+                            String password = mPassword.getText().toString().trim();
+                            mAuth.signInWithEmailAndPassword(username, password)
+                                    .addOnSuccessListener(authResult -> {
+                                        if (!FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
                                             mUsn.setError("Email ID not verified.Check your email");
                                             FirebaseAuth.getInstance().signOut();
                                             return;
@@ -173,25 +209,20 @@ public class LoginActivity extends AppCompatActivity {
                                         user.setIsProfessor(isProfessor);
                                         user.save();
                                         goToMainActivity();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        mPassword.setError("Password incorrect");
-                                    }
-                                });
-                    } catch (NullPointerException e){
-                        mUsn.setError("Invalid USN. Please check your input or contact" +
-                                " your department for help");
+                                    })
+                                    .addOnFailureListener(e -> mPassword.setError("Password incorrect"));
+                        } catch (NullPointerException e) {
+                            mUsn.setError("Invalid USN. Please check your input or contact" +
+                                    " your department for help");
+                        }
                     }
-                }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    Log.e("FirebaseStudentLoadFail", databaseError.getMessage());
-                }
-            });
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e("FirebaseStudentLoadFail", databaseError.getMessage());
+                    }
+                });
+            }
         } catch (NullPointerException e){
             mUsn.setError("Invalid USN. Please check your input or contact" +
                     " your department for help");

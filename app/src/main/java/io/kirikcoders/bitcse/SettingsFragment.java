@@ -28,16 +28,13 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         signOut = view.findViewById(R.id.signout);
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "You have been signed out", Toast.LENGTH_SHORT).show();
-                mAuth.signOut();
-                UserDetails details = new UserDetails(getContext(), Constants.USER_PREFERENCE_FILE);
-                details.deleteAll();
-                getActivity().startActivity(new Intent(getActivity(),LoginActivity.class));
-                getActivity().finish();
-            }
+        signOut.setOnClickListener(view1 -> {
+            Toast.makeText(getContext(), "You have been signed out", Toast.LENGTH_SHORT).show();
+            mAuth.signOut();
+            UserDetails details = new UserDetails(getContext(), Constants.USER_PREFERENCE_FILE);
+            details.deleteAll();
+            getActivity().startActivity(new Intent(getActivity(),LoginActivity.class));
+            getActivity().finish();
         });
     }
 

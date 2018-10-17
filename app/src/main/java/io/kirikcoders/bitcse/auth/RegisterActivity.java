@@ -102,41 +102,39 @@ public class RegisterActivity extends AppCompatActivity {
             confirmPassword.setError("Passwords do not match");
             return;
         }
-        myRef.child(usn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                try {
-                    String username = dataSnapshot.child("emailId").getValue().toString();
-                    String password = confirmPassword.getText().toString().trim();
-                    System.out.println(username);
-                    mAuth.createUserWithEmailAndPassword(username,password)
-                            .addOnCompleteListener(RegisterActivity.this,new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            Log.d("TAG","Created User:"+task.isSuccessful());
-                            if(!task.isSuccessful()){
-                                Toast.makeText(RegisterActivity.this, "Error occurred." +
-                                        " Could not create user. Please " +
-                                        "check your internet connection", Toast.LENGTH_LONG).show();
-                                return;
-                            }
-                            else {
-                                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
-                                finish();
-                            }
-                        }
-                    });
+        mAuth.signInAnonymously().addOnSuccessListener(authResult -> {
+            myRef.child(usn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    try {
+                        String username = dataSnapshot.child("emailId").getValue().toString();
+                        String password = confirmPassword.getText().toString().trim();
+                        System.out.println(username);
+                        mAuth.createUserWithEmailAndPassword(username,password)
+                                .addOnCompleteListener(RegisterActivity.this,task -> {
+                                    Log.d("TAG","Created User:"+task.isSuccessful());
+                                    if(!task.isSuccessful()){
+                                        Toast.makeText(RegisterActivity.this, "Error occurred." +
+                                                " Could not create user. Please " +
+                                                "check your internet connection", Toast.LENGTH_LONG).show();
+                                        return;
+                                    }
+                                    else {
+                                        startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                                        finish();
+                                    }
+                                });
 
-                }catch (NullPointerException e){
-                    usn.setError("Invalid USN. Please check your input or contact" +
-                            " your department for help");
+                    }catch (NullPointerException e){
+                        usn.setError("Invalid USN. Please check your input or contact" +
+                                " your department for help");
+                    }
                 }
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
+                }
+            });
         });
     }
 //    This method ensures that users accept the terms and conditions
