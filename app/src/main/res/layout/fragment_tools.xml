@@ -1,10 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/facultyDetails"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_tools"
-        android:textSize="50sp"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="@string/faculty"
+        android:padding="10dp"
+        android:textSize="25sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="2dp"
+        android:background="@color/line" />
+    <TextView
+        android:id="@+id/docs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/docs"
+        android:padding="10dp"
+        android:textSize="25sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="2dp"
+        android:background="@color/line" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/internals"
+        android:text="@string/internal_marks"
+        android:padding="10dp"
+        android:textSize="25sp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="2dp"
+        android:background="@color/line" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/attendance"
+        android:text="@string/attendance"
+        android:padding="10dp"
+        android:textSize="25sp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="2dp"
+        android:background="@color/line" />
+    <TextView
+        android:id="@+id/emptyRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/find_an_empty_room"
+        android:padding="10dp"
+        android:textSize="25sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="2dp"
+        android:background="@color/line" />
+    <TextView
+        android:id="@+id/findProfessor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/find_a_professor"
+        android:padding="10dp"
+        android:textSize="25sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="2dp"
+        android:background="@color/line" />
+    <TextView
+        android:id="@+id/noticeboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/noticeboard"
+        android:padding="10dp"
+        android:textSize="25sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="2dp"
+        android:background="@color/line" />
+    <TextView
+        android:id="@+id/sgpaCalculator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sgpa_calculator"
+        android:padding="10dp"
+        android:textSize="25sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="2dp"
+        android:background="@color/line" />
+</LinearLayout>

@@ -5,6 +5,10 @@
     <color name="colorAccent">#e53935</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorUnselected">#ffcdd2</color>
-
+    <color name="notification_prof">#00BCD4</color>
+    <color name="notification_college">#009688</color>
+    <color name="notification_app">#673AB7</color>
+    <color name="notification_urgent">#F44336</color>
     <color name="black_overlay">#66000000</color>
+    <color name="line">#9E9E9E</color>
 </resources>
