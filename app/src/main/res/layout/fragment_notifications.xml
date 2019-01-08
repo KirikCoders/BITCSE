@@ -4,19 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp">
-    <LinearLayout
+    <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/selectTypeOfNotif"></Spinner>
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/selectDate"></Spinner>
-    </LinearLayout>
+        android:id="@+id/selectTypeOfNotif"></Spinner>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp">
@@ -35,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp"
                 android:layout_margin="0dp"
+                android:clickable="false"
                 android:background="@color/notification_app"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -42,6 +34,13 @@
                 android:textSize="20sp"
                 android:layout_margin="15dp"
                 android:text="Sample Notification 1 - for app related topics"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_done_black_24dp"
+                android:background="#FFF"
+                android:layout_gravity="right"
+                android:layout_margin="5dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
