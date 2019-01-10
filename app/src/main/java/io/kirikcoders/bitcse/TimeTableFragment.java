@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import io.kirikcoders.bitcse.database.TimeTableDataBaseHelper;
+import io.kirikcoders.bitcse.timetable.SubjectFragment;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
@@ -33,6 +34,7 @@ public class TimeTableFragment extends Fragment implements AdapterView.OnItemSel
     private ViewPager viewPager;
     private TextView dayTextView;
     private UserDetails userDetails;
+    private HomePagerAdapter pagerAdapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,6 +44,10 @@ public class TimeTableFragment extends Fragment implements AdapterView.OnItemSel
         dayTextView = rootView.findViewById(R.id.day_shower);
         userDetails = new UserDetails(getContext(),Constants.USER_PREFERENCE_FILE);
         timeTableDataBaseHelper = new TimeTableDataBaseHelper(getContext());
+        pagerAdapter = new HomePagerAdapter(getFragmentManager());
+        SubjectFragment subjectFragment = new SubjectFragment();
+        pagerAdapter.addFragment(subjectFragment);
+        viewPager.setAdapter(pagerAdapter);
         // create the database by copying it into /data/data/ folder
         // if it is already created, the helper will automatically ignore the operation and continue
         // to openDatabase()
@@ -61,13 +67,14 @@ public class TimeTableFragment extends Fragment implements AdapterView.OnItemSel
         return rootView;
     }
 
-    private List convertCursorToList(Cursor sem) {
-        ArrayList<String> arrayList = new ArrayList<>(sem.getCount());
+    private ArrayList<CharSequence> convertCursorToList(Cursor sem) {
+        ArrayList<CharSequence> arrayList = new ArrayList<>(sem.getCount());
         while (sem.moveToNext()){
             if (sem.getString(sem.getColumnIndex("sem")).equals(userDetails.getmSemester()))
                 break;
             arrayList.add(sem.getString(sem.getColumnIndex("sem")));
         }
+        sem.close();
         return arrayList;
     }
 

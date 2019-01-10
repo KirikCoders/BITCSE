@@ -22,11 +22,11 @@
         android:layout_margin="5dp">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
             <ImageButton
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:background="#FFF"
                 android:src="@drawable/ic_navigate_before_blue_grey_400_24dp"/>
 
@@ -34,25 +34,25 @@
                 android:id="@+id/day_shower"
                 android:textSize="30sp"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:text="Day" />
 
             <ImageButton
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="right"
                 android:background="#FFF"
                 android:src="@drawable/ic_navigate_next_blue_grey_400_24dp" />
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/time_table"
+                android:layout_below="@+id/day_shower"
+                android:layout_width="match_parent"
+                android:layout_height="400dp">
+            </androidx.viewpager.widget.ViewPager>
         </RelativeLayout>
-        <androidx.viewpager.widget.ViewPager
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/time_table">
-
-        </androidx.viewpager.widget.ViewPager>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

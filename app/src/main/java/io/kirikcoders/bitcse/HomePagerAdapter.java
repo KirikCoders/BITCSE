@@ -25,7 +25,7 @@ public class HomePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 5;
+        return fragmentArrayList.size();
     }
 
     public void addFragment(Fragment f){

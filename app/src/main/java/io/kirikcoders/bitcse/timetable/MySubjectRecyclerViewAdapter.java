@@ -1,79 +1,62 @@
 package io.kirikcoders.bitcse.timetable;
 
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import io.kirikcoders.bitcse.R;
-import io.kirikcoders.bitcse.timetable.SubjectFragment.OnListFragmentInteractionListener;
-import io.kirikcoders.bitcse.timetable.dummy.DummyContent.DummyItem;
 
-import java.util.List;
+public class MySubjectRecyclerViewAdapter extends RecyclerView.Adapter<MySubjectRecyclerViewAdapter.SubjectViewHolder> {
+    private Cursor cursor;
+    public MySubjectRecyclerViewAdapter(Cursor subject){
+        cursor = subject;
+    }
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
-public class MySubjectRecyclerViewAdapter extends RecyclerView.Adapter<MySubjectRecyclerViewAdapter.ViewHolder> {
-
-    private final List<DummyItem> mValues;
-    private final OnListFragmentInteractionListener mListener;
-
-    public MySubjectRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
-        mListener = listener;
+    @NonNull
+    @Override
+    public SubjectViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_subject,
+                parent,false);
+        SubjectViewHolder viewHolder = new SubjectViewHolder(view);
+        return viewHolder;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_subject, parent, false);
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
-
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
+    public void onBindViewHolder(@NonNull SubjectViewHolder holder, int position) {
+        cursor.moveToFirst();
+        // move cursor pointer to the correct row based on position
+        for(int i=0;i<position;i++)
+            cursor.moveToNext();
+        holder.mSubjectName.setText(cursor.getString(cursor.getColumnIndex("sub")));
+        holder.mFaculty.setText(cursor.getString(cursor.getColumnIndex("name")));
+        holder.mTiming.setText(cursor.getString(cursor.getColumnIndex("timings")));
+        holder.mRoom.setText(cursor.getString(cursor.getColumnIndex("room")));
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return cursor.getCount();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+    public static class SubjectViewHolder extends RecyclerView.ViewHolder {
+        public TextView mTiming;
+        public TextView mSubjectName;
+        public TextView mFaculty;
+        public TextView mRoom;
 
-        public ViewHolder(View view) {
-            super(view);
-            mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+        public SubjectViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mTiming = itemView.findViewById(R.id.subject_time);
+            mSubjectName = itemView.findViewById(R.id.subject_name);
+            mFaculty = itemView.findViewById(R.id.subject_prof);
+            mRoom = itemView.findViewById(R.id.subject_room);
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
     }
 }

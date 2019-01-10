@@ -170,11 +170,11 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
     }
     public Cursor getDaySem(String sem,String day)
     {
-        Cursor c=database.rawQuery("select c.slot,c.room,f.name,s.sub from classes c,faculty f,subjects s where \n" +
+        Cursor c=database.rawQuery("select a.timings,c.room,f.name,s.sub from classes c,faculty f,subjects s,slot a where \n" +
                 "c.day='"+day+"' and\n" +
                 "s.sem='"+sem+"' and\n" +
                 "f.fid=s.fid and\n" +
-                "c.mapid=s.mapid order by CAST(c.slot AS INTEGER),c.room",null);
+                "c.mapid=s.mapid and a.slotnumber = c.slot order by CAST(c.slot AS INTEGER),c.room",null);
         return c;
     }
     public Cursor getRoom()
