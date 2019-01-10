@@ -21,6 +21,7 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
     private final String DB_NAME = Constants.LOCAL_DATABASE_FILE;
     private SQLiteDatabase database;
     private Context context;
+
     public TimeTableDataBaseHelper(@Nullable Context context) {
         super(context, Constants.LOCAL_DATABASE_FILE, null, Constants.DB_VERSION);
         this.context = context;
@@ -49,8 +50,12 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
         inputStream.close();
     }
 
-    private boolean databaseExists() throws SQLiteException {
-        database = SQLiteDatabase.openDatabase(FILE_PATH+DB_NAME,null,SQLiteDatabase.OPEN_READONLY);
+    private boolean databaseExists() {
+        try {
+            database = SQLiteDatabase.openDatabase(FILE_PATH + DB_NAME, null, SQLiteDatabase.OPEN_READONLY);
+        } catch (SQLiteException e){
+            return false;
+        }
         if (database != null){
             database.close();
             return true;
@@ -140,7 +145,7 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
         Cursor c =database.rawQuery("select distinct room from classes",null);
         return  c;
     }
-    Cursor getDayFaculty(String lname,String day)
+    public Cursor getDayFaculty(String lname,String day)
     {
         Cursor c=database.rawQuery("select c.slot,c.room,s.sem,s.sub from classes c,faculty f,subjects s where\n" +
                 "f.name='"+lname+"' and\n" +
@@ -149,7 +154,7 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
                 "c.mapid=s.mapid order by CAST(c.slot AS INTEGER)",null);
         return c;
     }
-    Cursor getDayFacultyInitials(String lname,String day)
+    public Cursor getDayFacultyInitials(String lname,String day)
     {
         Cursor c=database.rawQuery("select c.slot,c.room,s.sem,s.sub from classes c,faculty f,subjects s where\n" +
                 "f.tag='"+lname+"' and\n" +
@@ -158,12 +163,12 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
                 "c.mapid=s.mapid order by CAST(c.slot AS INTEGER)",null);
         return c;
     }
-    Cursor getSem()
+    public Cursor getSem()
     {
         Cursor c=database.rawQuery("select distinct sem from subjects group by sem;",null);
         return  c;
     }
-    Cursor getDaySem(String sem,String day)
+    public Cursor getDaySem(String sem,String day)
     {
         Cursor c=database.rawQuery("select c.slot,c.room,f.name,s.sub from classes c,faculty f,subjects s where \n" +
                 "c.day='"+day+"' and\n" +
@@ -172,12 +177,12 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
                 "c.mapid=s.mapid order by CAST(c.slot AS INTEGER),c.room",null);
         return c;
     }
-    Cursor getRoom()
+    public Cursor getRoom()
     {
         Cursor c=database.rawQuery("select distinct room from classes",null);
         return c;
     }
-    Cursor getDayRoom(String room,String day)
+    public Cursor getDayRoom(String room,String day)
     {
         Cursor c=database.rawQuery("select c.slot,s.sem,f.name,s.sub from classes c,faculty f,subjects s where \n"+
                 "c.room like '"+room+"%' and\n"+
@@ -187,7 +192,7 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
         return c;
     }
 
-    String getDbName(){return DB_NAME;}
+    public String getDbName(){return DB_NAME;}
 
 
     public Cursor getSlot()
