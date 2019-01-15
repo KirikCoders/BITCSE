@@ -212,4 +212,9 @@ public class MainActivity extends AppCompatActivity {
     private void displayNoNetworkImage(){
 
     }
+    public void click(View v)
+    {
+        Intent i=new Intent(this,FacultyDetails.class);
+        startActivity(i);
+    }
 }

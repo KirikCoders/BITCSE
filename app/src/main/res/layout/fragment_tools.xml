@@ -3,12 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <TextView
         android:id="@+id/facultyDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/faculty"
+        android:onClick="click"
         android:padding="10dp"
+        android:text="@string/faculty"
         android:textSize="25sp" />
     <View
         android:layout_width="match_parent"
