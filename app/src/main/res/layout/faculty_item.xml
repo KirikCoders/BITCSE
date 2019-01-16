@@ -7,27 +7,34 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clickable="false">
 
-        <ImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/f_iv"
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:clickable="false"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            android:layout_width="135dp"
+            android:layout_height="205dp"
+            android:scaleType="centerInside"
+            android:scrollY="-40dp"
+            android:src="@drawable/fac4"
+            app:civ_border_color="#EEEEEE"
+            app:civ_border_width="2dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="#8BC34A"
+            app:civ_shadow_radius="10" />
 
         <TextView
             android:id="@+id/f_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="233dp"
+            android:layout_height="35dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="159dp"
+            android:layout_marginTop="27dp"
             android:clickable="false"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/f_desig"
@@ -35,7 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/f_name"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="43dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="86dp"
             android:clickable="false"
             android:text="TextView" />
 
@@ -46,7 +54,7 @@
             android:layout_alignStart="@+id/f_name"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="120dp"
             android:clickable="false"
             android:text="TextView" />
 
@@ -56,7 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/f_name"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="96dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="151dp"
             android:clickable="false"
             android:text="TextView" />
 
@@ -66,7 +75,8 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/f_name"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="124dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="186dp"
             android:clickable="false"
             android:text="TextView" />
     </RelativeLayout>

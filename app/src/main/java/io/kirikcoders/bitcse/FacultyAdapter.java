@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -73,7 +75,7 @@ class ViewHolder
    TextView facq;
    TextView facm;
    TextView facp;
-   ImageView faci;
+   CircularImageView faci;
    ViewHolder(View v)
    {
 
@@ -82,7 +84,7 @@ class ViewHolder
         facq=(TextView) v.findViewById(R.id.f_qual);
         facm=(TextView) v.findViewById(R.id.f_mail);
         facp=(TextView) v.findViewById(R.id.f_ph);
-        faci=(ImageView) v.findViewById(R.id.f_iv);
+        faci=(CircularImageView) v.findViewById(R.id.f_iv);
 
    }
 }
