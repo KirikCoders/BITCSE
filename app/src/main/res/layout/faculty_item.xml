@@ -16,10 +16,10 @@
             android:layout_height="205dp"
             android:scaleType="centerInside"
             android:scrollY="-40dp"
-            android:src="@drawable/fac4"
+            android:src="@drawable/googleg_standard_color_18"
             app:civ_border_color="#EEEEEE"
             app:civ_border_width="2dp"
-            app:civ_shadow="true"
+            app:civ_shadow="false"
             app:civ_shadow_color="#8BC34A"
             app:civ_shadow_radius="10" />
 
