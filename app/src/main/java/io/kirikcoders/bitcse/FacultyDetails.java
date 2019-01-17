@@ -3,7 +3,16 @@ package io.kirikcoders.bitcse;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 /**
  * Created by Akash on 15-Jan-19.
@@ -12,226 +21,51 @@ import android.widget.ListView;
 public class FacultyDetails extends AppCompatActivity {
 
     ListView faclst;
-    String[] facname={"Dr. Asha T",
-            "Y  Shobha",
-            "Dr. D G Jyothi",
-            "T Vijay Kumar",
-            "J Girija",
-            "B N Shankar Gowda",
-            "Dr. K R Suneetha",
-            "S Keshav Murthy",
-            "Savitha S K",
-            "Kanchan Ambarish Purohit",
-            "B T Harish Kumar",
-            "Nethravathy V",
-            "N Thanuja",
-            "Dr. M Kempanna",
-            "D R Nagamani",
-            "Hemavathi P",
-            "M S Bhargavi",
-            "K N Prasanth",
-            "Mamatha V",
-            "K J Bhanushree",
-            "Madhuri J",
-            "B S Maya",
-            "Gunavathi H S",
-            "Prathima M G",
-            "Anjini L",
-            "T P Manasa",
-            "Suma L",
-            "Manasa C",
-            "Mahalakshmi C V",
-            "Sushma H R",
-            "Tejaswini P S",
-            "Bhavana K V",
-            "Varshitha K C",
-            "Nikitha K S",
-            "Priya Srinivasa",
-            "Divyashree P",
-            "Archana A",
-            "Shruthi B R",
-            "Shruthi A",
-            "Chaitra K",
-            "Kavitha K",
-            "Pooja R"};
-    String[] facdesig={"HOD",
-            "Assc Prof.",
-            "Assc Prof.",
-            "Assc Prof.",
-            "Assc Prof.",
-            "Assc Prof.",
-            "Assc Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof.",
-            "Asst Prof."};
-    String[] facqual={"M.E,Ph.D",
-            "M.E",
-            "M.S",
-            "M.Tech",
-            "M.Tech",
-            "M.I.T",
-            "M.Tech, Ph.D",
-            "M.S",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.E",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.E",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.E",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech",
-            "M.Tech"};
-    String[] facmail={"asha.masthi@gmail.com",
-            "shobha.bitcse@gmail.com",
-            "jyothi.bitcse@gmail.com",
-            "vijaykrte@gmail.com",
-            "girija.bitcse@gmail.com",
-            "bnsgowda@gmail.com",
-            "suneetha.bit@gmail.com",
-            "skmurthy107@yahoo.co.in",
-            "savitha_ssk@yahoo.in",
-            "kanchan.md10@gmail.com",
-            "harish_bit82@yahoo.com",
-            "nethra_v@rediffmail.com",
-            "thanu.anu21@gmail.com",
-            "kempsindia@yahoo.com",
-            "manirrr@rediffmail.com",
-            "hemavathi_p@yahoo.co.in",
-            "ms.bhargavi@gmail.com",
-            "prashanthkumar1981@yahoo.co.in",
-            "mamathavenk@gmail.com",
-            "bhanushreekj@live.com",
-            "madhurimanjunath@gmail.com",
-            "bs1985.maya@gmail.com",
-            "gunavathihs@gmail.com",
-            "prathima005@gmail.com",
-            "anjini.nagesh@gmail.com",
-            "manasatp@gmail.com",
-            "sumahalgur@gmail.com",
-            "manasa244@gmail.com",
-            "mahalakshmicv@gmail.com",
-            "sushmahr6@gmail.com",
-            "tejashwinps@gmail.com",
-            "bvg20.cse@gmail.com",
-            "varshithakc@gmail.com",
-            "nikithagowdask@gmail.com",
-            "priyapurvika@gmail.com",
-            "divya.p0487@gmail.com",
-            "a.rchana0486@gmail.com",
-            "shruthi.rami91@gmail.com",
-            "shruthi.thushara@gmail.com",
-            "chaitrakumar25@gmail.com",
-            "kavi123monu@gmail.com",
-            "poojapatel1234@gmail.com"};
-    String[] facph={"9880511358",
-            "9845150890",
-            "9448031781",
-            "9449656593",
-            "9880937557",
-            "9902984984",
-            "9945053364",
-            "9480334282",
-            "9845964427",
-            "9886812827",
-            "9980119894",
-            "9986017912",
-            "9740550369",
-            "9972001401",
-            "9448978149",
-            "9845696399",
-            "9845643435",
-            "9611748108",
-            "9686570249",
-            "9900084229",
-            "9880112270",
-            "9945919065",
-            "9663563598",
-            "9611999441",
-            "9844224061",
-            "9740391733",
-            "9986396973",
-            "9620707475",
-            "9844794261",
-            "9916847736",
-            "9902714366",
-            "9535302255",
-            "8861752517",
-            "9743925282",
-            "8762464505",
-            "8970185448",
-            "9141332963",
-            "8892600195",
-            "9964363863",
-            "9663878950",
-            "9900214034",
-            "9611233341"};
-    Integer[] imgid={R.drawable.fac1,R.drawable.fac2,R.drawable.fac3,R.drawable.fac4,R.drawable.fac5,R.drawable.fac6,R.drawable.fac7,R.drawable.fac8,R.drawable.fac9,R.drawable.fac10,R.drawable.fac11,R.drawable.fac12,R.drawable.fac13,R.drawable.fac14,R.drawable.fac15,R.drawable.fac16,R.drawable.fac17,
-            R.drawable.fac18,R.drawable.fac19,R.drawable.fac20,R.drawable.fac21,R.drawable.fac22,R.drawable.fac23,R.drawable.fac24,R.drawable.fac25,R.drawable.fac26,R.drawable.fac27,
-            R.drawable.fac28,R.drawable.fac29,R.drawable.fac30,R.drawable.fac31,R.drawable.fac32,R.drawable.fac33,R.drawable.fac34,R.drawable.fac35,R.drawable.fac36,R.drawable.fac37,
-            R.drawable.fac38,R.drawable.fac39,R.drawable.fac40,R.drawable.fac41,R.drawable.fac42};
+    FirebaseListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_details);
         faclst=(ListView) findViewById(R.id.fac_lst);
-        FacultyAdapter facultyAdapter=new FacultyAdapter(this,facname,facdesig,facqual,facmail,facph,imgid);
-        faclst.setAdapter(facultyAdapter);
+        Query query= FirebaseDatabase.getInstance().getReference().child("faculty_details");
+        FirebaseListOptions<FacultyModel> options=new FirebaseListOptions.Builder<FacultyModel>()
+                .setLayout(R.layout.faculty_item)
+                .setQuery(query,FacultyModel.class)
+                .build();
+        adapter=new FirebaseListAdapter(options) {
+            @Override
+            protected void populateView(View v, Object model, int position) {
+                TextView facn=v.findViewById(R.id.f_name);
+                TextView facd=v.findViewById(R.id.f_desig);
+                TextView facq=v.findViewById(R.id.f_qual);
+                TextView facm=v.findViewById(R.id.f_mail);
+                TextView facp=v.findViewById(R.id.f_ph);
+                CircularImageView faci=v.findViewById(R.id.f_iv);
+                FacultyModel facultyModel=(FacultyModel) model;
+                facn.setText(facultyModel.getName().toString());
+                facd.setText("Designation:- "+facultyModel.getDesignation().toString());
+                facq.setText("Qualifications:- "+facultyModel.getQualification().toString());
+                facm.setText("Email ID:- "+facultyModel.getEmailid().toString());
+                facp.setText("Phone No. :- "+facultyModel.getPhoneno().toString());
+                Glide
+                        .with(getApplicationContext())
+                        .load(facultyModel.getImage().toString())
+                        .into(faci);
+            }
+        };
+        faclst.setAdapter(adapter);
+    }
+
+   @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }
