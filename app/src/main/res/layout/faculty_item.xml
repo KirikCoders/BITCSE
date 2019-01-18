@@ -32,7 +32,6 @@
             android:layout_marginStart="159dp"
             android:layout_marginTop="27dp"
             android:clickable="false"
-            android:text="TextView"
             android:textColor="@android:color/holo_red_dark"
             android:textSize="24sp" />
 
@@ -44,8 +43,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="1dp"
             android:layout_marginTop="86dp"
-            android:clickable="false"
-            android:text="TextView" />
+            android:clickable="false" />
 
         <TextView
             android:id="@+id/f_qual"
@@ -55,8 +53,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="0dp"
             android:layout_marginTop="120dp"
-            android:clickable="false"
-            android:text="TextView" />
+            android:clickable="false" />
 
         <TextView
             android:id="@+id/f_mail"
@@ -66,8 +63,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="1dp"
             android:layout_marginTop="151dp"
-            android:clickable="false"
-            android:text="TextView" />
+            android:clickable="false" />
 
         <TextView
             android:id="@+id/f_ph"
@@ -77,7 +73,6 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="1dp"
             android:layout_marginTop="186dp"
-            android:clickable="false"
-            android:text="TextView" />
+            android:clickable="false" />
     </RelativeLayout>
 </LinearLayout>

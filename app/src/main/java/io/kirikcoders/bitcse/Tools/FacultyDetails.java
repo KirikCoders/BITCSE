@@ -1,6 +1,7 @@
-package io.kirikcoders.bitcse;
+package io.kirikcoders.bitcse.Tools;
 
 import androidx.appcompat.app.AppCompatActivity;
+import io.kirikcoders.bitcse.R;
 
 import android.os.Bundle;
 import android.view.View;

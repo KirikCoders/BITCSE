@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FacultyDetails">
+    tools:context=".Tools.FacultyDetails">
 
     <ListView
         android:id="@+id/fac_lst"

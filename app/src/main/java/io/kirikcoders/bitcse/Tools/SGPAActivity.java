@@ -1,6 +1,10 @@
-package io.kirikcoders.bitcse;
+package io.kirikcoders.bitcse.Tools;
+/**
+ * Created by Akash on 18-Jan-19.
+ */
 
 import androidx.appcompat.app.AppCompatActivity;
+import io.kirikcoders.bitcse.R;
 
 import android.os.Bundle;
 import android.webkit.WebView;
