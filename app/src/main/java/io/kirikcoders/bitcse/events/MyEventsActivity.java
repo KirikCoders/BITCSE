@@ -37,7 +37,7 @@ public class MyEventsActivity extends AppCompatActivity {
         showEventName.setText("Users registered for "+eventName);
 
         events_list=(ListView) findViewById(R.id.my_events_list);
-        Query query= FirebaseDatabase.getInstance().getReference().child("events_registered").child("DDlJ");
+        Query query= FirebaseDatabase.getInstance().getReference().child("events_registered").child(eventName);
         FirebaseListOptions<MyEventsModel> options=new FirebaseListOptions.Builder<MyEventsModel>()
                 .setLayout(R.layout.my_events_item)
                 .setQuery(query,MyEventsModel.class)
