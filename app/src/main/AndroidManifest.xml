@@ -7,12 +7,17 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SGPAActivity"
+            android:label="SGPA Calculator"
+            android:parentActivityName=".MainActivity">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" />
@@ -31,7 +36,10 @@
             android:name=".events.ViewEventActivity"
             android:label="@string/title_activity_view_event"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".FacultyDetails" android:label="Faculty Details" android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".FacultyDetails"
+            android:label="Faculty Details"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
