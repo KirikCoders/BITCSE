@@ -26,7 +26,7 @@
                 android:textAlignment="center"
                 android:textColor="#fff"
                 android:textSize="25sp" />
-        </RelativeLayout>/
+        </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -48,7 +48,7 @@
             android:layout_marginTop="0dp"
             android:textColor="#000"
             android:text="name"
-            android:textSize="25sp" />
+            android:textSize="23sp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

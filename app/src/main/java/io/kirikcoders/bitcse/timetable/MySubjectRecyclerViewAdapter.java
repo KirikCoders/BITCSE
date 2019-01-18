@@ -18,6 +18,10 @@ public class MySubjectRecyclerViewAdapter extends RecyclerView.Adapter<MySubject
         cursor = subject;
     }
 
+    public void setCursor(Cursor cursor) {
+        this.cursor = cursor;
+    }
+
     @NonNull
     @Override
     public SubjectViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
