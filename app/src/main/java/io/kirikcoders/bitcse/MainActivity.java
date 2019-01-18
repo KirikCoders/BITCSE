@@ -29,6 +29,7 @@ import androidx.viewpager.widget.ViewPager;
 import io.kirikcoders.bitcse.Tools.Attendence;
 import io.kirikcoders.bitcse.Tools.FacultyDetails;
 import io.kirikcoders.bitcse.Tools.SGPAActivity;
+import io.kirikcoders.bitcse.Tools.Tools_new;
 import io.kirikcoders.bitcse.events.EventAdapter;
 import io.kirikcoders.bitcse.events.MyEventsAdapter;
 import io.kirikcoders.bitcse.utils.Constants;
@@ -234,6 +235,12 @@ public class MainActivity extends AppCompatActivity {
     public void click_attendance(View v)
     {
         Intent i=new Intent(this, Attendence.class);
+        startActivity(i);
+    }
+
+    public void temp(View v)
+    {
+        Intent i=new Intent(this, Tools_new.class);
         startActivity(i);
     }
 }

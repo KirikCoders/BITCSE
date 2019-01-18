@@ -14,7 +14,6 @@ import io.kirikcoders.bitcse.R;
  * Created by Kartik on 24-Jul-18.
  */
 public class ToolsFragment extends Fragment {
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
