@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import androidx.recyclerview.widget.RecyclerView;
 import io.kirikcoders.bitcse.R;
 
-public class myEventsAdapter extends RecyclerView.Adapter<myEventsAdapter.MyImageViewHolder> {
+public class MyEventsAdapter extends RecyclerView.Adapter<MyEventsAdapter.MyImageViewHolder> {
     private Context context;
     private ArrayList<URL> images;
     private ArrayList<String> eventNames;
@@ -47,7 +47,7 @@ public class myEventsAdapter extends RecyclerView.Adapter<myEventsAdapter.MyImag
             Toast.makeText(view.getContext(), "Clicked my events", Toast.LENGTH_SHORT).show();
         }
     }
-    public myEventsAdapter(Context context, ArrayList<URL> images, ArrayList<String> eventNames){
+    public MyEventsAdapter(Context context, ArrayList<URL> images, ArrayList<String> eventNames){
         this.context = context;
         this.images = images;
         this.eventNames = eventNames;

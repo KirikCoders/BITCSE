@@ -102,6 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
             confirmPassword.setError("Passwords do not match");
             return;
         }
+
         mAuth.signInAnonymously().addOnSuccessListener(authResult -> {
             myRef.child(usn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
                 @Override

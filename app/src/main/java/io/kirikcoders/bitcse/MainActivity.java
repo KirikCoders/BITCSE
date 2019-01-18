@@ -26,12 +26,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
-import io.kirikcoders.bitcse.Tools.Attendence;
 import io.kirikcoders.bitcse.Tools.FacultyDetails;
 import io.kirikcoders.bitcse.Tools.SGPAActivity;
-import io.kirikcoders.bitcse.Tools.ToolsFragment;
 import io.kirikcoders.bitcse.events.EventAdapter;
-import io.kirikcoders.bitcse.events.myEventsAdapter;
+import io.kirikcoders.bitcse.events.MyEventsAdapter;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<URL> imageUrl = new ArrayList<>(20);
     private ArrayList<String> eventName = new ArrayList<>(20);
     private EventAdapter mAdapter;
-    private myEventsAdapter ad;
+    private MyEventsAdapter ad;
     private ViewPager.OnPageChangeListener changeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -201,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 if (imageUrl.size() == 0)
                     displayNoDataImage();
                 else {
-                    ad = new myEventsAdapter(getApplicationContext(), images, eventNames);
+                    ad = new MyEventsAdapter(getApplicationContext(), images, eventNames);
                     EventFragment eventFragment = (EventFragment) adapter.getFragment(0);
                     eventFragment.setMyEventsAdapter(ad);
                 }
@@ -222,19 +220,13 @@ public class MainActivity extends AppCompatActivity {
     }
     public void click(View v)
     {
-        Intent i=new Intent(this, FacultyDetails.class);
+        Intent i=new Intent(this,FacultyDetails.class);
         startActivity(i);
     }
 
     public void click_sgpa(View v)
     {
-        Intent i=new Intent(this, SGPAActivity.class);
-        startActivity(i);
-    }
-
-    public void click_attendance(View v)
-    {
-        Intent i=new Intent(this, Attendence.class);
+        Intent i=new Intent(this,SGPAActivity.class);
         startActivity(i);
     }
 }

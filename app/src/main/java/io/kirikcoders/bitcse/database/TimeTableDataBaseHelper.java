@@ -30,7 +30,7 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
 
     public void createDatabase() throws IOException {
         if (!databaseExists()){
-            this.getReadableDatabase();
+//            this.getReadableDatabase();
             copyDatabase();
         }
     }
@@ -49,7 +49,9 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
         outputStream.close();
         inputStream.close();
     }
-
+    /**
+    * Check if database exists before copying it into the phone
+     */
     private boolean databaseExists() {
         try {
             database = SQLiteDatabase.openDatabase(FILE_PATH + DB_NAME, null, SQLiteDatabase.OPEN_READONLY);
@@ -62,7 +64,9 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
         }
         return false;
     }
-
+    /**
+     * Call openDatabase() with the adapter to create a reference to the db
+     */
     public void openDatabase() throws IOException {
         database = SQLiteDatabase.openDatabase(FILE_PATH+DB_NAME,null,SQLiteDatabase.OPEN_READWRITE);
     }
@@ -95,6 +99,10 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
  * Created by SharathBhargav on 23-10-2016.
  * Legacy functions. Avoid modification if you do not know SQL.
  */
+    /**
+     * returns a cursor containing room number,subject and semester if
+     * provided with faculty name, day and slot timing (refer database)
+     * */
     public Cursor getdataName(String lName, String day, int slot)
     {
         //Statement s=
@@ -133,13 +141,18 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
                 "c.mapid=s.mapid;",null);
         return c;
     }
+    /**
+     * get all faculty by tags
+     * */
     public Cursor getnames()
     {
 
         Cursor c =database.rawQuery("select NAME,TAG,fid from faculty",null);
         return c;
     }
-
+    /**
+     * get all available room numbers
+     * */
     public Cursor getroomno()
     {
         Cursor c =database.rawQuery("select distinct room from classes",null);
@@ -163,11 +176,18 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
                 "c.mapid=s.mapid order by CAST(c.slot AS INTEGER)",null);
         return c;
     }
+    /**
+     * Get all semesters recorded in the database
+     * */
     public Cursor getSem()
     {
         Cursor c=database.rawQuery("select distinct sem from subjects group by sem;",null);
         return  c;
     }
+    /**
+     * get the time table information given a semester and class in @args sem and a
+     * day in @args day
+     * */
     public Cursor getDaySem(String sem,String day)
     {
         Cursor c=database.rawQuery("select a.timings,c.room,f.name,s.sub from classes c,faculty f,subjects s,slot a where \n" +
@@ -177,11 +197,17 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
                 "c.mapid=s.mapid and a.slotnumber = c.slot order by CAST(c.slot AS INTEGER),c.room",null);
         return c;
     }
+    /**
+     * get all rooms
+     * */
     public Cursor getRoom()
     {
         Cursor c=database.rawQuery("select distinct room from classes",null);
         return c;
     }
+    /**
+     * check if anyone is using @args room given a @args day
+     * */
     public Cursor getDayRoom(String room,String day)
     {
         Cursor c=database.rawQuery("select c.slot,s.sem,f.name,s.sub from classes c,faculty f,subjects s where \n"+
@@ -194,14 +220,18 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
 
     public String getDbName(){return DB_NAME;}
 
-
+    /**
+     * get all slot timings
+     * */
     public Cursor getSlot()
     {
         Cursor c=database.rawQuery("select * from slot",null);
         return c;
     }
 
-
+    /**
+     * get all faculty info
+     * */
     public Cursor getFacultyInfo()
     {
         Cursor c =database.rawQuery("select NAME,TAG,fid,designation,qualification,emailid,phoneno from faculty",null);
