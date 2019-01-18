@@ -26,6 +26,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
+import io.kirikcoders.bitcse.Tools.Attendence;
 import io.kirikcoders.bitcse.Tools.FacultyDetails;
 import io.kirikcoders.bitcse.Tools.SGPAActivity;
 import io.kirikcoders.bitcse.events.EventAdapter;
@@ -227,6 +228,12 @@ public class MainActivity extends AppCompatActivity {
     public void click_sgpa(View v)
     {
         Intent i=new Intent(this,SGPAActivity.class);
+        startActivity(i);
+    }
+
+    public void click_attendance(View v)
+    {
+        Intent i=new Intent(this, Attendence.class);
         startActivity(i);
     }
 }
