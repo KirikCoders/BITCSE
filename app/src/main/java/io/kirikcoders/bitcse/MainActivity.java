@@ -217,10 +217,4 @@ public class MainActivity extends AppCompatActivity {
         Intent i=new Intent(this,FacultyDetails.class);
         startActivity(i);
     }
-
-    public void click_sgpa(View v)
-    {
-        Intent i=new Intent(this,SGPAActivity.class);
-        startActivity(i);
-    }
 }
