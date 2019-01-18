@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.kirikcoders.bitcse.events.CreateEventActivity;
 import io.kirikcoders.bitcse.events.EventAdapter;
-import io.kirikcoders.bitcse.events.myEventsAdapter;
-import io.kirikcoders.bitcse.MainActivity;
+import io.kirikcoders.bitcse.events.MyEventsAdapter;
+
 /**
  * Created by Kartik on 24-Jul-18.
  */
@@ -29,7 +29,7 @@ public class EventFragment extends Fragment {
     private LottieAnimationView lottieAnimationView;
     private TextView errorMessageTextView;
     private EventAdapter adapter;
-    private  myEventsAdapter ad;
+    private MyEventsAdapter ad;
 
     @Nullable
     @Override
@@ -88,7 +88,7 @@ public class EventFragment extends Fragment {
         errorMessageTextView.setText(message);
     }
 
-    public void setMyEventsAdapter(myEventsAdapter ad) {
+    public void setMyEventsAdapter(MyEventsAdapter ad) {
         this.ad=ad;
 
 

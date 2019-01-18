@@ -1,4 +1,4 @@
-package io.kirikcoders.bitcse.Tools;
+package io.kirikcoders.bitcse;
 
 import android.content.Intent;
 import android.os.Bundle;
