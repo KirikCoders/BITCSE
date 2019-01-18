@@ -28,7 +28,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import io.kirikcoders.bitcse.events.EventAdapter;
-import io.kirikcoders.bitcse.events.myEventsAdapter;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<URL> imageUrl = new ArrayList<>(20);
     private ArrayList<String> eventName = new ArrayList<>(20);
     private EventAdapter mAdapter;
-    private myEventsAdapter ad;
     private ViewPager.OnPageChangeListener changeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -107,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // get user permissions for storage, etc if not granted
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
@@ -116,11 +114,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setElevation(0);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) {
-            startActivity(new Intent(this, LoginActivity.class));
+        if(user == null){
+            startActivity(new Intent(this,LoginActivity.class));
         }
         pager = findViewById(R.id.pager);
-        userDetails = new UserDetails(getApplicationContext(), Constants.USER_PREFERENCE_FILE);
+        userDetails =  new UserDetails(getApplicationContext(),Constants.USER_PREFERENCE_FILE);
         adapter = new HomePagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new EventFragment());
         adapter.addFragment(new ToolsFragment());
@@ -132,9 +130,6 @@ public class MainActivity extends AppCompatActivity {
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         getCurrentEventsFromFirebase(getCurrentFocus());
-        getMyEventsFromFirebase(getCurrentFocus());
-
-
     }
 
     private void getCurrentEventsFromFirebase(View view) {
@@ -143,19 +138,19 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 imageUrl.clear();
                 eventName.clear();
-                for (DataSnapshot s : dataSnapshot.getChildren()) {
+                for (DataSnapshot s:dataSnapshot.getChildren()){
                     eventName.add(s.getKey());
                     try {
-                        System.out.println("value exists=" + s.child("imageUrl").exists());
+                        System.out.println("value exists="+s.child("imageUrl").exists());
                         imageUrl.add(new URL(s.child("imageUrl").getValue().toString()));
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
-                    } catch (NullPointerException e) {
+                    } catch (NullPointerException e){
                         e.printStackTrace();
 
                     }
                 }
-                mAdapter = new EventAdapter(getApplicationContext(), imageUrl, eventName);
+                mAdapter = new EventAdapter(getApplicationContext(),imageUrl,eventName);
                 EventFragment eventFragment = (EventFragment) adapter.getFragment(0);
                 eventFragment.setupRecyclerView(mAdapter);
             }
@@ -168,27 +163,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginOrSignUp() {
-        Intent i = new Intent(this, LoginActivity.class);
+        Intent i = new Intent(this,LoginActivity.class);
         startActivity(i);
     }
 
     public void getUserRegisteredEventsFromDb(View view) {
     }
 
-    public void getMyEventsFromFirebase(View view) {
-        ArrayList<URL> images= new ArrayList<>();
-        ArrayList<String> eventNames= new ArrayList<>();
+    public void getUserEventsFromFirebase(View view) {
         referenceEvents.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                for (DataSnapshot s : dataSnapshot.getChildren()) {
+                imageUrl.clear();
+                eventName.clear();
+                for (DataSnapshot s:dataSnapshot.getChildren()){
                     if (s.child("owner").getValue().toString().equals(userDetails.getmUsn())) {
-                        eventNames.add(s.getKey());
+                        eventName.add(s.getKey());
                         try {
                             System.out.println("value exists=" + s.child("imageUrl").exists());
-                            images.add(new URL(s.child("imageUrl").getValue().toString()));
+                            imageUrl.add(new URL(s.child("imageUrl").getValue().toString()));
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
                         } catch (NullPointerException e) {
@@ -200,14 +193,11 @@ public class MainActivity extends AppCompatActivity {
                 if (imageUrl.size() == 0)
                     displayNoDataImage();
                 else {
-                    ad = new myEventsAdapter(getApplicationContext(), images, eventNames);
+                    mAdapter = new EventAdapter(getApplicationContext(), imageUrl, eventName);
                     EventFragment eventFragment = (EventFragment) adapter.getFragment(0);
-                   eventFragment.setMyEventsAdapter(ad);
-
-
+                    eventFragment.setupRecyclerView(mAdapter);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -219,20 +209,18 @@ public class MainActivity extends AppCompatActivity {
         EventFragment eventFragment = (EventFragment) adapter.getFragment(0);
         eventFragment.setErrorMessage("No data available");
     }
-
-    private void displayNoNetworkImage() {
+    private void displayNoNetworkImage(){
 
     }
-
-    public void click(View v) {
-        Intent i = new Intent(this, FacultyDetails.class);
+    public void click(View v)
+    {
+        Intent i=new Intent(this,FacultyDetails.class);
         startActivity(i);
     }
 
-
-
+    public void click_sgpa(View v)
+    {
+        Intent i=new Intent(this,SGPAActivity.class);
+        startActivity(i);
     }
-
-
-
-
+}
