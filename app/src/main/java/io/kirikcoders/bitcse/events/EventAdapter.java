@@ -41,6 +41,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ImageViewHol
         public void onClick(View view) {
             Intent i = new Intent(context,ViewEventActivity.class);
             i.putExtra("event",eventName.getText().toString());
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
             Toast.makeText(view.getContext(), "Clicked "+eventName != null ? eventName.getText().toString():"This", Toast.LENGTH_SHORT).show();
         }
