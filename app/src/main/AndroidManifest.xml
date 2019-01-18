@@ -43,6 +43,9 @@
             android:name=".Tools.FacultyDetails"
             android:label="Faculty Details"
             android:parentActivityName=".MainActivity" />
+        <activity android:name=".events.MyEventsActivity"
+                  android:label="MyEventsActivity" />
+
     </application>
 
 </manifest>

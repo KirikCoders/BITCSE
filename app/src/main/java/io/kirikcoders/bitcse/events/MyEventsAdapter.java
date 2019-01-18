@@ -40,7 +40,7 @@ public class MyEventsAdapter extends RecyclerView.Adapter<MyEventsAdapter.MyImag
 
         @Override
         public void onClick(View view) {
-            Intent i = new Intent(context,ViewEventActivity.class);
+            Intent i = new Intent(context, MyEventsActivity.class);
             i.putExtra("event",eventName.getText().toString());
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
