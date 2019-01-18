@@ -28,6 +28,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import io.kirikcoders.bitcse.events.EventAdapter;
+import io.kirikcoders.bitcse.events.myEventsAdapter;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<URL> imageUrl = new ArrayList<>(20);
     private ArrayList<String> eventName = new ArrayList<>(20);
     private EventAdapter mAdapter;
+    private myEventsAdapter ad;
     private ViewPager.OnPageChangeListener changeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -130,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         getCurrentEventsFromFirebase(getCurrentFocus());
+        getMyEventsFromFirebase(getCurrentFocus());
+
     }
 
     private void getCurrentEventsFromFirebase(View view) {
@@ -170,18 +174,19 @@ public class MainActivity extends AppCompatActivity {
     public void getUserRegisteredEventsFromDb(View view) {
     }
 
-    public void getUserEventsFromFirebase(View view) {
+    public void getMyEventsFromFirebase(View view) {
+        ArrayList<URL> images= new ArrayList<>();
+        ArrayList<String> eventNames= new ArrayList<>();
         referenceEvents.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                imageUrl.clear();
-                eventName.clear();
+
                 for (DataSnapshot s:dataSnapshot.getChildren()){
                     if (s.child("owner").getValue().toString().equals(userDetails.getmUsn())) {
-                        eventName.add(s.getKey());
+                        eventNames.add(s.getKey());
                         try {
                             System.out.println("value exists=" + s.child("imageUrl").exists());
-                            imageUrl.add(new URL(s.child("imageUrl").getValue().toString()));
+                            images.add(new URL(s.child("imageUrl").getValue().toString()));
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
                         } catch (NullPointerException e) {
@@ -193,9 +198,9 @@ public class MainActivity extends AppCompatActivity {
                 if (imageUrl.size() == 0)
                     displayNoDataImage();
                 else {
-                    mAdapter = new EventAdapter(getApplicationContext(), imageUrl, eventName);
+                    ad = new myEventsAdapter(getApplicationContext(), images, eventNames);
                     EventFragment eventFragment = (EventFragment) adapter.getFragment(0);
-                    eventFragment.setupRecyclerView(mAdapter);
+                    eventFragment.setMyEventsAdapter(ad);
                 }
             }
             @Override
