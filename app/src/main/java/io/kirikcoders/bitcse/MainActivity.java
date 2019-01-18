@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +26,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
+import io.kirikcoders.bitcse.Tools.Attendence;
+import io.kirikcoders.bitcse.Tools.FacultyDetails;
+import io.kirikcoders.bitcse.Tools.SGPAActivity;
+import io.kirikcoders.bitcse.Tools.ToolsFragment;
 import io.kirikcoders.bitcse.events.EventAdapter;
 import io.kirikcoders.bitcse.events.myEventsAdapter;
 import io.kirikcoders.bitcse.utils.Constants;
@@ -219,13 +222,19 @@ public class MainActivity extends AppCompatActivity {
     }
     public void click(View v)
     {
-        Intent i=new Intent(this,FacultyDetails.class);
+        Intent i=new Intent(this, FacultyDetails.class);
         startActivity(i);
     }
 
     public void click_sgpa(View v)
     {
-        Intent i=new Intent(this,SGPAActivity.class);
+        Intent i=new Intent(this, SGPAActivity.class);
+        startActivity(i);
+    }
+
+    public void click_attendance(View v)
+    {
+        Intent i=new Intent(this, Attendence.class);
         startActivity(i);
     }
 }
