@@ -7,6 +7,8 @@ import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
 import android.os.Bundle;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +33,8 @@ public class Marks extends AppCompatActivity {
         setContentView(R.layout.activity_attendence);
         obj = new UserDetails(Marks.this, Constants.USER_PREFERENCE_FILE);
         ref= FirebaseDatabase.getInstance().getReference().child("marks");
+        TableLayout table=findViewById(R.id.tableLayout);
+        TableRow[] row={findViewById(R.id.r2),findViewById(R.id.r3),findViewById(R.id.r4),findViewById(R.id.r5),findViewById(R.id.r6),findViewById(R.id.r7),findViewById(R.id.r8),findViewById(R.id.r8),findViewById(R.id.r10)};
         TextView[] sub={findViewById(R.id.a_sub1),findViewById(R.id.a_sub2),findViewById(R.id.a_sub3),findViewById(R.id.a_sub4),findViewById(R.id.a_sub5),findViewById(R.id.a_sub6),findViewById(R.id.a_sub7),findViewById(R.id.a_sub8),findViewById(R.id.a_sub9)};
         TextView[] t1={findViewById(R.id.sub1_t1),findViewById(R.id.sub2_t1),findViewById(R.id.sub3_t1),findViewById(R.id.sub4_t1),findViewById(R.id.sub5_t1),findViewById(R.id.sub6_t1),findViewById(R.id.sub7_t1),findViewById(R.id.sub8_t1),findViewById(R.id.sub9_t1)};
         TextView[] t2={findViewById(R.id.sub1_t2),findViewById(R.id.sub2_t2),findViewById(R.id.sub3_t2),findViewById(R.id.sub4_t2),findViewById(R.id.sub5_t2),findViewById(R.id.sub6_t2),findViewById(R.id.sub7_t2),findViewById(R.id.sub8_t2),findViewById(R.id.sub9_t2)};
@@ -39,6 +43,8 @@ public class Marks extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int i=0;
+                long j=dataSnapshot.getChildrenCount();
+                System.out.println(j);
                 for(DataSnapshot ds : dataSnapshot.getChildren() )
                 {
                     sub[i].setText(ds.child("subname").getValue().toString());
@@ -46,6 +52,11 @@ public class Marks extends AppCompatActivity {
                     t2[i].setText(ds.child("test2").getValue().toString());
                     t3[i].setText(ds.child("test3").getValue().toString());
                     i++;
+                }
+                while((int)j<=8)
+                {
+                    table.removeView(row[(int)j]);
+                    j++;
                 }
 
             }
