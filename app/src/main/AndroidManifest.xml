@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Tools.Marks"></activity>
+        <activity android:name=".Tools.Marks"
+            android:label="Internal Marks"
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".Tools.Tools_new" />
         <activity
             android:name=".Tools.Attendence"
