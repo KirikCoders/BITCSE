@@ -19,9 +19,7 @@ import com.google.firebase.database.ValueEventListener;
  * Created by Akash on 18-Jan-19.
  */
 
-
-public class Attendence extends AppCompatActivity {
-
+public class Marks extends AppCompatActivity {
     UserDetails obj;
     DatabaseReference ref;
     TextView sub1,sub2,sub3,sub4,sub5,sub6,sub7,sub8,sub9;
@@ -31,8 +29,8 @@ public class Attendence extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendence);
-        obj = new UserDetails(Attendence.this, Constants.USER_PREFERENCE_FILE);
-        ref= FirebaseDatabase.getInstance().getReference().child("attendance");
+        obj = new UserDetails(Marks.this, Constants.USER_PREFERENCE_FILE);
+        ref= FirebaseDatabase.getInstance().getReference().child("marks");
         TextView[] sub={findViewById(R.id.a_sub1),findViewById(R.id.a_sub2),findViewById(R.id.a_sub3),findViewById(R.id.a_sub4),findViewById(R.id.a_sub5),findViewById(R.id.a_sub6),findViewById(R.id.a_sub7),findViewById(R.id.a_sub8),findViewById(R.id.a_sub9)};
         TextView[] t1={findViewById(R.id.sub1_t1),findViewById(R.id.sub2_t1),findViewById(R.id.sub3_t1),findViewById(R.id.sub4_t1),findViewById(R.id.sub5_t1),findViewById(R.id.sub6_t1),findViewById(R.id.sub7_t1),findViewById(R.id.sub8_t1),findViewById(R.id.sub9_t1)};
         TextView[] t2={findViewById(R.id.sub1_t2),findViewById(R.id.sub2_t2),findViewById(R.id.sub3_t2),findViewById(R.id.sub4_t2),findViewById(R.id.sub5_t2),findViewById(R.id.sub6_t2),findViewById(R.id.sub7_t2),findViewById(R.id.sub8_t2),findViewById(R.id.sub9_t2)};

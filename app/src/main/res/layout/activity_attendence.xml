@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TableLayout
-        android:layout_width="match_parent"
+        android:id="@+id/tableLayout"
+        android:layout_width="338dp"
         android:layout_height="400dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="100dp">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/a_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -25,7 +33,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/a_t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -38,7 +46,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/a_t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -51,7 +59,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView24"
+                android:id="@+id/a_t3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -69,7 +77,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/a_sub1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -78,7 +86,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/sub1_t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -91,7 +99,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView27"
+                android:id="@+id/sub1_t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -104,7 +112,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/sub1_t3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -122,7 +130,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/a_sub2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -131,7 +139,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView77"
+                android:id="@+id/sub2_t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -144,7 +152,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView29"
+                android:id="@+id/sub2_t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -157,7 +165,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView30"
+                android:id="@+id/sub2_t3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -175,7 +183,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/a_sub3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -184,7 +192,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView31"
+                android:id="@+id/sub3_t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -197,7 +205,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView32"
+                android:id="@+id/sub3_t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -210,7 +218,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView33"
+                android:id="@+id/sub3_t3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -228,7 +236,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/a_sub4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -237,7 +245,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView34"
+                android:id="@+id/sub4_t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -250,7 +258,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView35"
+                android:id="@+id/sub4_t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -263,7 +271,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView36"
+                android:id="@+id/sub4_t3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -281,7 +289,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/a_sub5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -290,7 +298,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView37"
+                android:id="@+id/sub5_t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -303,7 +311,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView38"
+                android:id="@+id/sub5_t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -316,7 +324,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView39"
+                android:id="@+id/sub5_t3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -334,7 +342,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/a_sub6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -343,7 +351,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView40"
+                android:id="@+id/sub6_t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -356,7 +364,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView41"
+                android:id="@+id/sub6_t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -369,7 +377,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView42"
+                android:id="@+id/sub6_t3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -387,7 +395,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/a_sub7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -396,7 +404,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView43"
+                android:id="@+id/sub7_t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -409,7 +417,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView44"
+                android:id="@+id/sub7_t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -422,7 +430,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView45"
+                android:id="@+id/sub7_t3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -440,7 +448,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/a_sub8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -449,7 +457,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView46"
+                android:id="@+id/sub8_t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -462,7 +470,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView47"
+                android:id="@+id/sub8_t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -475,7 +483,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView48"
+                android:id="@+id/sub8_t3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -493,7 +501,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView52"
+                android:id="@+id/a_sub9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
@@ -502,7 +510,7 @@
                 android:textColor="@color/colorAccent" />
 
             <TextView
-                android:id="@+id/textView51"
+                android:id="@+id/sub9_t1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -515,7 +523,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView50"
+                android:id="@+id/sub9_t2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -528,7 +536,7 @@
                 android:textColor="#000000" />
 
             <TextView
-                android:id="@+id/textView49"
+                android:id="@+id/sub9_t3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_white"
@@ -541,4 +549,4 @@
                 android:textColor="#000000" />
         </TableRow>
     </TableLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

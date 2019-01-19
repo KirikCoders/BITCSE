@@ -9,6 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+/**
+ * Created by Akash on 18-Jan-19.
+ */
+
 
 public class Tools_new extends AppCompatActivity {
     ListView toolslist;
@@ -34,7 +38,8 @@ public class Tools_new extends AppCompatActivity {
                     case 1: Intent j=new Intent(view.getContext(),SGPAActivity.class);
                             startActivity(j);
                             break;
-                    case 2:System.out.println("INTERNAL");
+                    case 2:Intent l=new Intent(view.getContext(),Marks.class);
+                        startActivity(l);
                            break;
                     case 3:Intent k=new Intent(view.getContext(),Attendence.class);
                            startActivity(k);

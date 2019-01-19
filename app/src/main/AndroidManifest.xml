@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Tools.Tools_new"></activity>
+        <activity android:name=".Tools.Marks"></activity>
+        <activity android:name=".Tools.Tools_new" />
         <activity
             android:name=".Tools.Attendence"
             android:label="Attendance"
@@ -45,9 +46,9 @@
             android:name=".Tools.FacultyDetails"
             android:label="Faculty Details"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".events.MyEventsActivity"
-                  android:label="MyEventsActivity" />
-
+        <activity
+            android:name=".events.MyEventsActivity"
+            android:label="MyEventsActivity" />
     </application>
 
 </manifest>

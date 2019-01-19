@@ -28,6 +28,7 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import io.kirikcoders.bitcse.Tools.Attendence;
 import io.kirikcoders.bitcse.Tools.FacultyDetails;
+import io.kirikcoders.bitcse.Tools.Marks;
 import io.kirikcoders.bitcse.Tools.SGPAActivity;
 import io.kirikcoders.bitcse.Tools.Tools_new;
 import io.kirikcoders.bitcse.events.EventAdapter;
@@ -241,6 +242,12 @@ public class MainActivity extends AppCompatActivity {
     public void temp(View v)
     {
         Intent i=new Intent(this, Tools_new.class);
+        startActivity(i);
+    }
+
+    public void click_marks(View v)
+    {
+        Intent i=new Intent(this, Marks.class);
         startActivity(i);
     }
 }
