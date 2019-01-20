@@ -14,16 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Tools.Marks"
+        <activity android:name=".tools.Marks"
             android:label="Internal Marks"
             android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".Tools.Tools_new" />
         <activity
-            android:name=".Tools.Attendence"
+            android:name=".tools.Attendence"
             android:label="Attendance"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".Tools.SGPAActivity"
+            android:name=".tools.SGPAActivity"
             android:label="SGPA Calculator"
             android:parentActivityName=".MainActivity" />
         <activity
@@ -45,7 +44,7 @@
             android:label="@string/title_activity_view_event"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Tools.FacultyDetails"
+            android:name=".tools.FacultyDetails"
             android:label="Faculty Details"
             android:parentActivityName=".MainActivity" />
         <activity

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,11 +27,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
-import io.kirikcoders.bitcse.Tools.Attendence;
-import io.kirikcoders.bitcse.Tools.FacultyDetails;
-import io.kirikcoders.bitcse.Tools.Marks;
-import io.kirikcoders.bitcse.Tools.SGPAActivity;
-import io.kirikcoders.bitcse.Tools.Tools_new;
+import io.kirikcoders.bitcse.tools.Attendence;
+import io.kirikcoders.bitcse.tools.FacultyDetails;
+import io.kirikcoders.bitcse.tools.Marks;
+import io.kirikcoders.bitcse.tools.SGPAActivity;
 import io.kirikcoders.bitcse.events.EventAdapter;
 import io.kirikcoders.bitcse.events.MyEventsAdapter;
 import io.kirikcoders.bitcse.utils.Constants;
@@ -135,9 +135,6 @@ public class MainActivity extends AppCompatActivity {
         pager.addOnPageChangeListener(changeListener);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        getCurrentEventsFromFirebase(getCurrentFocus());
-        getMyEventsFromFirebase(getCurrentFocus());
-
     }
 
     private void getCurrentEventsFromFirebase(View view) {
@@ -170,12 +167,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loginOrSignUp() {
-        Intent i = new Intent(this,LoginActivity.class);
-        startActivity(i);
+    public void getUserRegisteredEventsFromDb(View view) {
     }
 
-    public void getUserRegisteredEventsFromDb(View view) {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getCurrentEventsFromFirebase(getCurrentFocus());
+        getMyEventsFromFirebase(getCurrentFocus());
+
     }
 
     public void getMyEventsFromFirebase(View view) {
@@ -221,19 +221,19 @@ public class MainActivity extends AppCompatActivity {
     private void displayNoNetworkImage(){
 
     }
-    public void click(View v)
+    public void facultyDetailsClick(View v)
     {
         Intent i=new Intent(this,FacultyDetails.class);
         startActivity(i);
     }
 
-    public void click_sgpa(View v)
+    public void clickSgpa(View v)
     {
         Intent i=new Intent(this,SGPAActivity.class);
         startActivity(i);
     }
 
-    public void click_attendance(View v)
+    public void clickAttendance(View v)
     {
         Intent i=new Intent(this, Attendence.class);
         startActivity(i);
@@ -241,11 +241,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void temp(View v)
     {
-        Intent i=new Intent(this, Tools_new.class);
-        startActivity(i);
+        Toast.makeText(this, "Docs will be added in the next release", Toast.LENGTH_SHORT).show();
     }
 
-    public void click_marks(View v)
+    public void clickMarks(View v)
     {
         Intent i=new Intent(this, Marks.class);
         startActivity(i);

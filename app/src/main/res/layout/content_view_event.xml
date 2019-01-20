@@ -88,21 +88,25 @@
                     android:layout_column="1"
                     android:text="Contact 1"
                     android:textSize="25sp"
+                    android:textIsSelectable="true"
                     android:textStyle="bold" />
                 <TextView
                     android:text="Contact 2"
                     android:gravity="right"
                     android:textSize="25sp"
+                    android:textIsSelectable="true"
                     android:textStyle="bold" />
             </TableRow>
             <TableRow>
                 <TextView
                     android:layout_column="1"
                     android:id="@+id/showEventContactOne"
+                    android:textIsSelectable="true"
                     android:textSize="16sp" />
                 <TextView
                     android:gravity="right"
                     android:id="@+id/showEventContactTwo"
+                    android:textIsSelectable="true"
                     android:textSize="16sp" />
             </TableRow>
             <TableRow>

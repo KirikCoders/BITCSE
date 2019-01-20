@@ -1,112 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="facultyDetailsClick">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_people_outline_black_24dp"
+                android:id="@+id/faculty_icon"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/facultyDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/faculty_icon"
+                android:textColor="#000"
+                android:text="@string/faculty"
+                android:textSize="25sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/faculty_icon"
+                android:layout_below="@+id/facultyDetails"
+                android:text="@string/faculty_details"
+                android:textSize="15sp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="temp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_class_black_24dp"
+                android:id="@+id/docs_icon"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/docs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/docs_icon"
+                android:textColor="#000"
+                android:text="@string/docs"
+                android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/facultyDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click"
-        android:padding="10dp"
-        android:text="@string/faculty"
-        android:textSize="25sp" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_margin="2dp"
-        android:background="@color/line" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/docs"
+                android:layout_toRightOf="@+id/docs_icon"
+                android:text="find relevant documents like syllabus, forms,etc."
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="clickMarks">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_list_black_24dp"
+                android:id="@+id/internals_icon"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/internals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/internals_icon"
+                android:textColor="#000"
+                android:text="@string/internal_marks"
+                android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/docs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="temp"
-        android:padding="10dp"
-        android:text="@string/docs"
-        android:textSize="25sp" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_margin="2dp"
-        android:background="@color/line" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/internals"
+                android:layout_toRightOf="@+id/internals_icon"
+                android:text="Check your internal marks"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="clickAttendance">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_format_list_numbered_black_24dp"
+                android:id="@+id/attendance_icon"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/attendance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/attendance_icon"
+                android:textColor="#000"
+                android:text="@string/attendance"
+                android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/internals"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click_marks"
-        android:padding="10dp"
-        android:text="@string/internal_marks"
-        android:textSize="25sp" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_margin="2dp"
-        android:background="@color/line" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/attendance"
+                android:layout_toRightOf="@+id/attendance_icon"
+                android:text="Check your attendance"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_home_black_24dp"
+                android:id="@+id/emptyRoom_icon"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/emptyRoom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/emptyRoom_icon"
+                android:textColor="#000"
+                android:text="@string/find_an_empty_room"
+                android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/attendance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click_attendance"
-        android:padding="10dp"
-        android:text="@string/attendance"
-        android:textSize="25sp" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_margin="2dp"
-        android:background="@color/line" />
-    <TextView
-        android:id="@+id/emptyRoom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/find_an_empty_room"
-        android:padding="10dp"
-        android:textSize="25sp" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_margin="2dp"
-        android:background="@color/line" />
-    <TextView
-        android:id="@+id/findProfessor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/find_a_professor"
-        android:padding="10dp"
-        android:textSize="25sp" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_margin="2dp"
-        android:background="@color/line" />
-    <TextView
-        android:id="@+id/noticeboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/noticeboard"
-        android:padding="10dp"
-        android:textSize="25sp" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_margin="2dp"
-        android:background="@color/line" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emptyRoom"
+                android:layout_toRightOf="@+id/emptyRoom_icon"
+                android:text="Hosting an event or activity? Find a room for it"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_person_pin_circle_black_24dp"
+                android:id="@+id/findProfessor_icon"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/findProfessor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/findProfessor_icon"
+                android:textColor="#000"
+                android:text="@string/find_a_professor"
+                android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/sgpaCalculator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="click_sgpa"
-        android:padding="10dp"
-        android:text="@string/sgpa_calculator"
-        android:textSize="25sp" />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_margin="2dp"
-        android:background="@color/line" />
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/findProfessor"
+                android:layout_toRightOf="@+id/findProfessor_icon"
+                android:text="Find a faculty member based on their schedule"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="clickSgpa"
+            android:background="?attr/selectableItemBackground">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_school_black_24dp"
+                android:id="@+id/sgpaCalculator_icon"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:id="@+id/sgpaCalculator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/sgpaCalculator_icon"
+                android:textColor="#000"
+                android:text="@string/sgpa_calculator"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sgpaCalculator"
+                android:layout_toRightOf="@+id/sgpaCalculator_icon"
+                android:text="Calculate your sgpa and cgpa"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <!--<View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_margin="2dp"
+            android:background="@color/line" />-->
+    </LinearLayout>
+</ScrollView>

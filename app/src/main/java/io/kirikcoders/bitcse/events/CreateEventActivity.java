@@ -84,62 +84,54 @@ public class CreateEventActivity extends AppCompatActivity {
         final StorageReference storageReference = imageStore.getReference()
                 .child("images/"+eventName.getText().toString());
         storageReference.putFile(imagePath)
-        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        reference.child(eventName.getText().toString()).child("date")
-                                .setValue(eventDate.getText().toString());
-                        reference.child(eventName.getText().toString()).child("participants")
-                                .setValue(eventParticipants.getText().toString());
-                        reference.child(eventName.getText().toString()).child("time")
-                                .setValue(eventTime.getText().toString());
-                        reference.child(eventName.getText().toString()).child("description")
-                                .setValue(eventDescription.getText().toString());
-                        reference.child(eventName.getText().toString()).child("headline")
-                                .setValue(eventHeadline.getText().toString());
-                        reference.child(eventName.getText().toString()).child("venue")
-                                .setValue(eventVenue.getText().toString());
-                        reference.child(eventName.getText().toString()).child("imageUrl")
-                                .setValue(uri.toString());
-                        reference.child(eventName.getText().toString()).child("contactOne")
-                                .setValue(eventContactOne.getText().toString());
-                        reference.child(eventName.getText().toString()).child("owner")
-                                .setValue(user.getmUsn());
-                        reference.child(eventName.getText().toString()).child("contactTwo")
-                                .setValue(eventContactTwo.getText().toString());
-                        reference.child(eventName.getText().toString()).child("cost")
-                                .setValue(eventCost.getText().toString());
-                        progressBar.setVisibility(View.GONE);
-                        checked.setVisibility(View.VISIBLE);
-                        checked.playAnimation();
-                        checked.addAnimatorListener(new Animator.AnimatorListener() {
-                            @Override
-                            public void onAnimationStart(Animator animation) {
+        .addOnSuccessListener(taskSnapshot -> storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
+            reference.child(eventName.getText().toString()).child("date")
+                    .setValue(eventDate.getText().toString());
+            reference.child(eventName.getText().toString()).child("participants")
+                    .setValue(eventParticipants.getText().toString());
+            reference.child(eventName.getText().toString()).child("time")
+                    .setValue(eventTime.getText().toString());
+            reference.child(eventName.getText().toString()).child("description")
+                    .setValue(eventDescription.getText().toString());
+            reference.child(eventName.getText().toString()).child("headline")
+                    .setValue(eventHeadline.getText().toString());
+            reference.child(eventName.getText().toString()).child("venue")
+                    .setValue(eventVenue.getText().toString());
+            reference.child(eventName.getText().toString()).child("imageUrl")
+                    .setValue(uri.toString());
+            reference.child(eventName.getText().toString()).child("contactOne")
+                    .setValue(eventContactOne.getText().toString());
+            reference.child(eventName.getText().toString()).child("owner")
+                    .setValue(user.getmUsn());
+            reference.child(eventName.getText().toString()).child("contactTwo")
+                    .setValue(eventContactTwo.getText().toString());
+            reference.child(eventName.getText().toString()).child("cost")
+                    .setValue(eventCost.getText().toString());
+            progressBar.setVisibility(View.GONE);
+            checked.setVisibility(View.VISIBLE);
+            checked.playAnimation();
+            checked.addAnimatorListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
 
-                            }
-
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                finish();
-                            }
-
-                            @Override
-                            public void onAnimationCancel(Animator animation) {
-
-                            }
-
-                            @Override
-                            public void onAnimationRepeat(Animator animation) {
-
-                            }
-                        });
-                    }
-                });
                 }
-        });
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    finish();
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            });
+        }));
     }
 
     private String getUploadUrl(StorageReference storageReference) {

@@ -1,4 +1,4 @@
-package io.kirikcoders.bitcse.Tools;
+package io.kirikcoders.bitcse.tools;
 /**
  * Created by Akash on 17-Jan-19.
  */

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,21 +21,21 @@ import io.kirikcoders.bitcse.utils.UserDetails;
  * Created by Kartik on 24-Jul-18.
  */
 public class SettingsFragment extends Fragment {
-    private TextView signOut;
     private FirebaseUser mUser;
     private FirebaseAuth mAuth;
+    private RelativeLayout layout;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        signOut = view.findViewById(R.id.signout);
-        signOut.setOnClickListener(view1 -> {
-            Toast.makeText(getContext(), "You have been signed out", Toast.LENGTH_SHORT).show();
-            mAuth.signOut();
-            UserDetails details = new UserDetails(getContext(), Constants.USER_PREFERENCE_FILE);
-            details.deleteAll();
-            getActivity().startActivity(new Intent(getActivity(),LoginActivity.class));
-            getActivity().finish();
+        layout = view.findViewById(R.id.signout_layout);
+        layout.setOnClickListener((rootView)->{
+                Toast.makeText(getContext(), "You have been signed out", Toast.LENGTH_SHORT).show();
+                mAuth.signOut();
+                UserDetails details = new UserDetails(getContext(), Constants.USER_PREFERENCE_FILE);
+                details.deleteAll();
+                getActivity().startActivity(new Intent(getActivity(),LoginActivity.class));
+                getActivity().finish();
         });
     }
 
