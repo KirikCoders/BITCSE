@@ -14,13 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".tools.FindProfessor.SelectFac"
-            android:label="Find A Professor"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity
-            android:name=".tools.FindProfessor.SlotSelect"
-            android:label="Find A Professor"
-            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".tools.FindProfessor.SearchFaculty"
             android:label="Find A Professor"
