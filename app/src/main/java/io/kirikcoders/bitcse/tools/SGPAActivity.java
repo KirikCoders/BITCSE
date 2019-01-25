@@ -15,7 +15,8 @@ public class SGPAActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sgpa);
-        WebView webView=findViewById(R.id.sgpa_wv);
+        WebView webView = findViewById(R.id.sgpa_wv);
         webView.loadUrl("http://www.vtusgpacalculator.online/");
+        webView.getSettings().setJavaScriptEnabled(true);
     }
 }

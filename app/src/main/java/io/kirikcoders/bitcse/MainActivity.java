@@ -33,6 +33,7 @@ import io.kirikcoders.bitcse.tools.Marks;
 import io.kirikcoders.bitcse.tools.SGPAActivity;
 import io.kirikcoders.bitcse.events.EventAdapter;
 import io.kirikcoders.bitcse.events.MyEventsAdapter;
+import io.kirikcoders.bitcse.tools.FindProfessor.SearchFaculty;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
@@ -247,6 +248,12 @@ public class MainActivity extends AppCompatActivity {
     public void clickMarks(View v)
     {
         Intent i=new Intent(this, Marks.class);
+        startActivity(i);
+    }
+
+    public void clickFacSearch(View v)
+    {
+        Intent i=new Intent(this, SearchFaculty.class);
         startActivity(i);
     }
 }
