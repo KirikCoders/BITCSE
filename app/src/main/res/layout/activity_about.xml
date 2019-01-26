@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="Developers of Version V1:- \n 1)Sharath S Bhargav, Android Developer \n 2)Suhas T S, Android Developer \n 3)Ullas Diwakar, UI Developer \n 4)Suchit Rotti, UI Developer \n \n  Mentors:-\n 1)Dr. S. Nandagopalan, Professor and HOD \n 2)Nethravathy V, Assistant Professor"
+        android:text="Developers of Version V1:- \n Sharath S Bhargav, Android Developer \n Suhas T S, Android Developer \n Ullas Diwakar, UI Developer \n Suchit Rotti, UI Developer \n \n  Mentors:-\n Dr. S. Nandagopalan, Professor and HOD \n Nethravathy V, Assistant Professor"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="20sp" />
 
     <View
@@ -28,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
         android:padding="10dp"
-        android:text="Developers of Version V2:- \n 1)Kartik G, Lead Developer \n 2)Akash R, Developer \n 3)Abhishek Koushik B N, Developer \n 4)Indranil Sarkar, Database Admin \n \n  Mentors:-\n 1)Dr. Asha T, Professor and HOD \n 2)B T Harish Kumar, Assistant Professor \n 3)Nethravathy V, Assistant Professor"
+        android:text="Developers of Version V2:- \n Kartik G, Lead Developer \n Akash R, Developer \n Abhishek Koushik B N, Developer \n Indranil Sarkar, Database Admin \n \n  Mentors:-\n Dr. Asha T, Professor and HOD \n B T Harish Kumar, Assistant Professor \n Nethravathy V, Assistant Professor"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="20sp" />
 </RelativeLayout>
