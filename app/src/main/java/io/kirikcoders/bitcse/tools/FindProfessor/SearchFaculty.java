@@ -2,7 +2,7 @@ package io.kirikcoders.bitcse.tools.FindProfessor;
 
 import androidx.appcompat.app.AppCompatActivity;
 import io.kirikcoders.bitcse.R;
-import io.kirikcoders.bitcse.database.TimeTableDataBaseHelper;
+import io.kirikcoders.bitcse.database.DataBaseHelper;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -60,7 +60,7 @@ public class SearchFaculty extends AppCompatActivity {
 
             }
         });
-        TimeTableDataBaseHelper dataBaseHelper = new TimeTableDataBaseHelper(getApplicationContext());
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(getApplicationContext());
         try {
             dataBaseHelper.createDatabase();
             dataBaseHelper.openDatabase();

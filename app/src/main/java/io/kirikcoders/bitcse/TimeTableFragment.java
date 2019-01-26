@@ -2,7 +2,6 @@ package io.kirikcoders.bitcse;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import io.kirikcoders.bitcse.database.TimeTableDataBaseHelper;
+import io.kirikcoders.bitcse.database.DataBaseHelper;
 import io.kirikcoders.bitcse.timetable.MySubjectRecyclerViewAdapter;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
@@ -32,7 +31,7 @@ import io.kirikcoders.bitcse.utils.UserDetails;
 public class TimeTableFragment extends Fragment implements AdapterView.OnItemSelectedListener {
     // variables are declared
     private Spinner semSectionSpinner;
-    private TimeTableDataBaseHelper timeTableDataBaseHelper;
+    private DataBaseHelper dataBaseHelper;
     private TextView dayTextView;
     private UserDetails userDetails;
     private RecyclerView recyclerView;
@@ -57,19 +56,19 @@ public class TimeTableFragment extends Fragment implements AdapterView.OnItemSel
         semSectionSpinner = rootView.findViewById(R.id.time_table_sem);
         dayTextView = rootView.findViewById(R.id.day_shower);
         userDetails = new UserDetails(getContext(),Constants.USER_PREFERENCE_FILE);
-        timeTableDataBaseHelper = new TimeTableDataBaseHelper(getContext());
+        this.dataBaseHelper = new DataBaseHelper(getContext());
         recyclerView = rootView.findViewById(R.id.time_table_recycler_view);
-        TimeTableDataBaseHelper timeTableDataBaseHelper = new TimeTableDataBaseHelper(getContext());
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(getContext());
         try {
-            timeTableDataBaseHelper.createDatabase();
-            timeTableDataBaseHelper.openDatabase();
+            dataBaseHelper.createDatabase();
+            dataBaseHelper.openDatabase();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
         mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MySubjectRecyclerViewAdapter(timeTableDataBaseHelper.getDaySem("6a","MON"));
+        mAdapter = new MySubjectRecyclerViewAdapter(dataBaseHelper.getDaySem("6a","MON"));
         recyclerView.setAdapter(mAdapter);
         // create the database by copying it into /data/data/ folder
         // if it is already created, the helper will automatically ignore the operation and continue
@@ -78,7 +77,7 @@ public class TimeTableFragment extends Fragment implements AdapterView.OnItemSel
                 R.layout.support_simple_spinner_dropdown_item);
         if (!userDetails.isProfessor())
             semesterAdapter.add(userDetails.getmSemester());
-        semesterAdapter.addAll(convertCursorToList(timeTableDataBaseHelper.getSem()));
+        semesterAdapter.addAll(convertCursorToList(dataBaseHelper.getSem()));
         selectedSemester = userDetails.getmSemester();
         semSectionSpinner.setAdapter(semesterAdapter);
         semSectionSpinner.setOnItemSelectedListener(this);
@@ -86,14 +85,14 @@ public class TimeTableFragment extends Fragment implements AdapterView.OnItemSel
             changeDay(true); // true indicates that the day should move forward
             String dbQuery = days[selectedDay-1];
             dayTextView.setText(dayMap.get(dbQuery));
-            mAdapter.setCursor(timeTableDataBaseHelper.getDaySem(selectedSemester, dbQuery));
+            mAdapter.setCursor(dataBaseHelper.getDaySem(selectedSemester, dbQuery));
             mAdapter.notifyDataSetChanged();
         });
         previous.setOnClickListener((view)->{
             changeDay(false); // false indicates that the day should move backward
             String dbQuery = days[selectedDay-1];
             dayTextView.setText(dayMap.get(dbQuery));
-            mAdapter.setCursor(timeTableDataBaseHelper.getDaySem(selectedSemester, dbQuery));
+            mAdapter.setCursor(dataBaseHelper.getDaySem(selectedSemester, dbQuery));
             mAdapter.notifyDataSetChanged();
         });
         return rootView;
@@ -138,20 +137,20 @@ public class TimeTableFragment extends Fragment implements AdapterView.OnItemSel
     @Override
     public void onDestroy() {
         super.onDestroy();
-        timeTableDataBaseHelper.close();
+        dataBaseHelper.close();
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         try {
-            timeTableDataBaseHelper.openDatabase();
+            dataBaseHelper.openDatabase();
         } catch (IOException e) {
             e.printStackTrace();
         }
         String dbQuery = days[selectedDay-1];
         dayTextView.setText(dayMap.get(dbQuery));
         selectedSemester = semesterAdapter.getItem(position).toString();
-        mAdapter.setCursor(timeTableDataBaseHelper.getDaySem(selectedSemester, dbQuery));
+        mAdapter.setCursor(dataBaseHelper.getDaySem(selectedSemester, dbQuery));
         mAdapter.notifyDataSetChanged();
     }
 

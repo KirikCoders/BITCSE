@@ -16,13 +16,13 @@ import io.kirikcoders.bitcse.utils.Constants;
 /**
  * Created by Kartik on 17-Oct-18.
  */
-public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
+public class DataBaseHelper extends SQLiteOpenHelper {
     private final String FILE_PATH;
     private final String DB_NAME = Constants.LOCAL_DATABASE_FILE;
     private SQLiteDatabase database;
     private Context context;
 
-    public TimeTableDataBaseHelper(@Nullable Context context) {
+    public DataBaseHelper(@Nullable Context context) {
         super(context, Constants.LOCAL_DATABASE_FILE, null, Constants.DB_VERSION);
         this.context = context;
         FILE_PATH = "/data/data/"+context.getPackageName()+"/databases/";
@@ -70,7 +70,35 @@ public class TimeTableDataBaseHelper extends SQLiteOpenHelper {
     public void openDatabase() throws IOException {
         database = SQLiteDatabase.openDatabase(FILE_PATH+DB_NAME,null,SQLiteDatabase.OPEN_READWRITE);
     }
+    /**
+     * Create the registered events database if it does not exist
+     * still required to call openDatabase() before this
+     * */
+    public void addToRegisteredEventsTable(String eventName,String imageUrl,String eventTime,
+                                           String eventDate,String eventContact){
+        database.execSQL("CREATE TABLE IF NOT EXISTS registered_events(" +
+                "event_name VARCHAR(200)," +
+                "event_image VARCHAR(200)," +
+                "event_time VARCHAR(30)," +
+                "event_date VARCHAR(30)," +
+                "event_contact VARCHAR(30)," +
+                "CONSTRAINT RG_PK PRIMARY KEY(event_name,event_image,event_contact))");
+        database.execSQL("INSERT INTO registered_events VALUES(" +
+                eventName+","+imageUrl+","+eventTime+","+eventDate+","+eventContact+")");
 
+    }
+    /**
+     * delete multiple events at the end of the day whose date has expired
+     * */
+    public void deleteRegisteredEvents(String[] eventNames){
+        database.delete("registered_events","event_name=?",eventNames);
+    }
+    /**
+     * retrieve data from the registered events table
+     * */
+    public Cursor getRegisteredEvents(){
+        return database.rawQuery("SELECT * FROM registered_events",null);
+    }
     @Override
     public synchronized void close() {
         if (database != null){
