@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
 import io.kirikcoders.bitcse.utils.Constants;
@@ -188,10 +189,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     /**
      * get all available room numbers
      * */
-    public Cursor getroomno()
+    public ArrayList<String> getRoomNumbers()
     {
         Cursor c =database.rawQuery("select distinct room from classes",null);
-        return  c;
+        ArrayList<String> rooms = new ArrayList<>(c.getCount());
+        while (c.moveToNext()){
+            rooms.add(c.getString(c.getColumnIndex("room")));
+        }
+        return rooms;
     }
     public Cursor getDayFaculty(String lname,String day)
     {
@@ -271,5 +276,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     {
         Cursor c =database.rawQuery("select NAME,TAG,fid,designation,qualification,emailid,phoneno from faculty",null);
         return c;
+    }
+
+    public ArrayList<String> getFullRooms(int beginTime, int finalTime,String day) {
+        Cursor c = database.rawQuery("SELECT c.room FROM classes as c WHERE c.day = '"+day+"' AND c.slot = (SELECT slotnumber FROM slot WHERE timings LIKE '"+beginTime+"%'" +
+                " UNION" +
+                " SELECT slotnumber FROM slot WHERE timings LIKE '% - "+finalTime+"%')",null);
+        ArrayList<String> rooms = new ArrayList<>(c.getCount());
+        while (c.moveToNext())
+            rooms.add(c.getString(c.getColumnIndex("room")));
+        c.close();
+        return rooms;
     }
 }
