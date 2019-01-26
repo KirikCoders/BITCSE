@@ -88,10 +88,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
     /**
-     * delete multiple events at the end of the day whose date has expired
+     * delete multiple events at the end of the day whose date has expired using
+     * a service or sheduler
      * */
     public void deleteRegisteredEvents(String[] eventNames){
         database.delete("registered_events","event_name=?",eventNames);
+    }
+    /**
+     * Allow the user to delete a single event
+     * */
+    public void deleteRegisteredEvent(String eventName){
+        database.execSQL("DELETE FROM registered_events WHERE event_name='"+eventName+"'");
     }
     /**
      * retrieve data from the registered events table
