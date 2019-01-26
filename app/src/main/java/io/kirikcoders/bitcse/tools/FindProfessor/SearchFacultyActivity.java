@@ -17,7 +17,7 @@ import java.io.IOException;
  * Created by Akash on 25-Jan-19.
  */
 
-public class SearchFaculty extends AppCompatActivity {
+public class SearchFacultyActivity extends AppCompatActivity {
     String dayKey = new String();
     int slot;
     String resRoom;

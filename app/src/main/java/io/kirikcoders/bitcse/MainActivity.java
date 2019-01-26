@@ -27,16 +27,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
+import io.kirikcoders.bitcse.tools.AttendenceActivity;
+import io.kirikcoders.bitcse.tools.FacultyDetailsActivity;
 import io.kirikcoders.bitcse.database.DataBaseHelper;
-import io.kirikcoders.bitcse.tools.Attendence;
-import io.kirikcoders.bitcse.tools.FacultyDetails;
 import io.kirikcoders.bitcse.tools.FindRoomActivity;
-import io.kirikcoders.bitcse.tools.Marks;
+import io.kirikcoders.bitcse.tools.MarksActivity;
 import io.kirikcoders.bitcse.tools.SGPAActivity;
 import io.kirikcoders.bitcse.events.EventAdapter;
 import io.kirikcoders.bitcse.events.MyEventsAdapter;
-import io.kirikcoders.bitcse.tools.FindProfessor.SearchFaculty;
-import io.kirikcoders.bitcse.tools.StudentDetails.StudentInfo;
+import io.kirikcoders.bitcse.tools.FindProfessor.SearchFacultyActivity;
+import io.kirikcoders.bitcse.tools.Settings.OpenSourceActivity;
+import io.kirikcoders.bitcse.tools.StudentDetails.StudentInfoActivity;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
@@ -229,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void facultyDetailsClick(View v)
     {
-        Intent i=new Intent(this,FacultyDetails.class);
+        Intent i=new Intent(this, FacultyDetailsActivity.class);
         startActivity(i);
     }
 
@@ -241,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickAttendance(View v)
     {
-        Intent i=new Intent(this, Attendence.class);
+        Intent i=new Intent(this, AttendenceActivity.class);
         startActivity(i);
     }
 
@@ -252,13 +253,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickMarks(View v)
     {
-        Intent i=new Intent(this, Marks.class);
+        Intent i=new Intent(this, MarksActivity.class);
         startActivity(i);
     }
 
     public void clickFacSearch(View v)
     {
-        Intent i=new Intent(this, SearchFaculty.class);
+        Intent i=new Intent(this, SearchFacultyActivity.class);
         startActivity(i);
     }
     public void findRoom(View v){
@@ -268,7 +269,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickStudentinfo(View v)
     {
-        Intent i=new Intent(this, StudentInfo.class);
+        Intent i=new Intent(this, StudentInfoActivity.class);
+        startActivity(i);
+    }
+
+    public void clickOpenSource(View v)
+    {
+        Intent i=new Intent(this, OpenSourceActivity.class);
         startActivity(i);
     }
 }

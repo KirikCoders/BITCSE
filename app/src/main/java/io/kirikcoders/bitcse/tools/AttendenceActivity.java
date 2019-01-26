@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
  */
 
 
-public class Attendence extends AppCompatActivity {
+public class AttendenceActivity extends AppCompatActivity {
 
     UserDetails obj;
     DatabaseReference ref;
@@ -33,7 +33,7 @@ public class Attendence extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendence);
-        obj = new UserDetails(Attendence.this, Constants.USER_PREFERENCE_FILE);
+        obj = new UserDetails(AttendenceActivity.this, Constants.USER_PREFERENCE_FILE);
         ref= FirebaseDatabase.getInstance().getReference().child("attendance");
         TableLayout table=findViewById(R.id.tableLayout);
         TableRow[] row={findViewById(R.id.r2),findViewById(R.id.r3),findViewById(R.id.r4),findViewById(R.id.r5),findViewById(R.id.r6),findViewById(R.id.r7),findViewById(R.id.r8),findViewById(R.id.r9),findViewById(R.id.r10)};

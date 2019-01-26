@@ -19,7 +19,7 @@ import com.mikhaellopez.circularimageview.CircularImageView;
  * Created by Akash on 15-Jan-19.
  */
 
-public class FacultyDetails extends AppCompatActivity {
+public class FacultyDetailsActivity extends AppCompatActivity {
 
     ListView faclst;
     FirebaseListAdapter adapter;

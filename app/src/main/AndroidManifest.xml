@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -15,20 +15,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".tools.StudentDetails.StudentInfo"
-            android:label="Student Info"
+        <activity android:name=".tools.Settings.OpenSourceActivity"
+            android:label="Open Source Licences"
             android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".tools.FindRooms.FindRoom" />
         <activity
-            android:name=".tools.FindProfessor.SearchFaculty"
+            android:name=".tools.StudentDetails.StudentInfoActivity"
+            android:label="Student Info"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".tools.FindRoomActivity" />
+        <activity
+            android:name=".tools.FindProfessor.SearchFacultyActivity"
             android:label="Find A Professor"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".tools.Marks"
+            android:name=".tools.MarksActivity"
             android:label="Internal Marks"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".tools.Attendence"
+            android:name=".tools.AttendenceActivity"
             android:label="Attendance"
             android:parentActivityName=".MainActivity" />
         <activity
@@ -54,7 +58,7 @@
             android:label="@string/title_activity_view_event"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".tools.FacultyDetails"
+            android:name=".tools.FacultyDetailsActivity"
             android:label="Faculty Details"
             android:parentActivityName=".MainActivity" />
         <activity

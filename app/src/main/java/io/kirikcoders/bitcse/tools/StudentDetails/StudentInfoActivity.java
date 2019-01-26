@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
  * Created by Akash on 25-Jan-19.
  */
 
-public class StudentInfo extends AppCompatActivity {
+public class StudentInfoActivity extends AppCompatActivity {
     Button button;
     EditText usn;
     DatabaseReference ref;

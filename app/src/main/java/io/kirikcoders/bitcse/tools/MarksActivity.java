@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
  * Created by Akash on 18-Jan-19.
  */
 
-public class Marks extends AppCompatActivity {
+public class MarksActivity extends AppCompatActivity {
     UserDetails obj;
     DatabaseReference ref;
     TextView sub1,sub2,sub3,sub4,sub5,sub6,sub7,sub8,sub9;
@@ -31,7 +31,7 @@ public class Marks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendence);
-        obj = new UserDetails(Marks.this, Constants.USER_PREFERENCE_FILE);
+        obj = new UserDetails(MarksActivity.this, Constants.USER_PREFERENCE_FILE);
         ref= FirebaseDatabase.getInstance().getReference().child("marks");
         TableLayout table=findViewById(R.id.tableLayout);
         TableRow[] row={findViewById(R.id.r2),findViewById(R.id.r3),findViewById(R.id.r4),findViewById(R.id.r5),findViewById(R.id.r6),findViewById(R.id.r7),findViewById(R.id.r8),findViewById(R.id.r9),findViewById(R.id.r10)};
