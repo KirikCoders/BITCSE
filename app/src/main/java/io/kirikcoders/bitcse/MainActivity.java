@@ -35,6 +35,7 @@ import io.kirikcoders.bitcse.tools.SGPAActivity;
 import io.kirikcoders.bitcse.events.EventAdapter;
 import io.kirikcoders.bitcse.events.MyEventsAdapter;
 import io.kirikcoders.bitcse.tools.FindProfessor.SearchFaculty;
+import io.kirikcoders.bitcse.tools.StudentDetails.StudentInfo;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CALL_PHONE},
                     MY_PERMISSIONS_WRITE_EXT_STORAGE);
         }
         getSupportActionBar().setElevation(0);
@@ -259,6 +260,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void findRoom(View v){
         Intent i = new Intent(this, FindRoomActivity.class);
+        startActivity(i);
+    }
+
+    public void clickStudentinfo(View v)
+    {
+        Intent i=new Intent(this, StudentInfo.class);
         startActivity(i);
     }
 }

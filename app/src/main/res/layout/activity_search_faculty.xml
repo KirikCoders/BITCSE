@@ -9,20 +9,20 @@
     <ListView
         android:id="@+id/fac_search_lst"
         android:layout_width="match_parent"
-        android:layout_height="637dp"
-        android:layout_marginTop="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp" />
 
     <Spinner
         android:id="@+id/day_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="40dp" />
 
     <Spinner
         android:id="@+id/slot_spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp" />
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp" />
 
 </RelativeLayout>
