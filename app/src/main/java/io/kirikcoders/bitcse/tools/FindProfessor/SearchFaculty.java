@@ -18,12 +18,12 @@ import java.io.IOException;
  */
 
 public class SearchFaculty extends AppCompatActivity {
-    String Daykey=new String();
+    String dayKey = new String();
     int slot;
     String resRoom;
     String resSub;
     String resSem;
-    String FacName=new String();
+    String facName = new String();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,25 +32,31 @@ public class SearchFaculty extends AppCompatActivity {
         Spinner Slot=findViewById(R.id.slot_spinner);
         ListView lst=findViewById(R.id.fac_search_lst);
         String Days[]={"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-        ArrayAdapter<String> Dayadapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,Days);
-        Dayadapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        day.setAdapter(Dayadapter);
+        ArrayAdapter<String> dayAdapter = new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,Days);
+        dayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        day.setAdapter(dayAdapter);
         day.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch(position)
                 {
-                    case 0:Daykey="MON";
+                    case 0:
+                        dayKey ="MON";
                         break;
-                    case 1:Daykey="TUE";
+                    case 1:
+                        dayKey ="TUE";
                         break;
-                    case 2:Daykey="WED";
+                    case 2:
+                        dayKey ="WED";
                         break;
-                    case 3:Daykey="THU";
+                    case 3:
+                        dayKey ="THU";
                         break;
-                    case 4:Daykey="FRI";
+                    case 4:
+                        dayKey ="FRI";
                         break;
-                    case 5:Daykey="SAT";
+                    case 5:
+                        dayKey ="SAT";
                         break;
                 }
             }
@@ -151,8 +157,8 @@ public class SearchFaculty extends AppCompatActivity {
         {
             c1.moveToFirst();
             c1.moveToPosition(position+1);
-            FacName=c1.getString(c1.getColumnIndex("name"));
-            Cursor c2=dataBaseHelper.getdataName(FacName,Daykey,slot);
+            facName =c1.getString(c1.getColumnIndex("name"));
+            Cursor c2=dataBaseHelper.getdataName(facName, dayKey,slot);
             c2.moveToFirst();
             try
             {

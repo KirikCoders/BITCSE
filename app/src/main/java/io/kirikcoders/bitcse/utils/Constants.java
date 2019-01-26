@@ -12,6 +12,7 @@ public final class Constants {
     public static final String LOCAL_DATABASE_FILE = "2018e.db";
     public static final int DB_VERSION = 1;
     public static final String FACULTY = "faculty";
+    public static final String[] days = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
 
 
 }

@@ -29,6 +29,7 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import io.kirikcoders.bitcse.tools.Attendence;
 import io.kirikcoders.bitcse.tools.FacultyDetails;
+import io.kirikcoders.bitcse.tools.FindRoomActivity;
 import io.kirikcoders.bitcse.tools.Marks;
 import io.kirikcoders.bitcse.tools.SGPAActivity;
 import io.kirikcoders.bitcse.events.EventAdapter;
@@ -254,6 +255,10 @@ public class MainActivity extends AppCompatActivity {
     public void clickFacSearch(View v)
     {
         Intent i=new Intent(this, SearchFaculty.class);
+        startActivity(i);
+    }
+    public void findRoom(View v){
+        Intent i = new Intent(this, FindRoomActivity.class);
         startActivity(i);
     }
 }

@@ -9,11 +9,13 @@ import java.util.Calendar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+import io.kirikcoders.bitcse.tools.FindRoomActivity;
 
 /**
  * Created by Kartik on 05-Aug-18.
  */
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+    private boolean isFindRoom = false;
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -25,7 +27,17 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-        CreateEventActivity eventActivity = (CreateEventActivity) getActivity();
-        eventActivity.setTime(hour,minute);
+        if (isFindRoom){
+            FindRoomActivity roomActivity = (FindRoomActivity) getActivity();
+            roomActivity.findEmptyRoomsGivenParams(hour,minute);
+        }
+        else {
+            CreateEventActivity eventActivity = (CreateEventActivity) getActivity();
+            eventActivity.setTime(hour, minute);
+        }
+    }
+
+    public void setFindRoom(boolean findRoom) {
+        isFindRoom = findRoom;
     }
 }
