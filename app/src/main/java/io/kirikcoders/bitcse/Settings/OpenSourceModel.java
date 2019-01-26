@@ -1,7 +1,6 @@
-package io.kirikcoders.bitcse.tools.Settings;
+package io.kirikcoders.bitcse.Settings;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

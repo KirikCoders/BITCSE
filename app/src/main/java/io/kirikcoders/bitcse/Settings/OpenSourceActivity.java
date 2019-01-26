@@ -1,4 +1,4 @@
-package io.kirikcoders.bitcse.tools.Settings;
+package io.kirikcoders.bitcse.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 import io.kirikcoders.bitcse.R;

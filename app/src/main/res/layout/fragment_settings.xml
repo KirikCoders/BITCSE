@@ -18,25 +18,29 @@
         android:padding="1dp"
         android:textSize="20sp"
         android:layout_marginBottom="40dp"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        android:background="?attr/selectableItemBackground">
+        android:onClick="clickabout">
+
         <ImageView
+            android:id="@+id/about_icon"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_info_outline_black_24dp"
-            android:id="@+id/about_icon"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_info_outline_black_24dp" />
+
         <TextView
             android:id="@+id/about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/about_icon"
-            android:textColor="#000"
             android:text="About this app"
+            android:textColor="#000"
             android:textSize="25sp" />
 
         <TextView

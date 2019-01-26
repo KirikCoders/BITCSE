@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
+import io.kirikcoders.bitcse.Settings.AboutActivity;
 import io.kirikcoders.bitcse.tools.AttendenceActivity;
 import io.kirikcoders.bitcse.tools.FacultyDetailsActivity;
 import io.kirikcoders.bitcse.database.DataBaseHelper;
@@ -36,7 +37,7 @@ import io.kirikcoders.bitcse.tools.SGPAActivity;
 import io.kirikcoders.bitcse.events.EventAdapter;
 import io.kirikcoders.bitcse.events.MyEventsAdapter;
 import io.kirikcoders.bitcse.tools.FindProfessor.SearchFacultyActivity;
-import io.kirikcoders.bitcse.tools.Settings.OpenSourceActivity;
+import io.kirikcoders.bitcse.Settings.OpenSourceActivity;
 import io.kirikcoders.bitcse.tools.StudentDetails.StudentInfoActivity;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
@@ -276,6 +277,12 @@ public class MainActivity extends AppCompatActivity {
     public void clickOpenSource(View v)
     {
         Intent i=new Intent(this, OpenSourceActivity.class);
+        startActivity(i);
+    }
+
+    public void clickabout(View v)
+    {
+        Intent i=new Intent(this, AboutActivity.class);
         startActivity(i);
     }
 }
