@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="260dp"
         android:padding="10dp"
-        android:text="Developers of Version V2:- \n Kartik G, Lead Developer \n Akash R, Developer \n Abhishek Koushik B N, Developer \n Indranil Sarkar, Database Admin \n \n  Mentors:-\n Dr. Asha T, Professor and HOD \n B T Harish Kumar, Assistant Professor \n Nethravathy V, Assistant Professor"
+        android:text="Developers of Version V2:- \n Akash R, Developer \n Abhishek Koushik B N, Developer \n Indranil Sarkar, Database Admin \n Kartik G, Lead Developer  \n \n  Mentors:-\n B T Harish Kumar, Assistant Professor and Nethravathy V, Assistant professor \n BITCSE was developed under the guidance of Dr. Asha T, Professor and HOD"
         android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="20sp" />
 </RelativeLayout>
