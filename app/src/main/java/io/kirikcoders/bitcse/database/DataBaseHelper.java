@@ -83,13 +83,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 "event_date VARCHAR(30)," +
                 "event_contact VARCHAR(30)," +
                 "CONSTRAINT RG_PK PRIMARY KEY(event_name,event_image,event_contact))");
-        database.execSQL("INSERT INTO registered_events VALUES(" +
-                eventName+","+imageUrl+","+eventTime+","+eventDate+","+eventContact+")");
+        database.execSQL("INSERT INTO registered_events VALUES('" +
+                eventName+"','"+imageUrl+"','"+eventTime+"','"+eventDate+"','"+eventContact+"')");
 
     }
     /**
      * delete multiple events at the end of the day whose date has expired using
-     * a service or sheduler
+     * a service or scheduler
      * */
     public void deleteRegisteredEvents(String[] eventNames){
         database.delete("registered_events","event_name=?",eventNames);

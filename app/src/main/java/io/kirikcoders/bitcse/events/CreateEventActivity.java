@@ -110,6 +110,7 @@ public class CreateEventActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
             checked.setVisibility(View.VISIBLE);
             checked.playAnimation();
+
             checked.addAnimatorListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {

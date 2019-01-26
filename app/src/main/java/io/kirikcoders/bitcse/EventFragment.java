@@ -31,6 +31,7 @@ public class EventFragment extends Fragment {
     private EventAdapter adapter;
     private MyEventsAdapter ad;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class EventFragment extends Fragment {
                     ad.notifyDataSetChanged();
 
                 }
+
             }
 
             @Override
@@ -93,5 +95,8 @@ public class EventFragment extends Fragment {
 
 
     }
+
+
+
 }
 

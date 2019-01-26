@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
+import io.kirikcoders.bitcse.database.DataBaseHelper;
 import io.kirikcoders.bitcse.tools.Attendence;
 import io.kirikcoders.bitcse.tools.FacultyDetails;
 import io.kirikcoders.bitcse.tools.FindRoomActivity;
@@ -48,10 +49,13 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView navigation;
     private MenuItem prevMenuItem;
     private DatabaseReference referenceEvents = FirebaseDatabase.getInstance().getReference("events");
+    private DatabaseReference referenceRegistered=FirebaseDatabase.getInstance().getReference("events_registered");
     private ArrayList<URL> imageUrl = new ArrayList<>(20);
     private ArrayList<String> eventName = new ArrayList<>(20);
     private EventAdapter mAdapter;
     private MyEventsAdapter ad;
+
+    private DataBaseHelper dataBaseHelper;
     private ViewPager.OnPageChangeListener changeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -170,8 +174,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void getUserRegisteredEventsFromDb(View view) {
-    }
+
 
     @Override
     protected void onResume() {

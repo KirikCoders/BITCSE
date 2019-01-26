@@ -1,7 +1,9 @@
 package io.kirikcoders.bitcse.events;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,11 +18,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
+import java.util.Calendar;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import io.kirikcoders.bitcse.R;
+import io.kirikcoders.bitcse.database.DataBaseHelper;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
@@ -31,6 +37,9 @@ public class ViewEventActivity extends AppCompatActivity {
     private TextView showEventName;
     private String eventName;
     private UserDetails userDetails;
+    private DataBaseHelper dataBaseHelper;
+    private String imageUrl;
+    private String time,date,phone,venue,descreption;
     private DatabaseReference reference = FirebaseDatabase.getInstance().getReference(Constants.EVENT_DATABASE),
     registrationReference = FirebaseDatabase.getInstance().getReference(Constants.REGISTERED_DATABASE);
     @Override
@@ -61,6 +70,20 @@ public class ViewEventActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Calendar calendar= Calendar.getInstance();
+                String paths[]= date.split("/");
+                calendar.set(Calendar.DAY_OF_MONTH,Integer.parseInt(paths[0]));
+                calendar.set(Calendar.MONTH,Integer.parseInt(paths[1])-1);
+                calendar.set(Calendar.YEAR,Integer.parseInt(paths[2]));
+                String timePaths[]=time.split(":");
+                int hh=Integer.parseInt(timePaths[0]);
+                int mm=Integer.parseInt(timePaths[1].split(" ")[0]);
+                if(timePaths[1].split(" ")[1].equals("pm")&& hh>12){
+                 hh+=12;
+                }
+                calendar.set(Calendar.HOUR_OF_DAY,hh);
+                calendar.set(Calendar.MINUTE,mm);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(ViewEventActivity.this);
                 EditText text = new EditText(builder.getContext());
                 text.setHint("No. of participants?");
@@ -75,7 +98,16 @@ public class ViewEventActivity extends AppCompatActivity {
                         registrationReference.child(eventName).child(userDetails.getmUsn()).child("participants")
                                 .setValue(text.getText().toString());
                         Toast.makeText(ViewEventActivity.this, "You have beem registered!", Toast.LENGTH_LONG).show();
-                        finish();
+                        Intent intent = new Intent(Intent.ACTION_INSERT)
+                                .setData(CalendarContract.Events.CONTENT_URI)
+                                .putExtra(CalendarContract.Events.TITLE, eventName)
+                                .putExtra(CalendarContract.Events.EVENT_LOCATION,venue )
+                                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,calendar.getTime().getTime() )
+                                .putExtra(CalendarContract.Events.DESCRIPTION,(descreption+"\nVenue:"+venue+"\nPhone:"+phone));
+                        if (intent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(intent);
+                        }
+
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -92,6 +124,12 @@ public class ViewEventActivity extends AppCompatActivity {
         reference.child(eventName).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                time=dataSnapshot.child("time").getValue().toString();
+                venue=dataSnapshot.child("venue").getValue().toString();
+                descreption=dataSnapshot.child("description").getValue().toString();
+                System.out.println(time);
+                date=dataSnapshot.child("date").getValue().toString();
+                phone=dataSnapshot.child("contactOne").getValue().toString();
                 showEventCost.setText(dataSnapshot.child("cost").getValue().toString());
                 showEventParticipation.setText(dataSnapshot.child("participants").getValue().toString());
                 showEventHeadline.setText(dataSnapshot.child("headline").getValue().toString());
@@ -102,7 +140,7 @@ public class ViewEventActivity extends AppCompatActivity {
                 showEventCreator.setText(dataSnapshot.child("owner").getValue().toString());
                 showEventContactOne.setText(dataSnapshot.child("contactOne").getValue().toString());
                 showEventContactTwo.setText(dataSnapshot.child("contactTwo").getValue().toString());
-                String imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
+                 imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
                 Glide.with(getApplicationContext())
                         .load(imageUrl)
                         .into(eventBanner);

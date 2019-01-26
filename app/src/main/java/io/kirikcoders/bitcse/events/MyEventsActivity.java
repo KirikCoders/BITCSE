@@ -34,6 +34,7 @@ public class MyEventsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_events);
         showEventName = findViewById(R.id.showEventName);
         eventName = getIntent().getStringExtra("event");
+        setTitle(eventName);
         showEventName.setText("Users registered for "+eventName);
 
         events_list=(ListView) findViewById(R.id.my_events_list);
