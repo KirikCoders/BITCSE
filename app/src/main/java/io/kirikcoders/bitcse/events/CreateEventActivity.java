@@ -59,7 +59,8 @@ public class CreateEventActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (InputCheckUtils.checkInputs(eventName,eventDate,eventTime,eventDescription,eventHeadline
-        ,eventVenue,eventContactOne,eventContactTwo,eventCost,eventParticipants)){
+        ,eventVenue,eventContactOne,eventContactTwo,eventCost,eventParticipants) &&
+        eventBanner.getDrawable() != null){
             switch (item.getItemId()){
                 case R.id.eventSave:
                     saveDataToFirebase(reference);
@@ -67,7 +68,9 @@ public class CreateEventActivity extends AppCompatActivity {
             }
         }
         else {
-            Toast.makeText(this, "Check your input", Toast.LENGTH_SHORT).show();
+            if (eventBanner.getDrawable() == null)
+                Toast.makeText(this, "Image has not been set", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "All input fields are mandatory.", Toast.LENGTH_LONG).show();
         }
         return false;
     }

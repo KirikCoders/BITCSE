@@ -103,12 +103,12 @@ public class TimeTableFragment extends Fragment implements AdapterView.OnItemSel
             if (selectedDay < 7)
                 selectedDay++;
             else if (selectedDay+1 > 7)
-                selectedDay = 1;
+                selectedDay = 2;
         }
         else {
-            if (selectedDay > 1)
+            if (selectedDay > 2)
                 selectedDay--;
-            else if (selectedDay-1 < 1)
+            else if (selectedDay <= 2)
                 selectedDay = 7;
         }
     }

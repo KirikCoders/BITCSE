@@ -17,16 +17,20 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Settings.AboutActivity"
             android:label="About"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".Settings.OpenSourceActivity"
             android:label="Open Source Licences"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".tools.StudentDetails.StudentInfoActivity"
             android:label="Student Info"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".tools.FindRoomActivity" />
+        <activity android:name=".tools.FindRoomActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".tools.FindProfessor.SearchFacultyActivity"
             android:label="Find A Professor"
@@ -34,18 +38,22 @@
         <activity
             android:name=".tools.MarksActivity"
             android:label="Internal Marks"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".tools.AttendenceActivity"
             android:label="Attendance"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".tools.SGPAActivity"
             android:label="SGPA Calculator"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,21 +61,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.RegisterActivity" />
+        <activity android:name=".auth.RegisterActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".events.CreateEventActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".events.ViewEventActivity"
             android:label="@string/title_activity_view_event"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".tools.FacultyDetailsActivity"
             android:label="Faculty Details"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".events.MyEventsActivity"
-            android:label="MyEventsActivity" />
+            android:label="MyEventsActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -279,6 +281,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<String> getFullRooms(int beginTime, int finalTime,String day) {
+        String sql = "SELECT c.room FROM classes as c WHERE c.day = '"+day+"' AND c.slot = (SELECT slotnumber FROM slot WHERE timings LIKE '"+beginTime+"%'" +
+                " UNION" +
+                " SELECT slotnumber FROM slot WHERE timings LIKE '% - "+finalTime+"%')";
+        Log.d("Room query",sql);
         Cursor c = database.rawQuery("SELECT c.room FROM classes as c WHERE c.day = '"+day+"' AND c.slot = (SELECT slotnumber FROM slot WHERE timings LIKE '"+beginTime+"%'" +
                 " UNION" +
                 " SELECT slotnumber FROM slot WHERE timings LIKE '% - "+finalTime+"%')",null);

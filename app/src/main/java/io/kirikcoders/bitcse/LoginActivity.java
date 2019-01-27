@@ -101,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void resetPassword(View view) {
+        Log.i("Reset password","Reset password started");
         if(TextUtils.isEmpty(mUsn.getText()) || mUsn.getText().toString().trim().equals("")){
             mUsn.setError("Please enter your USN or professor code and select " +
                     "whether you are a student or professor. We will sent the reset" +
@@ -112,22 +113,19 @@ public class LoginActivity extends AppCompatActivity {
                     .show();
             return;
         }
-        myRef.child(mUsn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                FirebaseAuth.getInstance()
-                        .sendPasswordResetEmail(dataSnapshot.child("emailId").getValue().toString())
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Snackbar.make(getCurrentFocus(),"Reset email sent",Snackbar.LENGTH_LONG).show();
-                            }
-                        });
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("ResetPasswordError",databaseError.getMessage());
-            }
+        FirebaseAuth.getInstance().signInAnonymously().addOnSuccessListener(authResult -> {
+            myRef.child(mUsn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    FirebaseAuth.getInstance()
+                            .sendPasswordResetEmail(dataSnapshot.child("emailId").getValue().toString())
+                            .addOnCompleteListener(task -> Snackbar.make(getCurrentFocus(),"Reset email sent",Snackbar.LENGTH_LONG).show());
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("ResetPasswordError",databaseError.getMessage());
+                }
+            });
         });
     }
 
