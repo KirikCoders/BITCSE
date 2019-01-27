@@ -194,12 +194,12 @@ public class CreateEventActivity extends AppCompatActivity {
         StringBuffer s = new StringBuffer();
         String min;
         if (hour >= 12){
-            s.append("pm");
+            s.append("PM");
             if (hour > 12)
                 hour -= 12;
         }
         else
-            s.append("am");
+            s.append("AM");
         if (minute < 10)
             min = "0"+Integer.toString(minute);
         else

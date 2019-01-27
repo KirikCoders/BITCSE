@@ -60,7 +60,7 @@ public class FindRoomActivity extends AppCompatActivity implements View.OnClickL
 
             }
         });
-        startTime.setText(new SimpleDateFormat("HH:mm").format(new Date()));
+        startTime.setText(new SimpleDateFormat("h:mm a").format(new Date()));
         startTime.setOnClickListener(this);
         endTime.setOnClickListener(this);
     }
@@ -81,12 +81,25 @@ public class FindRoomActivity extends AppCompatActivity implements View.OnClickL
 
     public void findEmptyRoomsGivenParams(int hour, int minute) {
         this.hour = hour; this.minute = minute;
+        StringBuffer s = new StringBuffer();
+        String min;
+        if (hour >= 12){
+            s.append("PM");
+            if (hour > 12)
+                hour -= 12;
+        }
+        else
+            s.append("AM");
+        if (minute < 10)
+            min = "0"+Integer.toString(minute);
+        else
+            min = Integer.toString(minute);
         switch (lastClicked){
             case R.id.room_end_time:
-                endTime.setText(Integer.toString(hour)+":"+Integer.toString(minute));
+                endTime.setText(hour+":"+min+" "+s);
                 break;
             case R.id.room_start_time:
-                startTime.setText(Integer.toString(hour)+":"+Integer.toString(minute));
+                startTime.setText(hour+":"+min+" "+s);
                 break;
         }
         if (slot != -1 && InputCheckUtils.checkInputs(startTime,endTime))

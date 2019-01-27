@@ -281,16 +281,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<String> getFullRooms(int beginTime, int finalTime,String day) {
-        String sql = "SELECT c.room FROM classes as c WHERE c.day = '"+day+"' AND c.slot = (SELECT slotnumber FROM slot WHERE timings LIKE '"+beginTime+"%'" +
-                " UNION" +
-                " SELECT slotnumber FROM slot WHERE timings LIKE '% - "+finalTime+"%')";
-        Log.d("Room query",sql);
-        Cursor c = database.rawQuery("SELECT c.room FROM classes as c WHERE c.day = '"+day+"' AND c.slot = (SELECT slotnumber FROM slot WHERE timings LIKE '"+beginTime+"%'" +
-                " UNION" +
-                " SELECT slotnumber FROM slot WHERE timings LIKE '% - "+finalTime+"%')",null);
+        StringBuilder sql = new StringBuilder("SELECT DISTINCT c.room FROM classes as c WHERE c.day = '"+day+"' AND c.slot IN (");
+        finalTime = Math.abs(finalTime);
+        beginTime = Math.abs(beginTime);
+        if (beginTime > finalTime)
+        {
+            beginTime = beginTime ^ finalTime;
+            finalTime = beginTime ^ finalTime;
+            beginTime = beginTime ^ finalTime;
+        }
+        sql.append("SELECT slotnumber FROM slot WHERE timings LIKE '"+beginTime+"%'");
+        for(int i = beginTime+1; i< finalTime;i++)
+            sql.append(" UNION SELECT slotnumber FROM slot WHERE timings LIKE '"+i+"%'");
+        sql.append(")");
+        Log.d("Room query",sql.toString());
+        Cursor c = database.rawQuery(sql.toString(),null);
         ArrayList<String> rooms = new ArrayList<>(c.getCount());
         while (c.moveToNext())
             rooms.add(c.getString(c.getColumnIndex("room")));
+        rooms.add("526-MP");
+        rooms.add("526-C");
         c.close();
         return rooms;
     }
