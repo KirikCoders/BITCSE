@@ -43,7 +43,7 @@ public class EventFragment extends Fragment {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                if(tab.getText().toString().equals("Current")){
+                if(tab.getText().toString().equals("All Events")){
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                 }

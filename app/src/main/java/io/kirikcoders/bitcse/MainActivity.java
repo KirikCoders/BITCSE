@@ -176,16 +176,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getCurrentEventsFromFirebase(getCurrentFocus());
-        getMyEventsFromFirebase(getCurrentFocus());
-
-    }
-
     public void getMyEventsFromFirebase(View view) {
         ArrayList<URL> images= new ArrayList<>();
         ArrayList<String> eventNames= new ArrayList<>();
@@ -221,6 +211,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getCurrentEventsFromFirebase(getCurrentFocus());
+        getMyEventsFromFirebase(getCurrentFocus());
+        getCurrentEventsFromFirebase(getCurrentFocus());
+    }
+
 
     private void displayNoDataImage() {
         EventFragment eventFragment = (EventFragment) adapter.getFragment(0);

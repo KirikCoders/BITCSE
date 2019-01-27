@@ -1,64 +1,72 @@
 package io.kirikcoders.bitcse.events;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import io.kirikcoders.bitcse.R;
+import io.kirikcoders.bitcse.database.DataBaseHelper;
+import io.kirikcoders.bitcse.utils.Constants;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
-
-import androidx.appcompat.app.AppCompatActivity;
-import io.kirikcoders.bitcse.R;
+import com.google.firebase.database.ValueEventListener;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 /**
  * Created by Abhishek on 18-Jan-19.
  */
 
-
 public class MyEventsActivity extends AppCompatActivity {
-    ListView events_list;
+
+    ListView eventList;
     FirebaseListAdapter adapter;
-    private TextView showEventName;
     private String eventName;
-    private ImageView eventBanner;
-    private DataSnapshot dataSnapshot;
+    private TextView showEventName;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_events);
-        showEventName = findViewById(R.id.showEventName);
+        eventList=(ListView) findViewById(R.id.my_events_list);
         eventName = getIntent().getStringExtra("event");
-        setTitle(eventName);
-        showEventName.setText("Users registered for "+eventName);
-
-        events_list=(ListView) findViewById(R.id.my_events_list);
+        showEventName=(TextView)findViewById(R.id.showEventName);
         Query query= FirebaseDatabase.getInstance().getReference().child("events_registered").child(eventName);
+        showEventName.setText("Users Registered for "+eventName);
+        setTitle(eventName);
         FirebaseListOptions<MyEventsModel> options=new FirebaseListOptions.Builder<MyEventsModel>()
                 .setLayout(R.layout.my_events_item)
                 .setQuery(query,MyEventsModel.class)
                 .build();
-        System.out.println(((DatabaseReference) query).getKey());
         adapter=new FirebaseListAdapter(options) {
             @Override
             protected void populateView(View v, Object model, int position) {
                 TextView name=v.findViewById(R.id.showName);
-                TextView numberOfParticipants= v.findViewById(R.id.showParticipants);
-                TextView phoneNum=v.findViewById(R.id.showPhone);
-                MyEventsModel myEvents=(MyEventsModel) model;
-               name.setText("Name:-"+myEvents.getName());
-                numberOfParticipants.setText(("Participants:-"+myEvents.getParticipants()));
-                phoneNum.setText("Phone:-"+myEvents.getPhone());
+                TextView participants=v.findViewById(R.id.showParticipants);
+                TextView phone=v.findViewById(R.id.showPhone);
+
+                MyEventsModel myEventsModel=(MyEventsModel) model;
+
+                name.setText(myEventsModel.getName().toString());
+                participants.setText(myEventsModel.getParticipants().toString()+"\t\t");
+
+                phone.setTextIsSelectable(true);
+                phone.setText(myEventsModel.getPhone().toString());
 
 
             }
         };
-        events_list.setAdapter(adapter);
+        eventList.setAdapter(adapter);
     }
 
     @Override
@@ -73,4 +81,3 @@ public class MyEventsActivity extends AppCompatActivity {
         adapter.stopListening();
     }
 }
-

@@ -20,7 +20,7 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Current"
+            android:text="All Events"
             android:id="@+id/tabItemCurrent"
             android:onClick="getCurrentEventsFromFirebase"/>
         <com.google.android.material.tabs.TabItem
