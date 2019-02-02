@@ -59,10 +59,10 @@ public class MarksActivity extends AppCompatActivity {
                     t3[i].setText(ds.child("test3").getValue().toString());
                     i++;
                 }
-                while((int)j<=8)
+                while((int)j>=0)
                 {
                     table.removeView(row[(int)j]);
-                    j++;
+                    j--;
                 }
 
             }
