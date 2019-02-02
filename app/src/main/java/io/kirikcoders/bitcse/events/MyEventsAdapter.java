@@ -44,7 +44,7 @@ public class MyEventsAdapter extends RecyclerView.Adapter<MyEventsAdapter.MyImag
             i.putExtra("event",eventName.getText().toString());
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
-            Toast.makeText(view.getContext(), "Clicked my events", Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), "Clicked "+eventName.getText(), Toast.LENGTH_SHORT).show();
         }
     }
     public MyEventsAdapter(Context context, ArrayList<URL> images, ArrayList<String> eventNames){
