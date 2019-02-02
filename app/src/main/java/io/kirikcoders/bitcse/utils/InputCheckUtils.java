@@ -11,7 +11,8 @@ public class InputCheckUtils {
     public static boolean checkInputs(EditText... editTexts){
         for (EditText e:editTexts){
             System.out.println(e.getText().toString());
-            if (e.getText().toString() == null || e.getText().toString().equals("")){
+            if (e.getText().toString() == null || e.getText().toString().equals("") ||
+                    e.getText().toString().matches("\\s+")){
                 e.setError("This field cannot be empty");
                 return false;
             }

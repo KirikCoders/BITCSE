@@ -124,26 +124,28 @@ public class ViewEventActivity extends AppCompatActivity {
         reference.child(eventName).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                time=dataSnapshot.child("time").getValue().toString();
-                venue=dataSnapshot.child("venue").getValue().toString();
-                descreption=dataSnapshot.child("description").getValue().toString();
-                System.out.println(time);
-                date=dataSnapshot.child("date").getValue().toString();
-                phone=dataSnapshot.child("contactOne").getValue().toString();
-                showEventCost.setText(dataSnapshot.child("cost").getValue().toString());
-                showEventParticipation.setText(dataSnapshot.child("participants").getValue().toString());
-                showEventHeadline.setText(dataSnapshot.child("headline").getValue().toString());
-                showEventDescription.setText(dataSnapshot.child("description").getValue().toString());
-                showEventDate.setText(dataSnapshot.child("date").getValue().toString());
-                showEventTime.setText(dataSnapshot.child("time").getValue().toString());
-                showEventVenue.setText(dataSnapshot.child("venue").getValue().toString());
-                showEventCreator.setText(dataSnapshot.child("owner").getValue().toString());
-                showEventContactOne.setText(dataSnapshot.child("contactOne").getValue().toString());
-                showEventContactTwo.setText(dataSnapshot.child("contactTwo").getValue().toString());
-                 imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
-                Glide.with(getApplicationContext())
-                        .load(imageUrl)
-                        .into(eventBanner);
+                if (dataSnapshot.child("time").getValue() != null) {
+                    time = dataSnapshot.child("time").getValue().toString();
+                    venue = dataSnapshot.child("venue").getValue().toString();
+                    descreption = dataSnapshot.child("description").getValue().toString();
+                    System.out.println(time);
+                    date = dataSnapshot.child("date").getValue().toString();
+                    phone = dataSnapshot.child("contactOne").getValue().toString();
+                    showEventCost.setText(dataSnapshot.child("cost").getValue().toString());
+                    showEventParticipation.setText(dataSnapshot.child("participants").getValue().toString());
+                    showEventHeadline.setText(dataSnapshot.child("headline").getValue().toString());
+                    showEventDescription.setText(dataSnapshot.child("description").getValue().toString());
+                    showEventDate.setText(dataSnapshot.child("date").getValue().toString());
+                    showEventTime.setText(dataSnapshot.child("time").getValue().toString());
+                    showEventVenue.setText(dataSnapshot.child("venue").getValue().toString());
+                    showEventCreator.setText(dataSnapshot.child("owner").getValue().toString());
+                    showEventContactOne.setText(dataSnapshot.child("contactOne").getValue().toString());
+                    showEventContactTwo.setText(dataSnapshot.child("contactTwo").getValue().toString());
+                    imageUrl = dataSnapshot.child("imageUrl").getValue().toString();
+                    Glide.with(getApplicationContext())
+                            .load(imageUrl)
+                            .into(eventBanner);
+                }
             }
 
             @Override

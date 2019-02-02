@@ -48,7 +48,6 @@ public class EventFragment extends Fragment {
                     adapter.notifyDataSetChanged();
                 }
                 else if(tab.getText().toString().equals("My Events")){
-
                     recyclerView.setAdapter(ad);
                     ad.notifyDataSetChanged();
 
