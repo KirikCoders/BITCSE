@@ -135,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loginUser(View view) {
         if(radioGroup.getCheckedRadioButtonId() == -1){
-            Snackbar.make(getCurrentFocus(),"Please select one of the Options: Student or Professor",Snackbar.LENGTH_LONG).show();
+            Snackbar.make(view,"Please select one of the Options: Student or Professor",Snackbar.LENGTH_LONG).show();
             return;
         }
         if(mUsn.getText().toString().trim().equals("")){
