@@ -52,7 +52,6 @@ public class AttendenceActivity extends AppCompatActivity {
                     Toast.makeText(AttendenceActivity.this,"No data found in Database",Toast.LENGTH_LONG).show();
                 }
                 int i=0;
-                long j=dataSnapshot.getChildrenCount();
                 for(DataSnapshot ds : dataSnapshot.getChildren() )
                 {
                     sub[i].setText(ds.child("subname").getValue().toString());
@@ -61,10 +60,10 @@ public class AttendenceActivity extends AppCompatActivity {
                     t3[i].setText(ds.child("test3").getValue().toString());
                     i++;
                 }
-                while((int)j>=8)
+                while(i<9)
                 {
-                    table.removeView(row[(int)j]);
-                    j--;
+                    table.removeView(row[i]);
+                    i++;
                 }
 
             }

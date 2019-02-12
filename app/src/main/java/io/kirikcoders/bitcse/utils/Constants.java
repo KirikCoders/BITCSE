@@ -9,7 +9,7 @@ public final class Constants {
     public static final String PROF_DATABASE = "professors";
     public static final String REGISTERED_DATABASE = "events_registered";
     public static final String USER_PREFERENCE_FILE = "user_details";
-    public static final String LOCAL_DATABASE_FILE = "2018e.db";
+    public static final String LOCAL_DATABASE_FILE = "2019e.db";
     public static final int DB_VERSION = 1;
     public static final String FACULTY = "faculty";
     public static final String[] days = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};

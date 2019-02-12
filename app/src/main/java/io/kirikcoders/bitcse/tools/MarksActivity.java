@@ -7,6 +7,7 @@ import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -40,37 +41,39 @@ public class MarksActivity extends AppCompatActivity {
         TextView[] t1={findViewById(R.id.sub1_t1),findViewById(R.id.sub2_t1),findViewById(R.id.sub3_t1),findViewById(R.id.sub4_t1),findViewById(R.id.sub5_t1),findViewById(R.id.sub6_t1),findViewById(R.id.sub7_t1),findViewById(R.id.sub8_t1),findViewById(R.id.sub9_t1)};
         TextView[] t2={findViewById(R.id.sub1_t2),findViewById(R.id.sub2_t2),findViewById(R.id.sub3_t2),findViewById(R.id.sub4_t2),findViewById(R.id.sub5_t2),findViewById(R.id.sub6_t2),findViewById(R.id.sub7_t2),findViewById(R.id.sub8_t2),findViewById(R.id.sub9_t2)};
         TextView[] t3={findViewById(R.id.sub1_t3),findViewById(R.id.sub2_t3),findViewById(R.id.sub3_t3),findViewById(R.id.sub4_t3),findViewById(R.id.sub5_t3),findViewById(R.id.sub6_t3),findViewById(R.id.sub7_t3),findViewById(R.id.sub8_t3),findViewById(R.id.sub9_t3)};
-        try{
+        Log.d("INTERNAL MARKS",obj.getmUsn());
         ref.child(obj.getmUsn()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int i=0;
                 long j=dataSnapshot.getChildrenCount();
-                long count=dataSnapshot.getChildrenCount();
-                if(count==0)
+                int tableRowCount = 9;
+                System.out.println("fetching data size="+j);
+                if(j==0)
                 {
                     Toast.makeText(MarksActivity.this,"No data found in Database",Toast.LENGTH_LONG).show();
                 }
-                for(DataSnapshot ds : dataSnapshot.getChildren() )
+                for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
+                    System.out.println(i);
                     sub[i].setText(ds.child("subname").getValue().toString());
                     t1[i].setText(ds.child("test1").getValue().toString());
                     t2[i].setText(ds.child("test2").getValue().toString());
                     t3[i].setText(ds.child("test3").getValue().toString());
                     i++;
                 }
-                while((int)j>=0)
+                while(i<tableRowCount)
                 {
-                    table.removeView(row[(int)j]);
-                    j--;
+                    table.removeView(row[i]);
+                    i++;
                 }
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.e("INTERNAL MARKS DB ERR",databaseError.getDetails());
             }
-        });}catch (Exception e){Toast.makeText(MarksActivity.this,"Wrong Data in database",Toast.LENGTH_LONG).show();}
+        });
     }
 }

@@ -147,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
         try {
-            String usn = mUsn.getText().toString().trim();
+            String usn = mUsn.getText().toString().trim().toUpperCase();
             if (mAuth.getCurrentUser() == null) {
                 mAuth.signInAnonymously().addOnSuccessListener(authResult ->
                         myRef.child(usn).addValueEventListener(new ValueEventListener() {
@@ -164,7 +164,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     return;
                                                 }
                                                 user.setmEmail(dataSnapshot.child("emailId").getValue().toString());
-                                                user.setmUsn(mUsn.getText().toString().trim());
+                                                user.setmUsn(mUsn.getText().toString().trim().toUpperCase());
                                                 user.setmName(dataSnapshot.child("name").getValue().toString());
                                                 user.setmPhoneNumber(dataSnapshot.child("phone").getValue().toString());
                                                 user.setmSemester(dataSnapshot.child("semester").getValue().toString());
