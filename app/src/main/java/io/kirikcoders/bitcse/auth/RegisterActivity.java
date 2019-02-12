@@ -11,6 +11,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -98,40 +99,44 @@ public class RegisterActivity extends AppCompatActivity {
             confirmPassword.setError("Passwords do not match");
             return;
         }
+        progressBar.setVisibility(View.VISIBLE);
+        mAuth.signInAnonymously().addOnSuccessListener(authResult -> myRef.child(usn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                try {
+                    String username = dataSnapshot.child("emailId").getValue().toString();
+                    String password = confirmPassword.getText().toString().trim();
+                    System.out.println(username);
+                    mAuth.createUserWithEmailAndPassword(username,password)
+                            .addOnCompleteListener(RegisterActivity.this,task -> {
+                                Log.d("TAG","Created User:"+task.isSuccessful());
+                                if(!task.isSuccessful()){
+                                    Toast.makeText(RegisterActivity.this, "Error occurred." +
+                                            " Could not create user. Please " +
+                                            "check your internet connection", Toast.LENGTH_LONG).show();
+                                    return;
+                                }
+                                else {
+                                    startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                                    finish();
+                                }
+                            });
 
-        mAuth.signInAnonymously().addOnSuccessListener(authResult -> {
-            myRef.child(usn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    try {
-                        String username = dataSnapshot.child("emailId").getValue().toString();
-                        String password = confirmPassword.getText().toString().trim();
-                        System.out.println(username);
-                        mAuth.createUserWithEmailAndPassword(username,password)
-                                .addOnCompleteListener(RegisterActivity.this,task -> {
-                                    Log.d("TAG","Created User:"+task.isSuccessful());
-                                    if(!task.isSuccessful()){
-                                        Toast.makeText(RegisterActivity.this, "Error occurred." +
-                                                " Could not create user. Please " +
-                                                "check your internet connection", Toast.LENGTH_LONG).show();
-                                        return;
-                                    }
-                                    else {
-                                        startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
-                                        finish();
-                                    }
-                                });
-
-                    }catch (NullPointerException e){
-                        usn.setError("Invalid USN. Please check your input or contact" +
-                                " your department for help");
-                    }
+                }catch (NullPointerException e){
+                    usn.setError("Invalid USN. Please check your input or contact" +
+                            " your department for help");
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
+            }
+        }))
+        .addOnFailureListener(e -> {
+         progressBar.setVisibility(View.INVISIBLE);
+         Snackbar.make(view,"Something went wrong.Please check if you have an internet connection or that the details" +
+                 "entered are valid",Snackbar.LENGTH_LONG).show();
         });
     }
 //    This method ensures that users accept the terms and conditions

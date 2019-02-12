@@ -1,5 +1,6 @@
 package io.kirikcoders.bitcse;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -113,13 +114,14 @@ public class LoginActivity extends AppCompatActivity {
                     .show();
             return;
         }
+        Snackbar.make(view,"Sending you an email.....",Snackbar.LENGTH_LONG).show();
         FirebaseAuth.getInstance().signInAnonymously().addOnSuccessListener(authResult -> {
             myRef.child(mUsn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     FirebaseAuth.getInstance()
                             .sendPasswordResetEmail(dataSnapshot.child("emailId").getValue().toString())
-                            .addOnCompleteListener(task -> Snackbar.make(getCurrentFocus(),"Reset email sent",Snackbar.LENGTH_LONG).show());
+                            .addOnCompleteListener(task -> Snackbar.make(view,"Reset email sent",Snackbar.LENGTH_LONG).show());
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -154,6 +156,9 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(final DataSnapshot dataSnapshot) {
                                 try {
+                                    Dialog dialog = new Dialog(LoginActivity.this);
+                                    dialog.setTitle("Please wait....");
+                                    dialog.show();
                                     String username = dataSnapshot.child("emailId").getValue().toString();
                                     String password = mPassword.getText().toString().trim();
                                     mAuth.signInWithEmailAndPassword(username, password)
@@ -170,9 +175,15 @@ public class LoginActivity extends AppCompatActivity {
                                                 user.setmSemester(dataSnapshot.child("semester").getValue().toString());
                                                 user.setIsProfessor(isProfessor);
                                                 user.save();
+                                                if (dialog.isShowing())
+                                                    dialog.dismiss();
                                                 goToMainActivity();
                                             })
-                                            .addOnFailureListener(e -> mPassword.setError("Password incorrect"));
+                                            .addOnFailureListener(e -> {
+                                                mPassword.setError("Password incorrect");
+                                                if (dialog.isShowing())
+                                                    dialog.dismiss();
+                                            });
                                 } catch (NullPointerException e) {
                                     mUsn.setError("Invalid USN. Please check your input or contact" +
                                             " your department for help");
@@ -190,6 +201,9 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(final DataSnapshot dataSnapshot) {
                         try {
+                            Dialog dialog = new Dialog(LoginActivity.this);
+                            dialog.setTitle("Please wait....");
+                            dialog.show();
                             String username = dataSnapshot.child("emailId").getValue().toString();
                             String password = mPassword.getText().toString().trim();
                             mAuth.signInWithEmailAndPassword(username, password)
@@ -206,9 +220,15 @@ public class LoginActivity extends AppCompatActivity {
                                         user.setmSemester(dataSnapshot.child("semester").getValue().toString());
                                         user.setIsProfessor(isProfessor);
                                         user.save();
+                                        if (dialog.isShowing())
+                                            dialog.dismiss();
                                         goToMainActivity();
                                     })
-                                    .addOnFailureListener(e -> mPassword.setError("Password incorrect"));
+                                    .addOnFailureListener(e -> {
+                                        mPassword.setError("Password incorrect");
+                                        if (dialog.isShowing())
+                                            dialog.dismiss();
+                                    });
                         } catch (NullPointerException e) {
                             mUsn.setError("Invalid USN. Please check your input or contact" +
                                     " your department for help");

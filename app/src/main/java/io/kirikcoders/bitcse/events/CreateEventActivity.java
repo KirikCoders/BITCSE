@@ -110,7 +110,7 @@ public class CreateEventActivity extends AppCompatActivity {
                     .setValue(eventContactTwo.getText().toString());
             reference.child(eventName.getText().toString()).child("cost")
                     .setValue(eventCost.getText().toString());
-            progressBar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.INVISIBLE);
             checked.setVisibility(View.VISIBLE);
             checked.playAnimation();
 
