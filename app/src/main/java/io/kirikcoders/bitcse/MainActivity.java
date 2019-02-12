@@ -28,6 +28,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 import io.kirikcoders.bitcse.Settings.AboutActivity;
+import io.kirikcoders.bitcse.Settings.FeedbackActivity;
 import io.kirikcoders.bitcse.tools.AttendenceActivity;
 import io.kirikcoders.bitcse.tools.FacultyDetailsActivity;
 import io.kirikcoders.bitcse.database.DataBaseHelper;
@@ -287,6 +288,12 @@ public class MainActivity extends AppCompatActivity {
     public void clickabout(View v)
     {
         Intent i=new Intent(this, AboutActivity.class);
+        startActivity(i);
+    }
+
+    public void clickfeedback(View v)
+    {
+        Intent i=new Intent(this, FeedbackActivity.class);
         startActivity(i);
     }
 }
