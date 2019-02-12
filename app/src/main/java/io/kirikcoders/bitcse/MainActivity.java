@@ -1,8 +1,10 @@
 package io.kirikcoders.bitcse;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -167,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 mAdapter = new EventAdapter(getApplicationContext(),imageUrl,eventName);
                 EventFragment eventFragment = (EventFragment) adapter.getFragment(0);
-                eventFragment.setupRecyclerView(mAdapter);
+                eventFragment.setupRecyclerView(mAdapter,isNetworkConnected());
             }
 
             @Override
@@ -295,5 +297,10 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent i=new Intent(this, FeedbackActivity.class);
         startActivity(i);
+    }
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 }

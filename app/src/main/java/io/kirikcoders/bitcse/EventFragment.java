@@ -1,11 +1,16 @@
 package io.kirikcoders.bitcse;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,6 +35,8 @@ public class EventFragment extends Fragment {
     private TextView errorMessageTextView;
     private EventAdapter adapter;
     private MyEventsAdapter ad;
+    private ImageView Netimage;
+    private TextView NetText;
 
 
     @Nullable
@@ -39,7 +46,8 @@ public class EventFragment extends Fragment {
         floatingActionButton = rootView.findViewById(R.id.add_event_fab);
         recyclerView = rootView.findViewById(R.id.event_recycler_view);
         tabLayout = rootView.findViewById(R.id.tabLayout);
-
+        Netimage=rootView.findViewById(R.id.nonetimg);
+        NetText=rootView.findViewById(R.id.nonettext);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -71,15 +79,24 @@ public class EventFragment extends Fragment {
         return rootView;
     }
 
-    public void setupRecyclerView(EventAdapter adapter) {
+    public void setupRecyclerView(EventAdapter adapter,boolean net) {
         this.adapter=adapter;
-        if (recyclerView != null) {
-            errorMessageTextView.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            recyclerView.setAdapter(adapter);
+        if(net==false)
+        {
+            recyclerView.setVisibility(View.GONE);
             lottieAnimationView.setVisibility(View.GONE);
-            adapter.notifyDataSetChanged();
+        }
+        else {
+                Netimage.setVisibility(View.INVISIBLE);
+                NetText.setVisibility(View.INVISIBLE);
+                if (recyclerView != null) {
+                    errorMessageTextView.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                    recyclerView.setAdapter(adapter);
+                    lottieAnimationView.setVisibility(View.GONE);
+                    adapter.notifyDataSetChanged();
+             }
         }
     }
 
@@ -94,8 +111,6 @@ public class EventFragment extends Fragment {
 
 
     }
-
-
 
 }
 
