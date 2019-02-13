@@ -14,15 +14,23 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import io.kirikcoders.bitcse.events.CreateEventActivity;
 import io.kirikcoders.bitcse.events.EventAdapter;
 import io.kirikcoders.bitcse.events.MyEventsAdapter;
+import io.kirikcoders.bitcse.tools.MarksActivity;
 
 /**
  * Created by Kartik on 24-Jul-18.
@@ -37,7 +45,8 @@ public class EventFragment extends Fragment {
     private MyEventsAdapter ad;
     private ImageView Netimage;
     private TextView NetText;
-
+    private boolean network;
+    private ViewPager pager;
 
     @Nullable
     @Override
@@ -46,8 +55,19 @@ public class EventFragment extends Fragment {
         floatingActionButton = rootView.findViewById(R.id.add_event_fab);
         recyclerView = rootView.findViewById(R.id.event_recycler_view);
         tabLayout = rootView.findViewById(R.id.tabLayout);
-        Netimage=rootView.findViewById(R.id.nonetimg);
-        NetText=rootView.findViewById(R.id.nonettext);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask(){
+            public void run() {
+                if(network==false){
+                Snackbar.make(getActivity().findViewById(android.R.id.content),
+                        "Check Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Dismiss", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                }).show();}
+            }
+        }, 5000);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -81,14 +101,7 @@ public class EventFragment extends Fragment {
 
     public void setupRecyclerView(EventAdapter adapter,boolean net) {
         this.adapter=adapter;
-        if(net==false)
-        {
-            recyclerView.setVisibility(View.GONE);
-            lottieAnimationView.setVisibility(View.GONE);
-        }
-        else {
-                Netimage.setVisibility(View.INVISIBLE);
-                NetText.setVisibility(View.INVISIBLE);
+        network=net;
                 if (recyclerView != null) {
                     errorMessageTextView.setVisibility(View.GONE);
                     recyclerView.setVisibility(View.VISIBLE);
@@ -98,7 +111,6 @@ public class EventFragment extends Fragment {
                     adapter.notifyDataSetChanged();
              }
         }
-    }
 
     public void setErrorMessage(String message) {
         errorMessageTextView.setVisibility(View.VISIBLE);

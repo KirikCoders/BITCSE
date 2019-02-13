@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         pager.addOnPageChangeListener(changeListener);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        pager.setCurrentItem(2);
     }
 
     private void getCurrentEventsFromFirebase(View view) {
@@ -303,4 +304,5 @@ public class MainActivity extends AppCompatActivity {
 
         return cm.getActiveNetworkInfo() != null;
     }
+
 }

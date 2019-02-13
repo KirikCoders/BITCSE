@@ -15,9 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Settings.FeedbackActivity"
+        <activity
+            android:name=".Settings.FeedbackActivity"
             android:label="Feedback"
-            android:parentActivityName=".tools.MarksActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Settings.AboutActivity"
             android:label="About"
