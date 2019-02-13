@@ -36,6 +36,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".tools.FindRoomActivity"
+            android:label="Find an empty room "
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".tools.FindProfessor.SearchFacultyActivity"
