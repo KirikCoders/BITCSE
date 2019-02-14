@@ -73,9 +73,11 @@ public class EventFragment extends Fragment {
                     adapter.notifyDataSetChanged();
                 }
                 else if(tab.getText().toString().equals("My Events")){
-                    recyclerView.setAdapter(ad);
-                    ad.notifyDataSetChanged();
-
+                    if(network==false){Toast.makeText(getContext(),"Requires connection to Internet",Toast.LENGTH_LONG).show();}
+                    else {
+                        recyclerView.setAdapter(ad);
+                        ad.notifyDataSetChanged();
+                    }
                 }
 
             }
