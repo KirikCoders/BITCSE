@@ -35,7 +35,7 @@ public class SGPAActivity extends AppCompatActivity {
                 startActivity(intent);
             }).show();
         }
-        webView.loadUrl("http://www.vtusgpacalculator.online/");
+        webView.loadUrl("https://datron.github.io/sgpa/");
         webView.getSettings().setJavaScriptEnabled(true);
     }
 
