@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/info_rl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".tools.StudentDetails.StudentInfoActivity">
@@ -17,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:hint="USN"
-            android:inputType="textCapCharacters"/>
+            android:inputType="textCapCharacters" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView

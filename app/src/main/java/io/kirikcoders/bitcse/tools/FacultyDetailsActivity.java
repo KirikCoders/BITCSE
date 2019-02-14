@@ -1,8 +1,12 @@
 package io.kirikcoders.bitcse.tools;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import io.kirikcoders.bitcse.R;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -11,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -23,12 +28,22 @@ public class FacultyDetailsActivity extends AppCompatActivity {
 
     ListView faclst;
     FirebaseListAdapter adapter;
+    ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_details);
         faclst=(ListView) findViewById(R.id.fac_lst);
+        constraintLayout=findViewById(R.id.fac_cl);
+        if(isNetworkConnected()==false)
+        {
+            Snackbar.make(constraintLayout,"Check Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Retry", v -> {
+                Intent intent=getIntent();
+                finish();
+                startActivity(intent);
+            }).show();
+        }
         Query query= FirebaseDatabase.getInstance().getReference().child("faculty_details");
         FirebaseListOptions<FacultyModel> options=new FirebaseListOptions.Builder<FacultyModel>()
                 .setLayout(R.layout.faculty_item)
@@ -68,5 +83,11 @@ public class FacultyDetailsActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 }

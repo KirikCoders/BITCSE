@@ -6,12 +6,18 @@ import io.kirikcoders.bitcse.R;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.UserDetails;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +42,17 @@ public class AttendenceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attendence);
         obj = new UserDetails(AttendenceActivity.this, Constants.USER_PREFERENCE_FILE);
         ref= FirebaseDatabase.getInstance().getReference().child("attendance");
+        RelativeLayout relativeLayout=findViewById(R.id.linearLayout2);
         TableLayout table=findViewById(R.id.tableLayout);
+        if(isNetworkConnected()==false)
+        {
+            table.setVisibility(table.GONE);
+            Snackbar.make(relativeLayout,"Check Internet Connection",Snackbar.LENGTH_INDEFINITE).setAction("Retry", v -> {
+                Intent intent=getIntent();
+                finish();
+                startActivity(intent);
+            }).show();
+        }
         TableRow[] row={findViewById(R.id.r2),findViewById(R.id.r3),findViewById(R.id.r4),findViewById(R.id.r5),findViewById(R.id.r6),findViewById(R.id.r7),findViewById(R.id.r8),findViewById(R.id.r9),findViewById(R.id.r10)};
         TextView[] sub={findViewById(R.id.a_sub1),findViewById(R.id.a_sub2),findViewById(R.id.a_sub3),findViewById(R.id.a_sub4),findViewById(R.id.a_sub5),findViewById(R.id.a_sub6),findViewById(R.id.a_sub7),findViewById(R.id.a_sub8),findViewById(R.id.a_sub9)};
         TextView[] t1={findViewById(R.id.sub1_t1),findViewById(R.id.sub2_t1),findViewById(R.id.sub3_t1),findViewById(R.id.sub4_t1),findViewById(R.id.sub5_t1),findViewById(R.id.sub6_t1),findViewById(R.id.sub7_t1),findViewById(R.id.sub8_t1),findViewById(R.id.sub9_t1)};
@@ -73,5 +89,10 @@ public class AttendenceActivity extends AppCompatActivity {
 
             }
         });}catch (Exception e){Toast.makeText(AttendenceActivity.this,"Wrong Data in database",Toast.LENGTH_LONG).show();}
+    }
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 }

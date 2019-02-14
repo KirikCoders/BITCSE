@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
                 android:padding="10dp"
-                android:text="TextView"
+                android:text="-"
                 android:textColor="@color/colorAccent" />
 
             <TextView
@@ -93,7 +93,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -119,7 +119,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
         </TableRow>
 
@@ -134,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
                 android:padding="10dp"
-                android:text="TextView"
+                android:text="-"
                 android:textColor="@color/colorAccent" />
 
             <TextView
@@ -147,7 +147,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -160,7 +160,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -173,7 +173,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
         </TableRow>
 
@@ -188,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
                 android:padding="10dp"
-                android:text="TextView"
+                android:text="-"
                 android:textColor="@color/colorAccent" />
 
             <TextView
@@ -201,7 +201,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -214,7 +214,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -227,7 +227,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
         </TableRow>
 
@@ -242,7 +242,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
                 android:padding="10dp"
-                android:text="TextView"
+                android:text="-"
                 android:textColor="@color/colorAccent" />
 
             <TextView
@@ -255,7 +255,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -268,7 +268,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -281,7 +281,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
         </TableRow>
 
@@ -296,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
                 android:padding="10dp"
-                android:text="TextView"
+                android:text="-"
                 android:textColor="@color/colorAccent" />
 
             <TextView
@@ -309,7 +309,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -322,7 +322,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -335,7 +335,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
         </TableRow>
 
@@ -350,7 +350,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
                 android:padding="10dp"
-                android:text="TextView"
+                android:text="-"
                 android:textColor="@color/colorAccent" />
 
             <TextView
@@ -363,7 +363,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -376,7 +376,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -389,7 +389,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
         </TableRow>
 
@@ -404,7 +404,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
                 android:padding="10dp"
-                android:text="TextView"
+                android:text="-"
                 android:textColor="@color/colorAccent" />
 
             <TextView
@@ -417,7 +417,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -430,7 +430,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -443,7 +443,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
         </TableRow>
 
@@ -458,7 +458,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
                 android:padding="10dp"
-                android:text="TextView"
+                android:text="-"
                 android:textColor="@color/colorAccent" />
 
             <TextView
@@ -471,7 +471,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -484,7 +484,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -497,7 +497,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
         </TableRow>
 
@@ -512,7 +512,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/cell_shape"
                 android:padding="10dp"
-                android:text="TextView"
+                android:text="-"
                 android:textColor="@color/colorAccent" />
 
             <TextView
@@ -525,7 +525,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -538,7 +538,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
 
             <TextView
@@ -551,7 +551,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/test_1"
+                android:text="-"
                 android:textColor="#000000" />
         </TableRow>
     </TableLayout>

@@ -60,12 +60,9 @@ public class EventFragment extends Fragment {
             public void run() {
                 if(network==false){
                 Snackbar.make(getActivity().findViewById(android.R.id.content),
-                        "Check Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Dismiss", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                        "Check Internet Connection", Snackbar.LENGTH_INDEFINITE).setAction("Dismiss", v -> {
 
-                    }
-                }).show();}
+                        }).show();}
             }
         }, 5000);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
