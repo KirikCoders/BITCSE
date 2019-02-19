@@ -181,34 +181,38 @@ public class MainActivity extends AppCompatActivity {
         referenceEvents.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot s:dataSnapshot.getChildren()){
-                    if (s.child("owner").getValue() != null){
-                        if (s.child("owner").getValue().toString().equals(userDetails.getmUsn())) {
-                            eventNames.add(s.getKey());
-                            try {
-                                System.out.println("value exists=" + s.child("imageUrl").exists());
-                                images.add(new URL(s.child("imageUrl").getValue().toString()));
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
-                            } catch (NullPointerException e) {
-                                e.printStackTrace();
+                if (dataSnapshot.hasChildren()) {
+                    for (DataSnapshot s : dataSnapshot.getChildren()) {
+                        if (s.child("owner").getValue() != null) {
+                            if (s.child("owner").getValue().toString().equals(userDetails.getmUsn())) {
+                                eventNames.add(s.getKey());
+                                try {
+                                    System.out.println("value exists=" + s.child("imageUrl").exists());
+                                    images.add(new URL(s.child("imageUrl").getValue().toString()));
+                                } catch (MalformedURLException e) {
+                                    e.printStackTrace();
+                                } catch (NullPointerException e) {
+                                    e.printStackTrace();
 
+                                }
                             }
                         }
                     }
+                    if (imageUrl.size() == 0)
+                        displayNoDataImage();
+                    else {
+                        ad = new MyEventsAdapter(getApplicationContext(), images, eventNames);
+                        EventFragment eventFragment = (EventFragment) adapter.getFragment(0);
+                        eventFragment.setMyEventsAdapter(ad);
+                    }
                 }
-                if (imageUrl.size() == 0)
+                else
                     displayNoDataImage();
-                else {
-                    ad = new MyEventsAdapter(getApplicationContext(), images, eventNames);
-                    EventFragment eventFragment = (EventFragment) adapter.getFragment(0);
-                    eventFragment.setMyEventsAdapter(ad);
-                }
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled (@NonNull DatabaseError databaseError){
 
-            }
+                }
         });
     }
 

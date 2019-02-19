@@ -55,6 +55,8 @@ public class EventFragment extends Fragment {
         floatingActionButton = rootView.findViewById(R.id.add_event_fab);
         recyclerView = rootView.findViewById(R.id.event_recycler_view);
         tabLayout = rootView.findViewById(R.id.tabLayout);
+        errorMessageTextView = rootView.findViewById(R.id.errorMessage);
+        lottieAnimationView = rootView.findViewById(R.id.loadingAnimation);
         Timer timer = new Timer();
         timer.schedule(new TimerTask(){
             public void run() {
@@ -76,7 +78,8 @@ public class EventFragment extends Fragment {
                     if(network==false){Toast.makeText(getContext(),"Requires connection to Internet",Toast.LENGTH_LONG).show();}
                     else {
                         recyclerView.setAdapter(ad);
-                        ad.notifyDataSetChanged();
+                        if (ad != null)
+                            ad.notifyDataSetChanged();
                     }
                 }
 
@@ -92,8 +95,6 @@ public class EventFragment extends Fragment {
 
             }
         });
-        errorMessageTextView = rootView.findViewById(R.id.errorMessage);
-        lottieAnimationView = rootView.findViewById(R.id.loadingAnimation);
         floatingActionButton.setOnClickListener((view) -> startActivity(new Intent(getActivity(), CreateEventActivity.class)));
         return rootView;
     }
@@ -112,9 +113,14 @@ public class EventFragment extends Fragment {
         }
 
     public void setErrorMessage(String message) {
-        errorMessageTextView.setVisibility(View.VISIBLE);
-        recyclerView.setVisibility(View.GONE);
-        errorMessageTextView.setText(message);
+        try {
+            errorMessageTextView.setVisibility(View.VISIBLE);
+            lottieAnimationView.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(View.GONE);
+            errorMessageTextView.setText(message);
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
     public void setMyEventsAdapter(MyEventsAdapter ad) {
