@@ -105,10 +105,6 @@ public class MainActivity extends AppCompatActivity {
                     getSupportActionBar().setElevation(1);
                     pager.setCurrentItem(2);
                     return true;
-                case R.id.navigation_notifications:
-                    getSupportActionBar().setElevation(1);
-                    pager.setCurrentItem(3);
-                    return true;
                 case R.id.navigation_settings:
                     getSupportActionBar().setElevation(1);
                     pager.setCurrentItem(4);
@@ -141,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new EventFragment());
         adapter.addFragment(new ToolsFragment());
         adapter.addFragment(new TimeTableFragment());
-        adapter.addFragment(new NotificationsFragment());
         adapter.addFragment(new SettingsFragment());
         pager.setAdapter(adapter);
         pager.addOnPageChangeListener(changeListener);
