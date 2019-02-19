@@ -97,6 +97,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToMainActivity() {
+        user = new UserDetails(getApplicationContext(),Constants.USER_PREFERENCE_FILE);
+        Toast.makeText(getApplicationContext(),"Welcome "+user.getmName(),Toast.LENGTH_LONG).show();
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
     }
