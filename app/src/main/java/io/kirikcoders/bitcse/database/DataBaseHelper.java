@@ -223,7 +223,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
      * */
     public Cursor getSem()
     {
-        Cursor c=database.rawQuery("select distinct sem from subjects group by sem;",null);
+        Cursor c=database.rawQuery("select distinct sem from subjects group by sem",null);
         return  c;
     }
     /**

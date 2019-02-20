@@ -2,6 +2,7 @@ package io.kirikcoders.bitcse;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,8 +127,10 @@ public class TimeTableFragment extends Fragment implements AdapterView.OnItemSel
     private ArrayList<CharSequence> convertCursorToList(Cursor sem) {
         ArrayList<CharSequence> arrayList = new ArrayList<>(sem.getCount());
         while (sem.moveToNext()){
+            Log.d("ARR SEM",sem.getString(sem.getColumnIndex("sem")));
+            Log.d("USR SEM",userDetails.getmSemester());
             if (sem.getString(sem.getColumnIndex("sem")).equals(userDetails.getmSemester()))
-                break;
+                continue;
             arrayList.add(sem.getString(sem.getColumnIndex("sem")));
         }
         sem.close();
