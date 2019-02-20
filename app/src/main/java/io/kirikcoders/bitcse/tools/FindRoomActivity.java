@@ -21,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class FindRoomActivity extends AppCompatActivity implements View.OnClickListener {
@@ -30,6 +31,7 @@ public class FindRoomActivity extends AppCompatActivity implements View.OnClickL
     private int slot = -1,hour,minute;
     private static int lastClicked;
     private DataBaseHelper dataBaseHelper;
+    private ArrayAdapter<String> arrayAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +114,8 @@ public class FindRoomActivity extends AppCompatActivity implements View.OnClickL
             ArrayList<String> filledRooms = dataBaseHelper.getFullRooms(beginTime,finalTime,
                     Constants.days[slot].substring(0,3).toUpperCase());
             roomNumbers.removeAll(filledRooms);
-            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,
+            roomNumbers.removeAll(Collections.singleton(null));
+            arrayAdapter = new ArrayAdapter<>(this,
                     android.R.layout.simple_list_item_1,
                     roomNumbers);
             roomView.setAdapter(arrayAdapter);

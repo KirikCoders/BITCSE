@@ -46,7 +46,7 @@
                     android:textSize="25sp"
                     android:textStyle="bold" />
                 <TextView
-                    android:text="No. of paticipants"
+                    android:text="No. of participants"
                     android:gravity="right"
                     android:textSize="25sp"
                     android:textStyle="bold" />
