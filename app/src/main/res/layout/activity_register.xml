@@ -66,6 +66,14 @@
         android:inputType="textPassword"
 
         android:id="@+id/register_confirm_password"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/termsLink"
+        android:text="@string/terms_link"
+        android:clickable="true"
+        android:onClick="launchTermsOfService"
+        android:autoLink="web"/>
     <CheckBox
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"

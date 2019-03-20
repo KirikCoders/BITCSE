@@ -23,6 +23,7 @@
         click on the verification link.</string>
     <string name="send_otp">Send OTP</string>
     <string name="terms">I accept the Terms and Conditions</string>
+    <string name="terms_link"><a href="google.com">Terms and Conditions</a></string>
     <string name="event_name">Event Name</string>
     <string name="event_headline">Event Headline</string>
     <string name="event_description_140_characters">Event Description</string>
