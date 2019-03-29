@@ -32,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 public class AttendenceActivity extends AppCompatActivity {
 
     UserDetails obj;
-    DatabaseReference ref;
+    DatabaseReference ref,test1,test2,test3;
     TextView sub1,sub2,sub3,sub4,sub5,sub6,sub7,sub8,sub9;
     TextView[] tv1;
 
@@ -42,6 +42,9 @@ public class AttendenceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attendence);
         obj = new UserDetails(AttendenceActivity.this, Constants.USER_PREFERENCE_FILE);
         ref= FirebaseDatabase.getInstance().getReference().child("attendance");
+        test1=ref.child("test1");
+        test2=ref.child("test2");
+        test3=ref.child("test3");
         RelativeLayout relativeLayout=findViewById(R.id.linearLayout2);
         TableLayout table=findViewById(R.id.tableLayout);
         if(isNetworkConnected()==false)
@@ -59,7 +62,7 @@ public class AttendenceActivity extends AppCompatActivity {
         TextView[] t2={findViewById(R.id.sub1_t2),findViewById(R.id.sub2_t2),findViewById(R.id.sub3_t2),findViewById(R.id.sub4_t2),findViewById(R.id.sub5_t2),findViewById(R.id.sub6_t2),findViewById(R.id.sub7_t2),findViewById(R.id.sub8_t2),findViewById(R.id.sub9_t2)};
         TextView[] t3={findViewById(R.id.sub1_t3),findViewById(R.id.sub2_t3),findViewById(R.id.sub3_t3),findViewById(R.id.sub4_t3),findViewById(R.id.sub5_t3),findViewById(R.id.sub6_t3),findViewById(R.id.sub7_t3),findViewById(R.id.sub8_t3),findViewById(R.id.sub9_t3)};
         try{
-        ref.child(obj.getmUsn()).addValueEventListener(new ValueEventListener() {
+        test1.child(obj.getmUsn()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 long count=dataSnapshot.getChildrenCount();
@@ -70,10 +73,8 @@ public class AttendenceActivity extends AppCompatActivity {
                 int i=0;
                 for(DataSnapshot ds : dataSnapshot.getChildren() )
                 {
-                    sub[i].setText(ds.child("subname").getValue().toString());
-                    t1[i].setText(ds.child("test1").getValue().toString());
-                    t2[i].setText(ds.child("test2").getValue().toString());
-                    t3[i].setText(ds.child("test3").getValue().toString());
+                    sub[i].setText(ds.getKey().toString());
+                    t1[i].setText(ds.getValue().toString());
                     i++;
                 }
                 while(i<9)
@@ -88,7 +89,53 @@ public class AttendenceActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });}catch (Exception e){Toast.makeText(AttendenceActivity.this,"Wrong Data in database",Toast.LENGTH_LONG).show();}
+        });
+
+
+     test2.child(obj.getmUsn()).addValueEventListener(new ValueEventListener() {
+         @Override
+         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+             long count=dataSnapshot.getChildrenCount();
+             if(count==0)
+             {
+                 Toast.makeText(AttendenceActivity.this,"No data found in Database",Toast.LENGTH_LONG).show();
+             }
+             int i=0;
+             for(DataSnapshot ds : dataSnapshot.getChildren() )
+             {
+                 t2[i].setText(ds.getValue().toString());
+                 i++;
+             }
+         }
+
+         @Override
+         public void onCancelled(@NonNull DatabaseError databaseError) {
+
+         }
+     });
+
+     test3.child(obj.getmUsn()).addValueEventListener(new ValueEventListener() {
+         @Override
+         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+             long count=dataSnapshot.getChildrenCount();
+             if(count==0)
+             {
+                 Toast.makeText(AttendenceActivity.this,"No data found in Database",Toast.LENGTH_LONG).show();
+             }
+             int i=0;
+             for(DataSnapshot ds : dataSnapshot.getChildren() )
+             {
+                 t3[i].setText(ds.getValue().toString());
+                 i++;
+             }
+         }
+
+         @Override
+         public void onCancelled(@NonNull DatabaseError databaseError) {
+
+         }
+     });
+        }catch (Exception e){Toast.makeText(AttendenceActivity.this,"Wrong Data in database",Toast.LENGTH_LONG).show();}
     }
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
