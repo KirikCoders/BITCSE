@@ -96,10 +96,6 @@ public class AttendenceActivity extends AppCompatActivity {
          @Override
          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
              long count=dataSnapshot.getChildrenCount();
-             if(count==0)
-             {
-                 Toast.makeText(AttendenceActivity.this,"No data found in Database",Toast.LENGTH_LONG).show();
-             }
              int i=0;
              for(DataSnapshot ds : dataSnapshot.getChildren() )
              {
@@ -118,10 +114,6 @@ public class AttendenceActivity extends AppCompatActivity {
          @Override
          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
              long count=dataSnapshot.getChildrenCount();
-             if(count==0)
-             {
-                 Toast.makeText(AttendenceActivity.this,"No data found in Database",Toast.LENGTH_LONG).show();
-             }
              int i=0;
              for(DataSnapshot ds : dataSnapshot.getChildren() )
              {
