@@ -237,7 +237,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/sgpaCalculator_icon"
-                android:text="@string/sgpa_calculator"
+                android:text="Result Analysis"
                 android:textColor="#000"
                 android:textSize="25sp" />
 
@@ -246,7 +246,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/sgpaCalculator"
                 android:layout_toRightOf="@+id/sgpaCalculator_icon"
-                android:text="Calculate your sgpa and cgpa"
+                android:text="Check your results using Resnal"
                 android:textSize="15sp" />
         </RelativeLayout>
 

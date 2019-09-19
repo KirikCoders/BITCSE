@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "io.kirikcoders.bitcse"
         minSdkVersion 19
-        targetSdkVersion 28
-        versionCode 2
-        versionName "1.0.1"
+        targetSdkVersion 29
+        versionCode 3
+        versionName "1.0.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }

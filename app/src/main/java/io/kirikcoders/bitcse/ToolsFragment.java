@@ -39,7 +39,6 @@ public class ToolsFragment extends Fragment {
         {
             internal.setVisibility(internal.GONE);
             attendance.setVisibility(attendance.GONE);
-            sgpa.setVisibility(sgpa.GONE);
         }
         return rootView;
     }

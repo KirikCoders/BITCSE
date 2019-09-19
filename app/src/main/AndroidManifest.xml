@@ -55,7 +55,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".tools.SGPAActivity"
-            android:label="SGPA Calculator"
+            android:label="Result Analysis"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
