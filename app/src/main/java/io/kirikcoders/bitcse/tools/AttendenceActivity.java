@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -39,14 +38,14 @@ public class AttendenceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attendence);
+        setContentView(R.layout.activity_attendance);
         obj = new UserDetails(AttendenceActivity.this, Constants.USER_PREFERENCE_FILE);
         ref= FirebaseDatabase.getInstance().getReference().child("attendance");
         test1=ref.child("test1");
         test2=ref.child("test2");
         test3=ref.child("test3");
-        RelativeLayout relativeLayout=findViewById(R.id.linearLayout2);
-        TableLayout table=findViewById(R.id.tableLayout);
+        RelativeLayout relativeLayout=findViewById(R.id.linearLayout2a);
+        TableLayout table=findViewById(R.id.tableLayouta);
         if(isNetworkConnected()==false)
         {
             table.setVisibility(table.GONE);
@@ -56,11 +55,9 @@ public class AttendenceActivity extends AppCompatActivity {
                 startActivity(intent);
             }).show();
         }
-        TableRow[] row={findViewById(R.id.r2),findViewById(R.id.r3),findViewById(R.id.r4),findViewById(R.id.r5),findViewById(R.id.r6),findViewById(R.id.r7),findViewById(R.id.r8),findViewById(R.id.r9),findViewById(R.id.r10)};
-        TextView[] sub={findViewById(R.id.a_sub1),findViewById(R.id.a_sub2),findViewById(R.id.a_sub3),findViewById(R.id.a_sub4),findViewById(R.id.a_sub5),findViewById(R.id.a_sub6),findViewById(R.id.a_sub7),findViewById(R.id.a_sub8),findViewById(R.id.a_sub9)};
-        TextView[] t1={findViewById(R.id.sub1_t1),findViewById(R.id.sub2_t1),findViewById(R.id.sub3_t1),findViewById(R.id.sub4_t1),findViewById(R.id.sub5_t1),findViewById(R.id.sub6_t1),findViewById(R.id.sub7_t1),findViewById(R.id.sub8_t1),findViewById(R.id.sub9_t1)};
-        TextView[] t2={findViewById(R.id.sub1_t2),findViewById(R.id.sub2_t2),findViewById(R.id.sub3_t2),findViewById(R.id.sub4_t2),findViewById(R.id.sub5_t2),findViewById(R.id.sub6_t2),findViewById(R.id.sub7_t2),findViewById(R.id.sub8_t2),findViewById(R.id.sub9_t2)};
-        TextView[] t3={findViewById(R.id.sub1_t3),findViewById(R.id.sub2_t3),findViewById(R.id.sub3_t3),findViewById(R.id.sub4_t3),findViewById(R.id.sub5_t3),findViewById(R.id.sub6_t3),findViewById(R.id.sub7_t3),findViewById(R.id.sub8_t3),findViewById(R.id.sub9_t3)};
+        TableRow[] row={findViewById(R.id.r2a),findViewById(R.id.r3a),findViewById(R.id.r4a),findViewById(R.id.r5a),findViewById(R.id.r6a),findViewById(R.id.r7a),findViewById(R.id.r8a),findViewById(R.id.r9a),findViewById(R.id.r10a)};
+        TextView[] sub={findViewById(R.id.a_sub1a),findViewById(R.id.a_sub2a),findViewById(R.id.a_sub3a),findViewById(R.id.a_sub4a),findViewById(R.id.a_sub5a),findViewById(R.id.a_sub6a),findViewById(R.id.a_sub7a),findViewById(R.id.a_sub8a),findViewById(R.id.a_sub9a)};
+        TextView[] t1={findViewById(R.id.sub1_t1a),findViewById(R.id.sub2_t1a),findViewById(R.id.sub3_t1a),findViewById(R.id.sub4_t1a),findViewById(R.id.sub5_t1a),findViewById(R.id.sub6_t1a),findViewById(R.id.sub7_t1a),findViewById(R.id.sub8_t1a),findViewById(R.id.sub9_t1a)};
         try{
         test1.child(obj.getmUsn()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -91,42 +88,6 @@ public class AttendenceActivity extends AppCompatActivity {
             }
         });
 
-
-     test2.child(obj.getmUsn()).addValueEventListener(new ValueEventListener() {
-         @Override
-         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-             long count=dataSnapshot.getChildrenCount();
-             int i=0;
-             for(DataSnapshot ds : dataSnapshot.getChildren() )
-             {
-                 t2[i].setText(ds.getValue().toString());
-                 i++;
-             }
-         }
-
-         @Override
-         public void onCancelled(@NonNull DatabaseError databaseError) {
-
-         }
-     });
-
-     test3.child(obj.getmUsn()).addValueEventListener(new ValueEventListener() {
-         @Override
-         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-             long count=dataSnapshot.getChildrenCount();
-             int i=0;
-             for(DataSnapshot ds : dataSnapshot.getChildren() )
-             {
-                 t3[i].setText(ds.getValue().toString());
-                 i++;
-             }
-         }
-
-         @Override
-         public void onCancelled(@NonNull DatabaseError databaseError) {
-
-         }
-     });
         }catch (Exception e){Toast.makeText(AttendenceActivity.this,"Wrong Data in database",Toast.LENGTH_LONG).show();}
     }
     private boolean isNetworkConnected() {
