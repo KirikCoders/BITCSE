@@ -71,7 +71,7 @@ public class AttendenceActivity extends AppCompatActivity {
                 for(DataSnapshot ds : dataSnapshot.getChildren() )
                 {
                     sub[i].setText(ds.getKey().toString());
-                    t1[i].setText(ds.getValue().toString());
+                    t1[i].setText(ds.getValue().toString()+"%");
                     i++;
                 }
                 while(i<9)
