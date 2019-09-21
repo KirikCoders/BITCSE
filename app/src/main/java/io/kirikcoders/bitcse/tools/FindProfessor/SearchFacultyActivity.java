@@ -3,7 +3,10 @@ package io.kirikcoders.bitcse.tools.FindProfessor;
 import androidx.appcompat.app.AppCompatActivity;
 import io.kirikcoders.bitcse.R;
 import io.kirikcoders.bitcse.database.DataBaseHelper;
+import io.kirikcoders.bitcse.utils.Constants;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +31,9 @@ public class SearchFacultyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_faculty);
+        SharedPreferences mPrefs = getBaseContext().getSharedPreferences(Constants.USER_PREFERENCE_FILE, Context.MODE_PRIVATE);
+        int mode = mPrefs.getInt("MODE",-1);
+        getDelegate().setLocalNightMode(mode);
         Spinner day=findViewById(R.id.day_spinner);
         Spinner Slot=findViewById(R.id.slot_spinner);
         ListView lst=findViewById(R.id.fac_search_lst);

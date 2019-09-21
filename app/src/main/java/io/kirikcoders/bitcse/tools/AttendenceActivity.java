@@ -8,6 +8,7 @@ import io.kirikcoders.bitcse.utils.UserDetails;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
@@ -39,6 +40,9 @@ public class AttendenceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
+        SharedPreferences mPrefs = getBaseContext().getSharedPreferences(Constants.USER_PREFERENCE_FILE, Context.MODE_PRIVATE);
+        int mode = mPrefs.getInt("MODE",-1);
+        getDelegate().setLocalNightMode(mode);
         obj = new UserDetails(AttendenceActivity.this, Constants.USER_PREFERENCE_FILE);
         ref= FirebaseDatabase.getInstance().getReference().child("attendance");
         test1=ref.child("test1");

@@ -1,7 +1,9 @@
 package io.kirikcoders.bitcse.events;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.view.View;
@@ -45,6 +47,9 @@ public class ViewEventActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences mPrefs = getBaseContext().getSharedPreferences(Constants.USER_PREFERENCE_FILE, Context.MODE_PRIVATE);
+        int mode = mPrefs.getInt("MODE",-1);
+        getDelegate().setLocalNightMode(mode);
         setTitle(eventName);
         setContentView(R.layout.activity_view_event);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

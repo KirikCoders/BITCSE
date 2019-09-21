@@ -2,7 +2,10 @@ package io.kirikcoders.bitcse.Settings;
 
 import androidx.appcompat.app.AppCompatActivity;
 import io.kirikcoders.bitcse.R;
+import io.kirikcoders.bitcse.utils.Constants;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -16,6 +19,9 @@ public class OpenSourceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_open_source);
+        SharedPreferences mPrefs = getBaseContext().getSharedPreferences(Constants.USER_PREFERENCE_FILE, Context.MODE_PRIVATE);
+        int mode = mPrefs.getInt("MODE",-1);
+        getDelegate().setLocalNightMode(mode);
         opensourcelist=findViewById(R.id.open_lst);
         String[] name={"Glide","CircularImageView"};
         String[] url={"https://github.com/bumptech/glide","https://github.com/lopspower/CircularImageView"};

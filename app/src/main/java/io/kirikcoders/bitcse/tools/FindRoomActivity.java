@@ -7,6 +7,8 @@ import io.kirikcoders.bitcse.events.TimePickerFragment;
 import io.kirikcoders.bitcse.utils.Constants;
 import io.kirikcoders.bitcse.utils.InputCheckUtils;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +38,9 @@ public class FindRoomActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_room);
+        SharedPreferences mPrefs = getBaseContext().getSharedPreferences(Constants.USER_PREFERENCE_FILE, Context.MODE_PRIVATE);
+        int mode = mPrefs.getInt("MODE",-1);
+        getDelegate().setLocalNightMode(mode);
         dataBaseHelper = new DataBaseHelper(this);
         try {
             dataBaseHelper.createDatabase();

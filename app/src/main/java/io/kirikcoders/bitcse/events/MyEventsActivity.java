@@ -6,6 +6,8 @@ import io.kirikcoders.bitcse.R;
 import io.kirikcoders.bitcse.database.DataBaseHelper;
 import io.kirikcoders.bitcse.utils.Constants;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,6 +40,9 @@ public class MyEventsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_events);
+        SharedPreferences mPrefs = getBaseContext().getSharedPreferences(Constants.USER_PREFERENCE_FILE, Context.MODE_PRIVATE);
+        int mode = mPrefs.getInt("MODE",-1);
+        getDelegate().setLocalNightMode(mode);
         eventList=(ListView) findViewById(R.id.my_events_list);
         eventName = getIntent().getStringExtra("event");
         showEventName=(TextView)findViewById(R.id.showEventName);
