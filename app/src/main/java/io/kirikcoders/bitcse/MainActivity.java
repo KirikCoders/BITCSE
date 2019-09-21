@@ -2,7 +2,9 @@ package io.kirikcoders.bitcse;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -25,7 +27,9 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
@@ -59,8 +63,11 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> eventName = new ArrayList<>(20);
     private EventAdapter mAdapter;
     private MyEventsAdapter ad;
-
+    private SharedPreferences mPrefs;
+    private SharedPreferences.Editor mPrefsEditor;
     private DataBaseHelper dataBaseHelper;
+    AlertDialog alertDialog1;
+    CharSequence[] values = {" System Default "," Dark Always "," Light Always"};
     private ViewPager.OnPageChangeListener changeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -118,6 +125,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mPrefs = getBaseContext().getSharedPreferences(Constants.USER_PREFERENCE_FILE,Context.MODE_PRIVATE);
+        mPrefsEditor = mPrefs.edit();
+        int mode = mPrefs.getInt("MODE",-1);
+        getDelegate().setLocalNightMode(mode);
         // get user permissions for storage, etc if not granted
         if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -302,6 +313,44 @@ public class MainActivity extends AppCompatActivity {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         return cm.getActiveNetworkInfo() != null;
+    }
+
+    public void darkClick(View v)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+        builder.setTitle("Select Your Choice");
+
+        builder.setSingleChoiceItems(values, -1, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int item) {
+
+                switch(item)
+                {
+                    case 0:
+
+                        getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                        mPrefsEditor.putInt("MODE",AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                        mPrefsEditor.commit();
+                        break;
+                    case 1:
+
+                        getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        mPrefsEditor.putInt("MODE",AppCompatDelegate.MODE_NIGHT_YES);
+                        mPrefsEditor.commit();
+                        break;
+                    case 2:
+
+                        getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        mPrefsEditor.putInt("MODE",AppCompatDelegate.MODE_NIGHT_NO);
+                        mPrefsEditor.commit();
+                        break;
+                }
+                alertDialog1.dismiss();
+            }
+        });
+        alertDialog1 = builder.create();
+        alertDialog1.show();
     }
 
 }

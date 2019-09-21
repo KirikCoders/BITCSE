@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/faculty_icon"
                 android:text="@string/faculty"
-                android:textColor="#000"
+                android:textColor="@color/Heading"
                 android:textSize="25sp" />
 
             <TextView
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/docs_icon"
                 android:text="@string/docs"
-                android:textColor="#000"
+                android:textColor="@color/Heading"
                 android:textSize="25sp" />
 
             <TextView
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/internals_icon"
                 android:text="@string/internal_marks"
-                android:textColor="#000"
+                android:textColor="@color/Heading"
                 android:textSize="25sp" />
 
             <TextView
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/attendance_icon"
                 android:text="@string/attendance"
-                android:textColor="#000"
+                android:textColor="@color/Heading"
                 android:textSize="25sp" />
 
             <TextView
@@ -171,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/emptyRoom_icon"
                 android:text="@string/find_an_empty_room"
-                android:textColor="#000"
+                android:textColor="@color/Heading"
                 android:textSize="25sp" />
 
             <TextView
@@ -204,7 +204,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/findProfessor_icon"
                 android:text="@string/find_a_professor"
-                android:textColor="#000"
+                android:textColor="@color/Heading"
                 android:textSize="25sp" />
 
             <TextView
@@ -238,7 +238,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/sgpaCalculator_icon"
                 android:text="Result Analysis"
-                android:textColor="#000"
+                android:textColor="@color/Heading"
                 android:textSize="25sp" />
 
             <TextView
@@ -272,7 +272,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/studentinfo_icon"
                 android:text="Student Details"
-                android:textColor="#000"
+                android:textColor="@color/Heading"
                 android:textSize="25sp" />
 
             <TextView

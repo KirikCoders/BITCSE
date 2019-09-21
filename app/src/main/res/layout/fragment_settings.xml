@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/about_icon"
             android:text="About this app"
-            android:textColor="#000"
+            android:textColor="@color/Heading"
             android:textSize="25sp" />
 
         <TextView
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/openSource_icon"
             android:text="Open Source Licenses"
-            android:textColor="#000"
+            android:textColor="@color/Heading"
             android:textSize="25sp" />
 
         <TextView
@@ -110,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/feedback_icon"
             android:text="Feedback"
-            android:textColor="#000"
+            android:textColor="@color/Heading"
             android:textSize="25sp" />
 
         <TextView
@@ -140,7 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/signout_icon"
-            android:textColor="#000"
+            android:textColor="@color/Heading"
             android:text="Sign out"
             android:textSize="25sp" />
 
@@ -152,5 +152,35 @@
             android:text="Sign out of your account"
             android:textSize="15sp" />
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/dark_layout"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="darkClick">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/dark"
+            android:id="@+id/dark_icon"
+            android:layout_margin="5dp"/>
+        <TextView
+            android:id="@+id/dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/dark_icon"
+            android:textColor="@color/Heading"
+            android:text="Dark Mode Options"
+            android:textSize="25sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dark"
+            android:layout_toRightOf="@+id/dark_icon"
+            android:text="Choose Dark vs Light Side"
+            android:textSize="15sp" />
+    </RelativeLayout>
 </LinearLayout>

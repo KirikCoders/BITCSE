@@ -94,7 +94,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub1_t2"
@@ -107,7 +107,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub1_t3"
@@ -120,7 +120,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
         </TableRow>
 
         <TableRow
@@ -148,7 +148,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub2_t2"
@@ -161,7 +161,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub2_t3"
@@ -174,7 +174,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
         </TableRow>
 
         <TableRow
@@ -202,7 +202,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub3_t2"
@@ -215,7 +215,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub3_t3"
@@ -228,7 +228,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
         </TableRow>
 
         <TableRow
@@ -256,7 +256,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub4_t2"
@@ -269,7 +269,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub4_t3"
@@ -282,7 +282,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
         </TableRow>
 
         <TableRow
@@ -310,7 +310,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub5_t2"
@@ -323,7 +323,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub5_t3"
@@ -336,7 +336,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
         </TableRow>
 
         <TableRow
@@ -364,7 +364,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub6_t2"
@@ -377,7 +377,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub6_t3"
@@ -390,7 +390,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
         </TableRow>
 
         <TableRow
@@ -418,7 +418,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub7_t2"
@@ -431,7 +431,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub7_t3"
@@ -444,7 +444,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
         </TableRow>
 
         <TableRow
@@ -472,7 +472,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub8_t2"
@@ -485,7 +485,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub8_t3"
@@ -498,7 +498,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
         </TableRow>
 
         <TableRow
@@ -526,7 +526,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub9_t2"
@@ -539,7 +539,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
 
             <TextView
                 android:id="@+id/sub9_t3"
@@ -552,7 +552,7 @@
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
                 android:text="-"
-                android:textColor="#000000" />
+                android:textColor="@color/celltext" />
         </TableRow>
     </TableLayout>
 </RelativeLayout>

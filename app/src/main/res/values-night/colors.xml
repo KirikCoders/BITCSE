@@ -12,9 +12,9 @@
     <color name="black_overlay">#66000000</color>
     <color name="line">#9E9E9E</color>
     <color name="room_background">#2979FF</color>
-    <color name="Heading">#000</color>
-    <color name="cell">#FFFFFF</color>
-    <color name="celltext">#000000</color>
-    <color name="cellborder">#000000</color>
-    <color name="arrowbackground">#FFF</color>
+    <color name="Heading">#e53935</color>
+    <color name="cell">#000000</color>
+    <color name="celltext">#FFFFFF</color>
+    <color name="cellborder">#FFFFFF</color>
+    <color name="arrowbackground">#000</color>
 </resources>

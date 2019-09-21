@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:text="Developers of Version V1:- \n Sharath S Bhargav, Android Developer \n Suhas T S, Android Developer \n Ullas Diwakar, UI Developer \n Suchit Rotti, UI Developer \n \n  Mentors:-\n Dr. S. Nandagopalan, Professor and HOD \n Nethravathy V, Assistant Professor"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="@color/Heading"
         android:textSize="20sp" />
 
     <View
@@ -34,7 +34,7 @@
         android:layout_marginTop="25dp"
         android:padding="10dp"
         android:text="Developers of Version V2:- \n Akash R, Developer \n Abhishek Koushik B N, Developer \n Indranil Sarkar, Database Admin \n Kartik G, Lead Developer  \n \n  Mentors:-\n B T Harish Kumar, Assistant Professor and Nethravathy V, Assistant professor \n BITCSE was developed under the guidance of Dr. Asha T, Professor and HOD"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textColor="@color/Heading"
         android:textSize="20sp" />
 </RelativeLayout>
 

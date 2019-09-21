@@ -23,7 +23,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:background="#FFF"
+                android:background="@color/arrowbackground"
                 android:id="@+id/day_prev"
                 android:src="@drawable/ic_navigate_before_blue_grey_400_24dp"/>
 
@@ -43,14 +43,16 @@
                 android:layout_alignParentEnd="true"
                 android:layout_gravity="right"
                 android:id="@+id/day_next"
-                android:background="#FFF"
+                android:background="@color/arrowbackground"
                 android:src="@drawable/ic_navigate_next_blue_grey_400_24dp" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/time_table_recycler_view"
-                android:layout_below="@+id/day_shower"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
+                android:layout_below="@+id/day_shower"
+                android:layout_marginTop="22dp"
+                android:layout_marginBottom="2dp"
                 tools:listitem="@layout/fragment_subject" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
