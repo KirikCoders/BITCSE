@@ -98,17 +98,21 @@
         android:text="@string/terms"
         android:buttonTint="@color/colorAccent"
         android:onClick="acceptTerms"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="83dp"
+        android:layout_height="wrap_content"
+        android:elevation="7dp"
+        android:indeterminateTint="@color/colorAccent"
+        android:visibility="gone" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/register_btn"
         android:text="@string/action_register"
         android:onClick="register" />
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminateTint="@color/colorAccent"
-        android:visibility="gone"/>
+
 </LinearLayout>
