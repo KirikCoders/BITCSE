@@ -162,8 +162,8 @@ public class RegisterActivity extends AppCompatActivity {
                     if(dataSnapshot.child("flag").getValue().toString().trim().equals("reg"))
                     {
                         System.out.println("Enter");
-                        Toast.makeText(getBaseContext(),"User Already registered,Please Login",Toast.LENGTH_LONG).show();
                         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        Toast.makeText(getBaseContext(),"User Already registered,Please Login",Toast.LENGTH_LONG).show();
                         finish();
                         return;
                     }
