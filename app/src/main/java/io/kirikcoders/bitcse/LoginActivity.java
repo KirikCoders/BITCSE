@@ -153,7 +153,22 @@ public class LoginActivity extends AppCompatActivity {
         try {
             String usn = mUsn.getText().toString().trim().toUpperCase();
             if (mAuth.getCurrentUser() == null) {
-                mAuth.signInAnonymously().addOnSuccessListener(authResult ->
+                mAuth.signInAnonymously().addOnSuccessListener(authResult ->{
+                    myRef.child(usn).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.child("flag").toString().trim().equals("notreg"))
+                            {
+                                Toast.makeText(LoginActivity.this, "Please Register", Toast.LENGTH_SHORT).show();
+                                registerUser(view);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                         myRef.child(usn).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(final DataSnapshot dataSnapshot) {
@@ -166,6 +181,7 @@ public class LoginActivity extends AppCompatActivity {
                                     mAuth.signInWithEmailAndPassword(username, password)
                                             .addOnSuccessListener(authResult -> {
                                                 if (!FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()) {
+                                                    Toast.makeText(LoginActivity.this, "Verify Email ID", Toast.LENGTH_SHORT).show();
                                                     mUsn.setError("Email ID not verified.Check your email");
                                                     FirebaseAuth.getInstance().signOut();
                                                     return;
@@ -196,7 +212,8 @@ public class LoginActivity extends AppCompatActivity {
                             public void onCancelled(DatabaseError databaseError) {
                                 Log.e("FirebaseStudentLoadFail", databaseError.getMessage());
                             }
-                        }));
+                        });});
+
             }
             else {
                 myRef.child(usn).addValueEventListener(new ValueEventListener() {

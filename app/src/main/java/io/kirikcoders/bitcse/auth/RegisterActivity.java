@@ -1,6 +1,8 @@
 package io.kirikcoders.bitcse.auth;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +33,7 @@ import io.kirikcoders.bitcse.utils.Constants;
 
 public class RegisterActivity extends AppCompatActivity {
     // get references to UI elements
-    private EditText usn,password,confirmPassword;
+    private EditText usn,password,confirmPassword,email,phone;
     private Button register;
     private RadioGroup radioGroup;
     private ProgressBar progressBar;
@@ -53,6 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
         usn = findViewById(R.id.register_usn);
         password = findViewById(R.id.register_password);
         confirmPassword = findViewById(R.id.register_confirm_password);
+        email = findViewById(R.id.register_email);
+        phone = findViewById(R.id.register_phone);
         register = findViewById(R.id.register_btn);
         radioGroup = findViewById(R.id.regRadioGroup);
         progressBar = findViewById(R.id.progressBar);
@@ -64,9 +68,13 @@ public class RegisterActivity extends AppCompatActivity {
                 switch (radioGroup.getCheckedRadioButtonId()){
                     case R.id.regStudent:
                         myRef = database.getReference(Constants.STUDENT_DATABASE);
+                        email.setVisibility(View.VISIBLE);
+                        phone.setVisibility(View.VISIBLE);
                         break;
                     case R.id.regProfessor:
                         myRef = database.getReference(Constants.PROF_DATABASE);
+                        email.setVisibility(View.GONE);
+                        phone.setVisibility(View.GONE);
                         break;
                 }
             }
@@ -78,67 +86,138 @@ public class RegisterActivity extends AppCompatActivity {
     * them with fire base
     */
     public void register(View view) {
-        if(radioGroup.getCheckedRadioButtonId() == -1){
-            Snackbar.make(getCurrentFocus(),"Please select one of the Options: Student or Professor",Snackbar.LENGTH_LONG).show();
+        if (radioGroup.getCheckedRadioButtonId() == -1) {
+            Snackbar.make(getCurrentFocus(), "Please select one of the Options: Student or Professor", Snackbar.LENGTH_LONG).show();
             return;
         }
-        if (usn.getText().toString().trim().equals("")){
+        if (usn.getText().toString().trim().equals("")) {
             usn.setError("This field cannot be empty");
             return;
-        } else if (password.getText().toString().trim().equals("")){
+        } else if (email.getText().toString().trim().equals("")) {
+            email.setError("This field cannot be empty");
+            return;
+        }else if (phone.getText().toString().trim().length() != 10) {
+            phone.setError("Enter a 10 digit phone number");
+            return;
+        }else if (password.getText().toString().trim().equals("")) {
             password.setError("This field cannot be empty");
             return;
-        } else if(password.getText().toString().trim().length() < 8){
+        } else if (password.getText().toString().trim().length() < 8) {
             password.setError("Password too short.");
             return;
-        } else if(confirmPassword.getText().toString().trim().equals("")){
+        } else if (confirmPassword.getText().toString().trim().equals("")) {
             confirmPassword.setError("This field cannot be empty");
             return;
-        } else if(!(password.getText().toString().trim()
-                .equals(confirmPassword.getText().toString().trim()))){
+        } else if (!(password.getText().toString().trim()
+                .equals(confirmPassword.getText().toString().trim()))) {
             password.setError("Passwords do not match");
             confirmPassword.setError("Passwords do not match");
             return;
         }
         progressBar.setVisibility(View.VISIBLE);
-        mAuth.signInAnonymously().addOnSuccessListener(authResult -> myRef.child(usn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                try {
-                    String username = dataSnapshot.child("emailId").getValue().toString();
-                    String password = confirmPassword.getText().toString().trim();
-                    System.out.println(username);
-                    mAuth.createUserWithEmailAndPassword(username,password)
-                            .addOnCompleteListener(RegisterActivity.this,task -> {
-                                Log.d("TAG","Created User:"+task.isSuccessful());
-                                if(!task.isSuccessful()){
-                                    Toast.makeText(RegisterActivity.this, "Error occurred." +
-                                            " Could not create user. Please " +
-                                            "check your internet connection", Toast.LENGTH_LONG).show();
-                                    return;
-                                }
-                                else {
-                                    startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
-                                    finish();
-                                }
-                            });
+        if (radioGroup.getCheckedRadioButtonId() == R.id.regProfessor) {
+            mAuth.signInAnonymously().addOnSuccessListener(authResult -> myRef.child(usn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    try {
+                        String username = dataSnapshot.child("emailId").getValue().toString();
+                        String password = confirmPassword.getText().toString().trim();
+                        System.out.println(username);
+                        mAuth.createUserWithEmailAndPassword(username, password)
+                                .addOnCompleteListener(RegisterActivity.this, task -> {
+                                    Log.d("TAG", "Created User:" + task.isSuccessful());
+                                    if (!task.isSuccessful()) {
+                                        Toast.makeText(RegisterActivity.this, "Error occurred." +
+                                                " Could not create user. Please " +
+                                                "check your internet connection", Toast.LENGTH_LONG).show();
+                                        return;
+                                    } else {
+                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                        finish();
+                                    }
+                                });
 
-                }catch (NullPointerException e){
-                    usn.setError("Invalid USN. Please check your input or contact" +
-                            " your department for help");
-                    progressBar.setVisibility(View.INVISIBLE);
+                    } catch (NullPointerException e) {
+                        usn.setError("Invalid USN. Please check your input or contact" +
+                                " your department for help");
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
                 }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        }))
-        .addOnFailureListener(e -> {
-         progressBar.setVisibility(View.INVISIBLE);
-         Snackbar.make(view,"Something went wrong.Please check if you have an internet connection or that the details" +
-                 "entered are valid",Snackbar.LENGTH_LONG).show();
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            }))
+                    .addOnFailureListener(e -> {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        Snackbar.make(view, "Something went wrong.Please check if you have an internet connection or that the details" +
+                                "entered are valid", Snackbar.LENGTH_LONG).show();
+                    });
+        }
+        else{
+            myRef.child(usn.getText().toString().trim()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.child("flag").getValue().toString().trim().equals("reg"))
+                    {
+                        System.out.println("Enter");
+                        Toast.makeText(getBaseContext(),"User Already registered,Please Login",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                        finish();
+                        return;
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            mAuth.signInAnonymously().addOnSuccessListener(authResult -> myRef.child(usn.getText().toString().trim()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    try {
+                        String username = email.getText().toString().trim();
+                        String password = confirmPassword.getText().toString().trim();
+                        if(!dataSnapshot.child("flag").equals("reg"))
+                        mAuth.createUserWithEmailAndPassword(username, password)
+                                .addOnCompleteListener(RegisterActivity.this, task -> {
+                                    Log.d("TAG", "Created User:" + task.isSuccessful());
+                                    if (!isNetworkConnected()) {
+                                        Toast.makeText(RegisterActivity.this, "Error occurred." +
+                                                " Could not create user. Please " +
+                                                "check your internet connection", Toast.LENGTH_LONG).show();
+                                        return;
+                                    } else {
+                                        myRef.child(usn.getText().toString().trim()).child("flag").setValue("reg");
+                                        myRef.child(usn.getText().toString().trim()).child("emailId").setValue(username);
+                                        myRef.child(usn.getText().toString().trim()).child("phone").setValue(phone.getText().toString().trim());
+                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                        finish();
+                                    }
+                                });
+
+                    } catch (NullPointerException e) {
+                        usn.setError("Invalid USN. Please check your input or contact" +
+                                " your department for help");
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            }))
+                    .addOnFailureListener(e -> {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        Snackbar.make(view, "Something went wrong.Please check if you have an internet connection or that the details" +
+                                "entered are valid", Snackbar.LENGTH_LONG).show();
+                    });
+
+        }
+
     }
 //    This method ensures that users accept the terms and conditions
     public void acceptTerms(View view) {
@@ -153,5 +232,10 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("https://kirikcoders.github.io/BITCSE/"));
         startActivity(intent);
+    }
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 }
