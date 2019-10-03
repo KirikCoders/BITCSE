@@ -6,20 +6,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+
+    android:background="@mipmap/singin"
     tools:context=".auth.RegisterActivity">
     <ScrollView
         android:layout_width="match_parent"
+        android:background="#6F000000"
+        android:padding="20dp"
         android:layout_height="match_parent">
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BITCSE"
+                android:layout_gravity="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="80sp"
+                android:fontFamily="sans-serif-condensed"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
         android:text="@string/registration_help"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="I am a.."
+            android:textColor="@color/colorWhite"
             android:textSize="15dp"/>
         <RadioGroup
             android:layout_width="wrap_content"
@@ -41,11 +55,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Student"
+                android:textColor="@color/colorWhite"
                 android:buttonTint="@color/colorAccent"
                 android:id="@+id/regStudent"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/colorWhite"
                 android:text="Professor"
                 android:buttonTint="@color/colorAccent"
                 android:id="@+id/regProfessor"/>
@@ -56,23 +72,26 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="@string/prompt_USN"
-        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
         android:inputType="textCapCharacters"
         android:id="@+id/register_usn"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:textColorHint="@color/colorWhite"
         android:hint="Email ID"
-        android:backgroundTint="@color/colorAccent"
         android:inputType="textEmailAddress"
+        android:textColor="@color/colorWhite"
         android:id="@+id/register_email"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:textColorHint="@color/colorWhite"
+        android:textColor="@color/colorWhite"
         android:hint="Phone Number"
-        android:backgroundTint="@color/colorAccent"
         android:inputType="phone"
         android:id="@+id/register_phone"/>
     <EditText
@@ -80,16 +99,18 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="@string/prompt_password"
-        android:backgroundTint="@color/colorAccent"
+        android:textColorHint="@color/colorWhite"
+        android:textColor="@color/colorWhite"
         android:inputType="textPassword"
         android:id="@+id/register_password"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         android:hint="Confirm Password"
         android:inputType="textPassword"
+        android:textColorHint="@color/colorWhite"
 
         android:id="@+id/register_confirm_password"/>
 
@@ -99,6 +120,7 @@
         android:id="@+id/termsLink"
         android:text="@string/terms_link"
         android:clickable="true"
+        android:textColor="@color/colorWhite"
         android:onClick="launchTermsOfService"
         android:autoLink="web"/>
     <CheckBox
@@ -107,6 +129,7 @@
         android:layout_height="wrap_content"
         android:text="@string/terms"
         android:buttonTint="@color/colorAccent"
+        android:textColor="@color/colorWhite"
         android:onClick="acceptTerms"/>
 
     <ProgressBar

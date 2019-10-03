@@ -67,16 +67,18 @@
                     android:id="@+id/logProfessor"/>
             </RadioGroup>
         </LinearLayout>
+
         <EditText
             android:id="@+id/usn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:textColorHint="@color/colorWhite"
-            android:singleLine="true"
-            android:inputType="textCapCharacters"
             android:hint="@string/prompt_USN"
-            android:textColor="@color/colorWhite"/>
+            android:inputType="textCapCharacters"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhite" />
+
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
