@@ -6,7 +6,7 @@ android {
         applicationId "io.kirikcoders.bitcse"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 3
+        versionCode 4
         versionName "2.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true

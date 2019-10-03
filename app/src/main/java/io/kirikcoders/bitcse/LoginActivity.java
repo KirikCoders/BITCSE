@@ -203,8 +203,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     dialog.dismiss();
                                             });
                                 } catch (NullPointerException e) {
-                                    mUsn.setError("Invalid USN. Please check your input or contact" +
-                                            " your department for help");
+                                    mUsn.setError("Invalid USN. Try Registering");
                                 }
                             }
 
@@ -249,8 +248,7 @@ public class LoginActivity extends AppCompatActivity {
                                             dialog.dismiss();
                                     });
                         } catch (NullPointerException e) {
-                            mUsn.setError("Invalid USN. Please check your input or contact" +
-                                    " your department for help");
+                            mUsn.setError("Invalid USN. Try Registering");
                         }
                     }
 
@@ -261,8 +259,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         } catch (NullPointerException e){
-            mUsn.setError("Invalid USN. Please check your input or contact" +
-                    " your department for help");
+            mUsn.setError("Invalid USN. Try Registering");
         }
     }
     public void registerUser(View view) {
