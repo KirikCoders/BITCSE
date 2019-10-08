@@ -16,5 +16,5 @@
     <color name="cell">#000000</color>
     <color name="celltext">#FFFFFF</color>
     <color name="cellborder">#FFFFFF</color>
-    <color name="arrowbackground">#000</color>
+    <color name="arrowbackground">#414141</color>
 </resources>
